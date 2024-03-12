@@ -16,8 +16,9 @@ export const Projects = () => {
 
             <Container>
                 {/*для ссылки на другую страницу*/}
-                <FlexWrapper>
+                <FlexWrapper justify={'space-between'} align={'center'}>
                     <SectionTitle>projects</SectionTitle>
+                    <Link href={''}>View all ~~&gt;</Link>
                 </FlexWrapper>
 
 
@@ -50,7 +51,13 @@ export const Projects = () => {
 };
 
 const StyledProjects = styled.section`
-${SectionTitle} {
-  margin-bottom: 48px;
-}
+  ${SectionTitle} {
+    margin-bottom: 48px;
+  }
+
+  padding-bottom: 106px;
+`
+
+const Link = styled.a`
+display: inline-block;
 `
