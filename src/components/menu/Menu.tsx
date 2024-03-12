@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from "styled-components";
-import {FlexWrapper} from "../FlexWrapper";
+import {theme} from "../../styles/Theme";
 
 export const Menu = (props: { menuItems: Array<string> }) => {
     return (
         <StyledMenu>
-            <FlexWrapper>
-                <ul>
-                    {props.menuItems.map((item, index) => {
-                        return <li key={index}><a href="">{item}</a></li>
-                    })}
-                </ul>
-            </FlexWrapper>
+            <ul>
+                {props.menuItems.map((item, index) => {
+                    return <List key={index}>
+                        <Link href="">{item}</Link>
+                    </List>
+                })}
+            </ul>
         </StyledMenu>
     );
 };
@@ -20,8 +20,19 @@ export const Menu = (props: { menuItems: Array<string> }) => {
 const StyledMenu = styled.nav`
   ul {
     display: flex;
-    gap: 32px;
+    gap: 42px;
   }
+`
+const List = styled.li`
 
-
+`
+const Link = styled.a`
+  font-weight: 400;
+  font-size: 16px;
+  color: ${theme.color.main};
+  
+  &:hover {
+    color: ${theme.color.mainFont};
+    font-weight: bold;
+  }
 `
