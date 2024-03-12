@@ -24,7 +24,7 @@ export const AboutMe = () => {
                         been helping various clients to establish their presence online. I always strive to learn about the
                         newest technologies and frameworks.
                     </SectionText>
-                    <Button type={"submit"} width={'buttonWidth'}>Read more</Button>
+                    <Button type={"submit"}>Read more</Button>
                 </FlexWrapper>
                 <img src={BottomFhoto} alt=""/>
             </FlexWrapper>
@@ -36,5 +36,5 @@ export const AboutMe = () => {
 };
 
 const StyledAboutMe = styled.section`
-
+    
 `
