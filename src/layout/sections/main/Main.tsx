@@ -2,25 +2,50 @@ import React from 'react';
 import styled from "styled-components";
 import {FlexWrapper} from "../../../components/FlexWrapper";
 import {Button} from "../../../components/Button";
-import MainPhoto from '../../../assets/img/photo-top.png'
+import {Container} from "../../../styles/Container";
+import {theme} from "../../../styles/Theme";
+import {MainPhoto} from "./mainphoto/MainPhoto";
 
 export const Main = () => {
     return (
         <StyledMain>
-            <FlexWrapper align={'center'} justify={'space-between'}>
-                <div>
-                    <h1>Elias is a web designer and front-end developer</h1>
-                    <p>He crafts responsive websites where technologies meet creativity</p>
-                    <Button type={'submit'}>Contact me!!</Button>
-                </div>
-                <img src={MainPhoto} alt=""/>
-            </FlexWrapper>
+            <Container>
+                <FlexWrapper align={'center'} justify={'space-between'}>
+                    <FlexWrapper direction={'column'}>
+                        <Title>Elias is a <span>web designer</span> and <span>front-end developer</span></Title>
+                        <Description>He crafts responsive websites where technologies meet creativity</Description>
+                        <Button type={'submit'}>Contact me!!</Button>
+                    </FlexWrapper>
+                    <MainPhoto></MainPhoto>
+                </FlexWrapper>
+            </Container>
         </StyledMain>
     );
 };
 
 
-const StyledMain = styled.div`
-  min-height: 70vh;
+const StyledMain = styled.section`
+  padding-top: 123px;
+  padding-bottom: 112px;
 `
+const Title = styled.h1`
+  font-weight: 600;
+  font-size: 32px;
+  color: ${theme.color.mainFont};
+
+  span {
+    color: ${theme.color.accent};
+  }
+`
+
+
+const Description = styled.h2`
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 156%;
+  color: ${theme.color.main};
+  margin: 32px 0 24px 0;
+`
+
+
 
