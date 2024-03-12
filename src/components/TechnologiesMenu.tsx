@@ -8,4 +8,7 @@ export const TechnologiesMenu = styled.h2`
   line-height: 156%;
   border-bottom: 1px solid ${theme.color.main};
   padding: 8px;
+  
+  
+  
 `

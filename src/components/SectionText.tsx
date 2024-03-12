@@ -6,7 +6,6 @@ type CardTextMargin = {
 }
 
 export const SectionText = styled.p<CardTextMargin>`
-  //font-family: var(--font-family);
   font-weight: 400;
   font-size: 16px;
   color: ${theme.color.main};

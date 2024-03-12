@@ -28,17 +28,15 @@ const StyledMain = styled.section`
   padding-top: 123px;
   padding-bottom: 112px;
 `
+
 const Title = styled.h1`
   font-weight: 600;
   font-size: 32px;
   color: ${theme.color.mainFont};
-
   span {
     color: ${theme.color.accent};
   }
 `
-
-
 const Description = styled.h2`
   font-weight: 400;
   font-size: 16px;

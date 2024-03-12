@@ -6,6 +6,7 @@ import {TechnologiesMenu} from "../../../components/TechnologiesMenu";
 import {theme} from "../../../styles/Theme";
 import {FlexWrapper} from "../../../components/FlexWrapper";
 
+
 type StyledWorkPropsType = {
     title: string
     text: string
@@ -26,7 +27,7 @@ export const Project = (props: StyledWorkPropsType) => {
             <InfoProjectWrapper>
                 <Title>{props.title}</Title>
                 <SectionText margin={'cardTextMargin'}>{props.text}</SectionText>
-                <Button>{props.buttonText}</Button>
+                <Button><Link href={''}>{props.buttonText}</Link></Button>
             </InfoProjectWrapper>
 
         </SyledWork>
@@ -37,6 +38,10 @@ const InfoProjectWrapper = styled.div`
   padding: 16px;
   display: flex;
   flex-direction: column;
+`
+
+const Link = styled.a`
+    
 `
 
 const SyledWork = styled.div`

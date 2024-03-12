@@ -36,9 +36,9 @@ export const GlobalStyles = createGlobalStyle`
     max-width: max-content;
   }
 
-  img {
-    width: 100%;
-    max-width: 100%;
-  }
+  //img {
+  //  width: 100%;
+  //  max-width: 100%;
+  //}
 `
 
