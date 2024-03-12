@@ -2,12 +2,13 @@ import React from 'react';
 import styled from "styled-components";
 import {FlexWrapper} from "../../components/FlexWrapper";
 import {Icon} from "../../components/icon/Icon";
+import {theme} from "../../styles/Theme";
 
 export const Media = () => {
     return (
         <StyledMedia>
-            <h6>Media</h6>
-            <FlexWrapper>
+            <Title>Media</Title>
+            <FlexWrapper gap={'8px'}>
                 <a href="">
                     <Icon iconId={'github'} width={'32'} height={'32'} wiewBox={'0 0 32 32'}/>
                 </a>
@@ -26,4 +27,10 @@ export const Media = () => {
 
 const StyledMedia = styled.div`
 
+`
+const Title = styled.p`
+  font-weight: 500;
+  font-size: 24px;
+  color: ${theme.color.mainFont};
+  margin-bottom: 12px;
 `
