@@ -5,6 +5,7 @@ import {SectionText} from "../../../components/SectionText";
 import {FlexWrapper} from "../../../components/FlexWrapper";
 import {Contact} from "./Contact";
 import {Container} from "../../../styles/Container";
+import dotsbg from "../../../assets/img/pseudoelements/dotsbg.svg"
 
 export const Contacts = () => {
     return (
@@ -35,5 +36,17 @@ export const StyledContacts = styled.section`
   }
   
   margin-bottom: 145px;
+  position: relative;
+
+  &::before {
+    content: '';
+    background-image: url("${dotsbg}");
+    position: absolute;
+    width: 103px;
+    height: 103px;
+    background-color: transparent;
+    left: calc(50% - 746px);
+    top: 43%;
+  }
 
 `
