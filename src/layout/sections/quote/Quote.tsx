@@ -4,6 +4,7 @@ import {Container} from "../../../styles/Container";
 import {FlexWrapper} from "../../../components/FlexWrapper";
 import {theme} from "../../../styles/Theme";
 import arrow from "../../../assets/img/pseudoelements/arrows.svg"
+import {Rotate} from "../../../components/AccentAnimation";
 
 export const Quote = () => {
     return (
@@ -22,8 +23,24 @@ export const Quote = () => {
     );
 };
 
+
 const StyledQuote = styled.section`
-    padding-bottom: 74px;
+  padding-bottom: 74px;
+  padding-top: 56px;
+  position: relative;
+  overflow-x: hidden;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    width: 91px;
+    height: 91px;
+    border: 1px solid ${theme.color.main};
+    background-color: transparent;
+    right: calc(50% - 750px);
+    top: 30%;
+    animation: ${Rotate} 12s linear infinite;
+  }
 `
 
 const StyledBlockquote = styled.blockquote`
