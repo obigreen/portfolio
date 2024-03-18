@@ -5,12 +5,17 @@ import {SectionTitle} from "../../../components/SectionTitle";
 import {Skill} from "./Skill";
 import {Icon} from "../../../components/icon/Icon";
 import {Container} from "../../../styles/Container";
+import {AccentAnimationCol} from "../../../components/AccentAnimation";
 
 export const Skills = () => {
     return (
         <StyledSkills>
             <Container>
-                <SectionTitle>skills</SectionTitle>
+
+                <FlexWrapper justify={'space-between'} align={'center'} margin={'0 0 12px 0'}>
+                    <SectionTitle width={'150%'}>skills</SectionTitle>
+                    <Link href={''}>View all ~~&gt;</Link>
+                </FlexWrapper>
 
                 <FlexWrapper align={'start'} justify={'space-between'}>
 
@@ -44,13 +49,15 @@ export const Skills = () => {
 
 
 const StyledSkills = styled.section`
-  ${SectionTitle} {
-    margin-bottom: 12px;
-  }
+
 
   padding-bottom: 112px;
 `
 const StyledVectors = styled.section`
   width: 349px;
   height: 282px;
+`
+const Link = styled.a`
+display: inline-block;
+  animation: ${AccentAnimationCol} 12s linear infinite alternate;
 `
