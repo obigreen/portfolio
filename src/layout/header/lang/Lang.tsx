@@ -2,30 +2,28 @@ import React from 'react';
 import {FlexWrapper} from "../../../components/FlexWrapper";
 import {Icon} from "../../../components/icon/Icon";
 import styled from "styled-components";
-import {theme} from "../../../styles/Theme";
+
 
 export const Lang = () => {
     return (
-<LangButton href={''}>
-    <FlexWrapper justify={'center'} align={'center'}>
-        <LanguageMenu>
-            EN
-        </LanguageMenu>
-        <Icon iconId={'arrow-down'}/>
-    </FlexWrapper>
-</LangButton>
+        <LangButton href={''}>
+            <FlexWrapper justify={'center'} align={'center'} gap={'4px'}>
+                <LanguageMenu>
+                    EN
+                </LanguageMenu>
+                <Icon iconId={'arrow-down'} width={'30'} height={'30'} wiewBox={'0 -7 30 30'}/>
+            </FlexWrapper>
+        </LangButton>
+
 
     );
 };
 
 const LangButton = styled.a`
-margin-left: 32px;
+
 `
 
 const LanguageMenu = styled.p`
-  font-weight: 600;
-  font-size: 16px;
-  color: ${theme.color.main};
-  margin-right: 4px;
+
 `
 
