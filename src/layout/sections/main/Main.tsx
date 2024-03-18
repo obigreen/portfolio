@@ -5,6 +5,7 @@ import {Button} from "../../../components/Button";
 import {Container} from "../../../styles/Container";
 import {theme} from "../../../styles/Theme";
 import {MainPhoto} from "./mainphoto/MainPhoto";
+import {AccentAnimationCol} from "../../../components/AccentAnimation";
 
 export const Main = () => {
     return (
@@ -26,7 +27,8 @@ export const Main = () => {
 
 const StyledMain = styled.section`
   padding-top: 123px;
-  padding-bottom: 112px;
+  padding-bottom: 56px;
+  min-height: 100vh;
 `
 
 const Title = styled.h1`
@@ -35,6 +37,7 @@ const Title = styled.h1`
   color: ${theme.color.mainFont};
   span {
     color: ${theme.color.accent};
+    animation: ${AccentAnimationCol} 12s linear infinite alternate;
   }
 `
 const Description = styled.h2`
