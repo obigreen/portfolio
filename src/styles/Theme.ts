@@ -5,5 +5,7 @@ export const theme = {
         main: "#abb2bf",
         backround: "#282c33"
     }
+
+
 }
 
