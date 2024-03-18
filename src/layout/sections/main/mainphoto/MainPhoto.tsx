@@ -3,8 +3,9 @@ import styled from "styled-components";
 import Photo from '../../../../assets/img/photo-top.png'
 import {FlexWrapper} from "../../../../components/FlexWrapper";
 import {theme} from "../../../../styles/Theme";
-import afte from "../../../../assets/img/pseudoelements/logo.svg"
-import before from "../../../../assets/img/pseudoelements/dots.svg"
+import after from "../../../../assets/img/pseudoelements/logo.svg"
+import before from "../../../../assets/img/pseudoelements/dot.svg"
+import {AccentAnimationBg, AccentAnimationFill} from "../../../../components/AccentAnimation";
 
 
 export const MainPhoto = () => {
@@ -30,7 +31,7 @@ const ImgWrapp = styled.div`
   
   &::after {
     content: "";
-    background-image: url(${afte});
+    background-image: url(${after});
     background-repeat: no-repeat;
     position: absolute;
     top: 85px;
@@ -38,6 +39,7 @@ const ImgWrapp = styled.div`
     width: 156px;
     height: 156px;
     z-index: -1;
+    animation: ${AccentAnimationFill} 12s linear infinite alternate;
   }
   
   &::before {
@@ -67,6 +69,17 @@ const ImgTitle = styled.div`
   span {
     color: ${theme.color.mainFont};
     font-weight: bold;
+  }
+  
+  &:before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 8px;
+    animation: ${AccentAnimationBg} 12s linear infinite alternate;
   }
 `
 
