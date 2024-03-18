@@ -4,20 +4,18 @@ import {Menu} from "../../components/menu/Menu";
 import {Logo} from "../../components/logo/Logo";
 import {Container} from "../../styles/Container";
 import {FlexWrapper} from "../../components/FlexWrapper";
-import {Lang} from "./lang/Lang";
+import {FixedLink} from "./fixedlinks/FixedLink";
 
 const item = ["home", "works", "about-me", "contacts"]
 
 export const Header = () => {
     return (
         <StyledHeader>
+            <FixedLink/>
             <Container>
                 <FlexWrapper justify={'space-between'} align={'center'}>
                     <Logo/>
-                    <FlexWrapper>
-                        <Menu menuItems={item}/>
-                        <Lang/>
-                    </FlexWrapper>
+                    <Menu menuItems={item}/>
                 </FlexWrapper>
             </Container>
         </StyledHeader>
