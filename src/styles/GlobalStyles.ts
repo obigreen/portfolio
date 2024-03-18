@@ -1,5 +1,6 @@
 import {createGlobalStyle} from "styled-components";
 import {theme} from "./Theme";
+import {AccentAnimationBorder} from "../components/AccentAnimation";
 
 export const GlobalStyles = createGlobalStyle`
   *,
@@ -27,7 +28,8 @@ export const GlobalStyles = createGlobalStyle`
   button {
     font-family: "Fira Code", sans-serif;
     background: transparent;
-    border: 1px solid ${theme.color.accent};
+    border: 1px solid transparent;
+    animation: ${AccentAnimationBorder} 12s linear infinite alternate;
     padding: 8px 16px;
     font-weight: 500;
     font-size: 16px;
@@ -36,9 +38,5 @@ export const GlobalStyles = createGlobalStyle`
     max-width: max-content;
   }
 
-  //img {
-  //  width: 100%;
-  //  max-width: 100%;
-  //}
 `
 
