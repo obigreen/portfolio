@@ -12,8 +12,9 @@ export const Footer = () => {
         <StyledFooter>
             <Container>
                 <FlexWrapper align={'center'} justify={'space-between'}>
-                    <FlexWrapper direction={'column'} >
-                        <FlexWrapper gap={'24px'}>
+
+                    <FlexWrapper direction={'column'}>
+                        <FlexWrapper gap={'24px'} align={'center'}>
                             <Logo/>
                             <SectionText>elias@elias-dev.ml</SectionText>
                         </FlexWrapper>
@@ -29,9 +30,27 @@ export const Footer = () => {
     );
 };
 
+
 const StyledFooter = styled.footer`
-padding: 32px 0;
+  position: relative;
+  z-index: 0;
+  padding: 32px 0;
   border-top: 1px solid ${theme.color.main};
+
+  ${Container} > ${FlexWrapper} {
+    @media ${theme.media.mobile} {
+      flex-direction: column;
+      gap: 30px;
+      align-items: start;
+    }
+  }
+
+  ${Container} > ${FlexWrapper}:last-child {
+    @media ${theme.media.mobile} {
+      align-items: center;
+    }
+  }
+
 `
 const Copiright = styled.small`
   font-weight: 400;

@@ -8,7 +8,7 @@ import projectOne from '../../../assets/img/projectOne.png'
 import projectTwo from '../../../assets/img/projectTwo.png'
 import projectThree from '../../../assets/img/projectThree.png'
 import {Container} from "../../../styles/Container";
-import {AccentAnimationCol, Rotate} from "../../../components/AccentAnimation";
+import {AccentAnimationCol, Rotate} from "../../../styles/AccentAnimation";
 import {theme} from "../../../styles/Theme";
 
 
@@ -56,7 +56,16 @@ const StyledProjects = styled.section`
   padding-bottom: 106px;
   position: relative;
   overflow-x: hidden;
-
+  
+  ${Container}>${FlexWrapper}:last-child {
+    @media ${theme.media.desctop} {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+    }
+  }
+  
+  
 
   &::after {
     content: '';

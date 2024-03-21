@@ -6,13 +6,14 @@ import {FlexWrapper} from "../../../components/FlexWrapper";
 import {Contact} from "./Contact";
 import {Container} from "../../../styles/Container";
 import dotsbg from "../../../assets/img/pseudoelements/dotsbg.svg"
+import {theme} from "../../../styles/Theme";
 
 export const Contacts = () => {
     return (
         <StyledContacts>
             <Container>
                 <SectionTitle>contacts</SectionTitle>
-                <FlexWrapper justify={'space-between'}>
+                <FlexWrapper justify={'space-between'} gap={'15px'}>
                     <SectionText>I’m interested in freelance opportunities. However, if you have other request or question,
                         don’t hesitate to contact me
                     </SectionText>
@@ -35,6 +36,13 @@ export const StyledContacts = styled.section`
     width: 100%;
   }
   
+  ${Container}>${FlexWrapper} {
+    @media ${theme.media.mobile} {
+      flex-direction: column;
+      gap: 30px;
+    }
+  }
+  
   margin-bottom: 145px;
   position: relative;
 
@@ -47,6 +55,10 @@ export const StyledContacts = styled.section`
     background-color: transparent;
     left: calc(50% - 746px);
     top: 43%;
+  }
+  
+  @media ${theme.media.mobile} {
+    margin-bottom: 70px;
   }
 
 `

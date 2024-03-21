@@ -6,7 +6,7 @@ import {FlexWrapper} from "../../../components/FlexWrapper";
 import BottomFhoto from "../../../assets/img/photo-bottom.png"
 import {Button} from "../../../components/Button";
 import {Container} from "../../../styles/Container";
-import {AccentAnimationBg, Rotate} from "../../../components/AccentAnimation";
+import {AccentAnimationBg, Rotate} from "../../../styles/AccentAnimation";
 import after from "../../../assets/img/pseudoelements/dots.svg"
 import {theme} from "../../../styles/Theme";
 import dotsbg from "../../../assets/img/pseudoelements/dotsbg.svg"
@@ -16,7 +16,7 @@ export const AboutMe = () => {
         <StyledAboutMe>
             <Container>
                 <SectionTitle width={'175%'}>about-me</SectionTitle>
-                <FlexWrapper justify={'space-between'} align={'start'}>
+                <FlexWrapper justify={'space-between'} align={'start'} gap={'15px'}>
                     <FlexWrapper direction={'column'} justify={'space-beetwen'} gap={'30px'}>
                         <SectionText>
                             Hello, i’m Elias!
@@ -58,6 +58,13 @@ const StyledAboutMe = styled.section`
   
   position: relative;
   overflow-x: hidden;
+  
+  
+  ${FlexWrapper} {
+    @media ${theme.media.tablet} {
+      flex-direction: column;
+    }
+  }
 
   &::before {
     content: '';
@@ -81,6 +88,8 @@ const StyledAboutMe = styled.section`
     right: calc(50% - 730px);
     top: 55%;
   }
+  
+  
 `
 const Link = styled.a`
 
@@ -108,6 +117,14 @@ const ImageWrapper = styled.div`
     transform: translateX(-50%);
     bottom: 0;
     animation: ${AccentAnimationBg} 12s linear infinite alternate;
+  }
+  
+  @media ${theme.media.tablet} {
+    position: absolute;
+    bottom: 30px;
+    right: 0;
+    z-index: -1;
+    opacity: 0.3;
   }
 `
 const Image = styled.img`

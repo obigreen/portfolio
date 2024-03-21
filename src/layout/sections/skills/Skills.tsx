@@ -5,7 +5,8 @@ import {SectionTitle} from "../../../components/SectionTitle";
 import {Skill} from "./Skill";
 import {Icon} from "../../../components/icon/Icon";
 import {Container} from "../../../styles/Container";
-import {AccentAnimationCol} from "../../../components/AccentAnimation";
+import {AccentAnimationCol} from "../../../styles/AccentAnimation";
+import {theme} from "../../../styles/Theme";
 
 export const Skills = () => {
     return (
@@ -49,15 +50,32 @@ export const Skills = () => {
 
 
 const StyledSkills = styled.section`
-
-
   padding-bottom: 112px;
+
+  ${Container} > ${FlexWrapper}:last-child {
+    @media ${theme.media.tablet} {
+      flex-direction: column;
+      justify-content: center;
+      gap: 30px;
+    }
+  }
+  
+  ${Container} > ${FlexWrapper} > ${FlexWrapper} {
+    @media ${theme.media.tablet} {
+      justify-content: center;
+    
+    }
+  }
 `
+
 const StyledVectors = styled.section`
-  width: 349px;
-  height: 282px;
+  svg {
+    width: 200px;
+    height: 200px;
+  }
 `
+
 const Link = styled.a`
-display: inline-block;
+  display: inline-block;
   animation: ${AccentAnimationCol} 12s linear infinite alternate;
 `

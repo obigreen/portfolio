@@ -4,7 +4,8 @@ import {Container} from "../../../styles/Container";
 import {FlexWrapper} from "../../../components/FlexWrapper";
 import {theme} from "../../../styles/Theme";
 import arrow from "../../../assets/img/pseudoelements/arrows.svg"
-import {Rotate} from "../../../components/AccentAnimation";
+import {Rotate} from "../../../styles/AccentAnimation";
+import {font} from "../../../styles/Common";
 
 export const Quote = () => {
     return (
@@ -47,16 +48,20 @@ const StyledBlockquote = styled.blockquote`
   display: flex;
   align-items: end;
   flex-direction: column;
-  font-weight: 500;
-  font-size: 24px;
+  ${font({weight: 500, maxW: 24, minW: 17})}
+  
+
   color: ${theme.color.mainFont};
 `
 
 const QuoteText = styled.p`
   padding: 32px;
+  
+  @media ${theme.media.mobile} {
+    padding: 20px;
+  }
   outline: 1px solid ${theme.color.main};
   position: relative;
-  
   &::before {
     content: "";
     background-image: url(${arrow});

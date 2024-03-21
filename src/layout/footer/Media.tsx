@@ -26,7 +26,10 @@ export const Media = () => {
 
 
 const StyledMedia = styled.div`
-
+  @media ${theme.media.mobile} {
+    display: flex;
+    gap: 60px;
+  }
 `
 const Title = styled.p`
   font-weight: 500;

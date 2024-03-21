@@ -1,10 +1,9 @@
 import styled from "styled-components";
 import {theme} from "../styles/Theme";
-import {AccentAnimationBg, AccentAnimationCol} from "./AccentAnimation";
+import {AccentAnimationBg, AccentAnimationCol} from "../styles/AccentAnimation";
 
 
 type SectionTitleAfterWidthType = {
-    maxWidth?: string
     width?: string
 }
 
@@ -29,5 +28,12 @@ export const SectionTitle = styled.h3<SectionTitleAfterWidthType>`
     transform: translateY(-50%);
     width: ${props => props.width || "100%"};
     height: 1px;
+    
+    @media ${theme.media.desctop} {
+      width: 100%;
+    }
+    @media ${theme.media.mobile} {
+      display: none;
+    }
   }
 `

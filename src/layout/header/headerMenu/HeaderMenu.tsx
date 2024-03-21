@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from "styled-components";
-import {theme} from "../../styles/Theme";
-import {AccentAnimationCol} from "../AccentAnimation";
-import {Lang} from "../../layout/header/lang/Lang";
+import {theme} from "../../../styles/Theme";
+import {AccentAnimationCol} from "../../../styles/AccentAnimation";
+import {Lang} from "../lang/Lang";
 
-export const Menu = (props: { menuItems: Array<string> }) => {
+export const HeaderMenu = (props: { menuItems: Array<string> }) => {
     return (
         <StyledMenu>
             <ul>
@@ -28,6 +28,10 @@ const StyledMenu = styled.nav`
     display: flex;
     align-items: center;
     gap: 42px;
+  }
+
+  @media ${theme.media.tablet} {
+    display: none;
   }
 `
 const List = styled.li`
