@@ -27,7 +27,7 @@ export const Contact = () => {
 const StyledContact = styled.div`
   outline: 1px solid gainsboro;
   padding: 16px;
-
+  max-width: max-content;
 `
 const Title = styled.h5`
   font-weight: 600;

@@ -4,7 +4,7 @@ import {Main} from "./layout/sections/main/Main";
 import {Quote} from "./layout/sections/quote/Quote";
 import {Projects} from "./layout/sections/projects/Projects";
 import {Skills} from "./layout/sections/skills/Skills";
-import {AboutMe} from "./layout/sections/aboutme/AboutMe";
+import {AboutMe} from "./layout/sections/aboutMe/AboutMe";
 import {Contacts} from "./layout/sections/contacts/Contacts";
 import {Footer} from "./layout/footer/Footer";
 
