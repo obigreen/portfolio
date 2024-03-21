@@ -105,41 +105,7 @@ export const AccentAnimationBorder = keyframes`
     border-color: #07F2FF;
   }
 `
-export const AccentAnimationFill = keyframes`
-  0% {
-    fill: #07F2FF;
-  }
-  10% {
-    fill: #0DF3A8;
-  }
-  20% {
-    fill: #01F35B;
-  }
-  30% {
-    fill: #F3D35C;
-  }
-  40% {
-    fill: #FF7C70;
-  }
-  50% {
-    fill: #FC6771;
-  }
-  60% {
-    fill: #FF4FC2;
-  }
-  70% {
-    fill: #C862FA;
-  }
-  80% {
-    fill: #6BA5FF;
-  }
-  90% {
-    fill: #01EFFE;
-  }
-  100% {
-    fill: #07F2FF;
-  }
-`
+
 
 export const Rotate = keyframes`
   0% {
