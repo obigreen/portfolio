@@ -3,17 +3,21 @@ import styled from "styled-components";
 import Photo from '../../../../assets/img/photo-top.png'
 import {FlexWrapper} from "../../../../components/FlexWrapper";
 import {theme} from "../../../../styles/Theme";
-import after from "../../../../assets/img/pseudoelements/logo.svg"
 import before from "../../../../assets/img/pseudoelements/dot.svg"
-import {AccentAnimationBg, AccentAnimationFill} from "../../../../components/AccentAnimation";
+import {AccentAnimationBg, AccentAnimationCol} from "../../../../styles/AccentAnimation";
+import {LogoCostruct} from "../../../../components/LogoCostruct";
 
 
 export const MainPhoto = () => {
     return (
         <MainProtoWrapper>
+
             <FlexWrapper direction={'column'} align={'center'}>
                 <ImgWrapp>
-                    <img src={Photo} alt=""/>
+                    <IconAbsolutWrapp>
+                        <LogoCostruct/>
+                    </IconAbsolutWrapp>
+                    <Img src={Photo} alt=""/>
                 </ImgWrapp>
                 <ImgTitle>Currently working on <span>Portfolio</span></ImgTitle>
             </FlexWrapper>
@@ -21,27 +25,30 @@ export const MainPhoto = () => {
     );
 };
 
+const IconAbsolutWrapp = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 85px;
+  left: 0;
+  z-index: -1;
+  width: 156px;
+  height: 156px;
+  animation: ${AccentAnimationCol} 12s linear infinite alternate;
 
 
+  @media ${theme.media.mobile} {
+    top: 0;
+  }
+
+`
 
 const ImgWrapp = styled.div`
   display: flex;
   z-index: 0;
   position: relative;
-  
-  &::after {
-    content: "";
-    background-image: url(${after});
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 85px;
-    left: 0;
-    width: 156px;
-    height: 156px;
-    z-index: -1;
-    animation: ${AccentAnimationFill} 12s linear infinite alternate;
-  }
-  
+
   &::before {
     content: "";
     background-image: url(${before});
@@ -52,11 +59,21 @@ const ImgWrapp = styled.div`
     width: 84px;
     height: 84px;
   }
-  
+
 `
 const MainProtoWrapper = styled.div`
 
 `
+
+
+const Img = styled.img`
+
+  @media ${theme.media.mobile} {
+    width: 350px;
+  }
+
+`
+
 const ImgTitle = styled.div`
   position: relative;
   padding: 8px 8px 8px 34px;
@@ -65,12 +82,17 @@ const ImgTitle = styled.div`
   max-width: 400px;
   width: 100%;
   margin-right: 15px;
-  
+
+  @media ${theme.media.mobile} {
+    width: 330px;
+    margin-right: 0;
+  }
+
   span {
     color: ${theme.color.mainFont};
     font-weight: bold;
   }
-  
+
   &:before {
     content: '';
     width: 16px;
