@@ -14,5 +14,4 @@ export const Button = styled.button`
   color: ${theme.color.mainFont};
   cursor: pointer;
   max-width: max-content;
-
 `

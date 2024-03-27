@@ -11,7 +11,6 @@ type FlexWrapperPropsType = {
 }
 
 export const FlexWrapper = styled.div<FlexWrapperPropsType>`
-
   display: flex;
   justify-content: ${props => props.justify || "row"};
   flex-direction: ${props => props.direction || "flex-start"};

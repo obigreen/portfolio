@@ -106,7 +106,6 @@ export const AccentAnimationBorder = keyframes`
   }
 `
 
-
 export const Rotate = keyframes`
   0% {
     transform: rotate(0deg);

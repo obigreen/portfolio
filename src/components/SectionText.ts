@@ -13,5 +13,4 @@ export const SectionText = styled.p<CardTextMargin>`
  ${props => props.margin === 'cardTextMargin'&& css<CardTextMargin>`
    margin: 16px 0;
  `}
-  
 `
