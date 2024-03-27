@@ -1,11 +1,10 @@
 import React from 'react';
 import {Icon} from "../icon/Icon";
-import styled from "styled-components";
-import {theme} from "../../styles/Theme";
+import {S} from "./MediaLinks_Styled"
 
-export const MediaLinks = () => {
+export const MediaLinks: React.FC = () => {
     return (
-        <MediaLinksWrapp>
+        <S.MediaLinksWrapp>
             <a href="">
                 <Icon iconId={'github'} width={'32'} height={'32'} wiewBox={'0 0 32 32'}/>
             </a>
@@ -15,30 +14,6 @@ export const MediaLinks = () => {
             <a href="">
                 <Icon iconId={'discord'} width={'32'} height={'32'} wiewBox={'0 0 32 32'}/>
             </a>
-        </MediaLinksWrapp>
+        </S.MediaLinksWrapp>
     );
 };
-
-const MediaLinksWrapp = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  @media ${theme.media.fixedLinks} {
-    flex-direction: unset;
-    position: absolute;
-    z-index: 9999;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    padding-bottom: 20px;
-
-
-    svg {
-      width: 50px;
-      height: 50px;
-    }
-
-
-  }
-`
