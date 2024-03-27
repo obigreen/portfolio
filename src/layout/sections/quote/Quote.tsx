@@ -1,98 +1,23 @@
 import React from 'react';
-import styled from "styled-components";
 import {Container} from "../../../styles/Container";
 import {FlexWrapper} from "../../../components/FlexWrapper";
-import {theme} from "../../../styles/Theme";
-import arrow from "../../../assets/img/pseudoelements/arrows.svg"
-import {Rotate} from "../../../styles/AccentAnimation";
-import {font} from "../../../styles/Common";
+import {S} from "./Quote_Styles"
 
-export const Quote = () => {
+export const Quote: React.FC = () => {
     return (
-        <StyledQuote>
+        <S.Quote>
             <Container>
                 <FlexWrapper justify={'center'}>
-                    <StyledBlockquote>
-                        <QuoteText>With great power comes great electricity bill</QuoteText>
-                        <Author>- Dr. Who</Author>
-                    </StyledBlockquote>
+                    <S.StyledBlockquote>
+                        <S.QuoteText>With great power comes great electricity bill</S.QuoteText>
+                        <S.Author>- Dr. Who</S.Author>
+                    </S.StyledBlockquote>
                 </FlexWrapper>
-
             </Container>
-
-        </StyledQuote>
+        </S.Quote>
     );
 };
 
 
-const StyledQuote = styled.section`
-  padding-bottom: 74px;
-  padding-top: 56px;
-  position: relative;
-  overflow-x: hidden;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    width: 91px;
-    height: 91px;
-    border: 1px solid ${theme.color.main};
-    background-color: transparent;
-    right: calc(50% - 750px);
-    top: 30%;
-    animation: ${Rotate} 12s linear infinite;
-  }
-`
-
-const StyledBlockquote = styled.blockquote`
-  display: flex;
-  align-items: end;
-  flex-direction: column;
-  ${font({weight: 500, maxW: 24, minW: 17})}
-  
-
-  color: ${theme.color.mainFont};
-`
-
-const QuoteText = styled.p`
-  padding: 32px;
-  
-  @media ${theme.media.mobile} {
-    padding: 20px;
-  }
-  outline: 1px solid ${theme.color.main};
-  position: relative;
-  &::before {
-    content: "";
-    background-image: url(${arrow});
-    background-repeat: no-repeat;
-    width: 42px;
-    height: 29px;
-    
-    position: absolute;
-    top: -15px;
-    left: 11px;
-  }
-`
-
-const Author = styled.footer`
-  padding: 16px;
-  margin-top: 1px;
-  outline: 1px solid ${theme.color.main};
-  position: relative;
-
-  &::before {
-    content: "";
-    background-image: url(${arrow});
-    background-repeat: no-repeat;
-    width: 42px;
-    height: 29px;
-
-    position: absolute;
-    top: -15px;
-    right: 11px;
-  }
-  
-`
 
 
