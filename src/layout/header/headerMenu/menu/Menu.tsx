@@ -1,0 +1,51 @@
+import React from 'react';
+import {S} from "../HeaderMenu_Styles"
+import {Lang} from "../lang/Lang";
+
+// const items = ["home", "works", "about-me", "contacts"]
+
+const items = [
+    {
+        title: "home",
+        href: "home"
+    },
+    {
+        title: "works",
+        href: "works"
+    },
+    {
+        title: "about-me",
+        href: "about-me"
+    },
+    {
+        title: "contacts",
+        href: "contacts"
+    },
+]
+
+export const Menu: React.FC<{ setmenuIsOpen?: (isOpen: boolean) => void }> = ({setmenuIsOpen}) => {
+
+    const onMenuItemClick = () => {
+        if (setmenuIsOpen) {
+            setmenuIsOpen(false);
+        }
+    }
+
+    return (
+        <ul>
+            {items.map((item, index) => {
+                return <S.MenuItem key={index}>
+                    <S.NavLink activeClass={"active"}
+                               to={item.href}
+                               onClick={onMenuItemClick}
+                               spy={true}
+                               smooth={true}>{item.title}</S.NavLink>
+                </S.MenuItem>
+            })}
+            <li>
+                <Lang/>
+            </li>
+        </ul>
+    );
+};
+
