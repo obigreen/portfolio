@@ -26,7 +26,7 @@ const MediaLinksWrapp = styled.div`
 
   @media ${theme.media.fixedLinks} {
     flex-direction: unset;
-    position: fixed;
+    position: absolute;
     z-index: 9999;
     bottom: 0;
     left: 50%;
