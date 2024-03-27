@@ -1,6 +1,6 @@
 import React from 'react';
 import {Icon} from "../../../../components/icon/Icon";
-import {LogoCostruct} from "../../../../components/LogoCostruct";
+import {LogoCostruct} from "../../../../components/logoConstruct/LogoCostruct";
 
 import {S} from "../Skills_Styles"
 
