@@ -34,23 +34,11 @@ const DesctopMenu = styled.nav`
     align-items: center;
     gap: 42px;
   }
-    //РАЗОБРАТЬСЯ!!! ПОСМОТРЕТЬ УРОК И ПРОСЛЕДИТЬ ВЗАИМОСВЯЗЬ ПЕРЕКЛЮЧЕНИЙ В САМИХ КОМПАНЕНТАХ И СТИЛИ ТУТ
-    // @media ${theme.media.tablet} {
-  //   display: none;
-  // }
-  //
-    // @media ${theme.media.tablet} {
-  //   display: block;
-  // }
-
 `
 
 //Mobile
 const MobileMenu = styled.nav`
-  // display: none;
-    // @media ${theme.media.tablet} {
-  //   display: block;
-  // }
+
 `
 
 const BurgerButton = styled.button<{ isOpen: boolean }>`
