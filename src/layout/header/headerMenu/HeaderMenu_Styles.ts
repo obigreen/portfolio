@@ -38,7 +38,7 @@ const DesctopMenu = styled.nav`
 
 //Mobile
 const MobileMenu = styled.nav`
-
+    
 `
 
 const BurgerButton = styled.button<{ isOpen: boolean }>`
