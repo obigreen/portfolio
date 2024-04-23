@@ -4,7 +4,6 @@ import {Logo} from "../../components/logo/Logo";
 import {SectionText} from "../../components/SectionText";
 import {Media} from "./footerMedia/Media";
 import {Container} from "../../styles/Container";
-
 import {S} from "./Footer_Styles"
 
 export const Footer: React.FC = () => {
