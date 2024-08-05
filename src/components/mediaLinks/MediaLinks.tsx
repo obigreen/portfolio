@@ -6,13 +6,13 @@ export const MediaLinks: React.FC = () => {
     return (
         <S.MediaLinksWrapp>
             <a href="">
-                <Icon iconId={'github'} width={'32'} height={'32'} wiewBox={'0 0 32 32'}/>
+                <Icon iconId={'github'} width={'32'} height={'32'} viewBox={'0 0 32 32'}/>
             </a>
             <a href="">
-                <Icon iconId={'figma'} width={'32'} height={'32'} wiewBox={'0 0 32 32'}/>
+                <Icon iconId={'figma'} width={'32'} height={'32'} viewBox={'0 0 32 32'}/>
             </a>
             <a href="">
-                <Icon iconId={'discord'} width={'32'} height={'32'} wiewBox={'0 0 32 32'}/>
+                <Icon iconId={'discord'} width={'32'} height={'32'} viewBox={'0 0 32 32'}/>
             </a>
         </S.MediaLinksWrapp>
     );

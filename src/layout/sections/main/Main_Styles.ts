@@ -8,26 +8,29 @@ import before from "../../../assets/img/pseudoelements/dot.svg"
 
 // Main
 const Main = styled.section`
-  padding-top: 123px;
-  padding-bottom: 56px;
-  min-height: 100vh;
+    padding-top: 123px;
+    padding-bottom: 56px;
 
-  ${Container} > ${FlexWrapper} {
-    @media ${theme.media.desctop} {
-      flex-direction: column-reverse;
-      gap: 60px;
+
+    ${Container} > ${FlexWrapper} {
+        @media ${theme.media.desctop} {
+            flex-direction: column-reverse;
+            gap: 60px;
+        }
     }
-  }
 `
 
 const Title = styled.h1`
-  ${font({weight: 600, maxW: 32, minW: 25})};
-  color: ${theme.color.mainFont};
+    background-color: rgba(250, 235, 215, 0.39);
+    max-width: 500px;
+    padding: 20px;
+    ${font({weight: 600, maxW: 32, minW: 25})};
+    color: ${theme.color.mainFont};
 
-  span {
-    color: ${theme.color.accent};
-    animation: ${AccentAnimationCol} 12s linear infinite alternate;
-  }
+    span {
+            // color: ${theme.color.accent};
+            // animation: ${AccentAnimationCol} 12s linear infinite alternate;
+    }
 `
 
 const Description = styled.h2`
@@ -39,23 +42,27 @@ const Description = styled.h2`
 `
 
 // MainPhoto
-const MainProtoWrapper = styled.div``
+const MainProtoWrapper = styled.div`
+
+`
 
 const ImgWrapp = styled.div`
   display: flex;
   z-index: 0;
   position: relative;
 
-  &::before {
-    content: "";
-    background-image: url(${before});
-    background-repeat: no-repeat;
-    position: absolute;
-    bottom: 60px;
-    right: 15px;
-    width: 84px;
-    height: 84px;
-  }
+    
+    //здесь дот через абсолют
+  // &::before {
+  //   content: "";
+  //   background-image: url(${before});
+  //   background-repeat: no-repeat;
+  //   position: absolute;
+  //   bottom: 60px;
+  //   right: 15px;
+  //   width: 84px;
+  //   height: 84px;
+  // }
 `
 
 const IconAbsolutWrapp = styled.div`

@@ -9,11 +9,11 @@ export const Main: React.FC = () => {
     return (
         <S.Main id={'home'}>
             <Container>
-                <FlexWrapper align={'center'} justify={'space-between'} gap={'10px'}>
+                <FlexWrapper justify={'space-between'} gap={'10px'}>
                     <FlexWrapper direction={'column'}>
-                        <S.Title>Elias is a <span>web designer</span> and <span>front-end developer</span></S.Title>
-                        <S.Description>He crafts responsive websites where technologies meet creativity</S.Description>
-                        <Button type={'submit'}>Contact me!!</Button>
+                        <S.Title>Добро пожаловать на мой профессиональный сайт</S.Title>
+                        {/*<S.Description>He crafts responsive websites where technologies meet creativity</S.Description>*/}
+                        {/*<Button type={'submit'}>Contact me!!</Button>*/}
                     </FlexWrapper>
                     <MainPhoto/>
                 </FlexWrapper>

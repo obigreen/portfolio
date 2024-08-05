@@ -11,11 +11,11 @@ export const Contact: React.FC = () => {
             <S.Title>Message me here</S.Title>
             <FlexWrapper direction={'column'}>
                 <FlexWrapper align={'center'} gap={'8px'}>
-                    <Icon iconId={'discord'} width={'32'} height={'32'} wiewBox={'0 0 32 32'}/>
+                    <Icon iconId={'discord'} width={'32'} height={'32'} viewBox={'0 0 32 32'}/>
                     <SectionText>!Elias#3519</SectionText>
                 </FlexWrapper>
                 <FlexWrapper align={'center'} gap={'8px'}>
-                    <Icon iconId={'mail'} width={'32'} height={'32'} wiewBox={'0 0 32 32'}/>
+                    <Icon iconId={'mail'} width={'32'} height={'32'} viewBox={'0 0 32 32'}/>
                     <SectionText>elias@elias.me</SectionText>
                 </FlexWrapper>
             </FlexWrapper>

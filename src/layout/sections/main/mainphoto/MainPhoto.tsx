@@ -10,12 +10,9 @@ export const MainPhoto: React.FC = () => {
         <S.MainProtoWrapper>
             <FlexWrapper direction={'column'} align={'center'}>
                 <S.ImgWrapp>
-                    <S.IconAbsolutWrapp>
-                        <LogoCostruct/>
-                    </S.IconAbsolutWrapp>
                     <S.Img src={Photo} alt=""/>
                 </S.ImgWrapp>
-                <S.ImgTitle>Currently working on <span>Portfolio</span></S.ImgTitle>
+                <S.ImgTitle>Sergey</S.ImgTitle>
             </FlexWrapper>
         </S.MainProtoWrapper>
     );

@@ -10,7 +10,7 @@ export const Lang: React.FC = () => {
                 <S.LanguageMenu>
                     EN
                 </S.LanguageMenu>
-                <Icon iconId={'arrow-down'} width={'30'} height={'30'} wiewBox={'0 -7 30 30'}/>
+                <Icon iconId={'arrow-down'} width={'30'} height={'30'} viewBox={'0 -7 30 30'}/>
             </FlexWrapper>
         </S.LangButton>
     );
