@@ -5,13 +5,36 @@ import {S} from "./Quote_Styles"
 import {ImageSlider} from "../../../components/slider/ImageSlider";
 import {Icon} from "../../../components/icon/Icon";
 import styled from 'styled-components';
+import {SectionTitle} from "../../../components/SectionTitle";
 
 export const Quote: React.FC = () => {
     return (
         <S.Quote>
             <Container>
-                <FlexWrapper>
+                <FlexWrapper justify={'start'} align={'center'} margin={'0 0 0 0'}>
+                    <SectionTitle width={'170%'}>skills</SectionTitle>
+                </FlexWrapper>
+                <FlexWrapper justify={'center'}>
                     <WrappWrapp>
+                        <Wrap>
+                            <ImageSlider>
+                                <a href="https://www.github.com/" target={'_blank'}>
+                                    <Icon iconId={'github'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
+                                </a>
+                                <a href="https://www.twitter.com/" target={'_blank'}>
+                                    <Icon iconId={'twitter'} width={'62'} height={'62'} viewBox={'0 0 32 32'}/>
+                                </a>
+                                <a href="https://www.linkedin.com/" target={'_blank'}>
+                                    <Icon iconId={'linkedin'} width={'62'} height={'62'} viewBox={'0 0 32 32'}/>
+                                </a>
+                                <a href="https://www.github.com/" target={'_blank'}>
+                                    <Icon iconId={'github'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
+                                </a>
+                                <a href="https://www.twitter.com/" target={'_blank'}>
+                                    <Icon iconId={'twitter'} width={'62'} height={'62'} viewBox={'0 0 32 32'}/>
+                                </a>
+                            </ImageSlider>
+                        </Wrap>
                         <Wrap>
                             <ImageSlider>
                                 <a href="https://www.github.com/" target={'_blank'}>
@@ -53,10 +76,7 @@ export const Quote: React.FC = () => {
                     </WrappWrapp>
 
 
-                    <S.StyledBlockquote>
-                        <S.QuoteText>With great power comes great electricity bill</S.QuoteText>
-                        <S.Author>- Dr. Who</S.Author>
-                    </S.StyledBlockquote>
+                    {/*здесь место для блока*/}
 
                 </FlexWrapper>
             </Container>
@@ -65,7 +85,7 @@ export const Quote: React.FC = () => {
 };
 
 const WrappWrapp = styled.div`
-    max-width: 600px;
+    max-width: 500px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -74,9 +94,9 @@ const WrappWrapp = styled.div`
 
 
 const Wrap = styled.div`
-    height: 73px;
+
     width: 100%;
-    //margin-bottom: 20px;
+    margin-bottom: 50px;
 `;
 
 

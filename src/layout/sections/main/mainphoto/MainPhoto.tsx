@@ -1,7 +1,6 @@
 import React from 'react';
 import Photo from '../../../../assets/img/photo-top.png'
 import {FlexWrapper} from "../../../../components/FlexWrapper";
-import {LogoCostruct} from "../../../../components/logoConstruct/LogoCostruct";
 import {S} from "../Main_Styles"
 
 

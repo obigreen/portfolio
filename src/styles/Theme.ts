@@ -3,7 +3,8 @@ export const theme = {
         accent: "#c778dd",
         mainFont: "#fff",
         main: "#abb2bf",
-        backround: "#1e1f23"
+        backround: "#1e1f23",
+        stolb: "#4a505a"
     },
 
     media: {

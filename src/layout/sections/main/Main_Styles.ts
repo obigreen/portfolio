@@ -9,7 +9,6 @@ import before from "../../../assets/img/pseudoelements/dot.svg"
 // Main
 const Main = styled.section`
     padding-top: 123px;
-    padding-bottom: 56px;
 
 
     ${Container} > ${FlexWrapper} {

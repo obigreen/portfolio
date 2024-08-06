@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState, ReactNode } from 'react';
 import styled from 'styled-components';
+import {theme} from "../../styles/Theme";
 
 
 
@@ -37,12 +38,10 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({ children }) => {
         <Wrapp>
             <ImageContainer style={{ transform: `perspective(1000px) rotateY(${x}deg)` }}>
                 <Cylinder>
-                    <div className="front"></div>
-                    <div className="back"></div>
-                    <div className="left"></div>
-                    <div className="right"></div>
-                    <div className="top"></div>
-                    <div className="bottom"></div>
+                    <div className="side front"></div>
+                    <div className="side back"></div>
+                    <div className="side left"></div>
+                    <div className="side right"></div>
                 </Cylinder>
                 {React.Children.map(children, (child, index) => (
                     <ImageSpan key={index} index={index} length={children.length}>
@@ -62,6 +61,7 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({ children }) => {
 
 const Wrapp = styled.div`
     position: relative;
+    height: 70px;
 `;
 
 const ImageContainer = styled.div`
@@ -74,52 +74,50 @@ const ImageContainer = styled.div`
     margin: 0 auto;
 `;
 
+
 const Cylinder = styled.div`
     position: absolute;
-    top: 50%;
+    top: calc(-50% - -38px);
     left: 50%;
-    width: 64px;
-
-    background-color: transparent;
+    width: 100px;
+    height: 70px;
     transform-style: preserve-3d;
     transform: translate(-50%, -50%);
 
-    .front, .back, .left, .right {
+    .side {
         position: absolute;
         background-size: cover;
-    }
-
-    .front, .back {
-        width: 30px;
-        height: 73px;
+        background-color: ${theme.color.stolb};
     }
 
     .front {
-        background-color: #FF5733;
-        transform: translateZ(15px) translateX(15px);
+        width: 100px;
+        height: 70px;
+        transform: translateZ(50px);
     }
 
     .back {
-        background-color: #33FF57;
-        transform: translateZ(-15px) scale(-1, 1) translateX(-15px);
-    }
-
-    .left, .right {
-        width: 30px;
-        height: 73px;
+        width: 100px;
+        height: 70px;
+        transform: translateZ(-50px) rotateY(180deg);
     }
 
     .left {
-        background-color: #3357FF;
-        transform: translateX(0px) rotateY(90deg);
+        width: 100px;
+        height: 70px;
+        transform: rotateY(-90deg) translateX(-50px);
+        transform-origin: left center;
     }
 
     .right {
-        background-color: #FF33A6;
-        transform: translateX(30px) rotateY(90deg);
+        width: 100px;
+        height: 70px;
+        transform: rotateY(90deg) translateX(50px);
+        transform-origin: right center;
     }
-    
 `;
+
+
 
 const ImageSpan = styled.span<{ index: number, length: number }>`
     position: absolute;
@@ -142,7 +140,7 @@ const StyledContent = styled.div`
 
 const ButtonContainer = styled.div`
     position: absolute;
-    top: 0;
+    top: calc(50% - 21px);
     right: 10px;
 `;
 
@@ -150,7 +148,7 @@ const Button = styled.button`
     background-color: slateblue;
     color: white;
     border: none;
-    padding: 10px 30px;
+    padding: 10px 10px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 20px;
