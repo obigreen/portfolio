@@ -9,6 +9,7 @@ import before from "../../../assets/img/pseudoelements/dot.svg"
 // Main
 const Main = styled.section`
     padding-top: 123px;
+    padding-bottom: 73px;
 
 
     ${Container} > ${FlexWrapper} {
@@ -20,9 +21,7 @@ const Main = styled.section`
 `
 
 const Title = styled.h1`
-    background-color: rgba(250, 235, 215, 0.39);
     max-width: 500px;
-    padding: 20px;
     ${font({weight: 600, maxW: 32, minW: 25})};
     color: ${theme.color.mainFont};
 
@@ -34,6 +33,7 @@ const Title = styled.h1`
 
 const Description = styled.h2`
   font-weight: 400;
+    max-width: 400px;
   font-size: 16px;
   line-height: 156%;
   color: ${theme.color.main};
@@ -49,6 +49,7 @@ const ImgWrapp = styled.div`
   display: flex;
   z-index: 0;
   position: relative;
+    max-width: 550px;
 
     
     //здесь дот через абсолют
@@ -82,6 +83,7 @@ const IconAbsolutWrapp = styled.div`
 `
 
 const Img = styled.img`
+    width: 100%;
   @media ${theme.media.mobile} {
     width: 350px;
   }
@@ -92,7 +94,7 @@ const ImgTitle = styled.div`
   padding: 8px 8px 8px 34px;
   color: ${theme.color.main};
   outline: 1px solid ${theme.color.main};
-  max-width: 400px;
+  max-width: 300px;
   width: 100%;
   margin-right: 15px;
 

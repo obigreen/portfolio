@@ -4,6 +4,7 @@ export const theme = {
         mainFont: "#fff",
         main: "#abb2bf",
         backround: "#1e1f23",
+        backround2: "#24262a",
         stolb: "#4a505a"
     },
 

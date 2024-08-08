@@ -11,14 +11,29 @@ export const Quote: React.FC = () => {
     return (
         <S.Quote>
             <Container>
-                <FlexWrapper justify={'start'} align={'center'} margin={'0 0 0 0'}>
-                    <SectionTitle width={'170%'}>skills</SectionTitle>
-                </FlexWrapper>
-                <FlexWrapper justify={'center'}>
+                <FlexWrapper justify={'start'}>
                     <WrappWrapp>
                         <Wrap>
                             <ImageSlider>
                                 <a href="https://www.github.com/" target={'_blank'}>
+                                    <Icon iconId={'gpt'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
+                                </a>
+                                <a href="https://www.twitter.com/" target={'_blank'}>
+                                    <Icon iconId={'twitter'} width={'62'} height={'62'} viewBox={'0 0 32 32'}/>
+                                </a>
+                                <a href="https://www.linkedin.com/" target={'_blank'}>
+                                    <Icon iconId={'linkedin'} width={'62'} height={'62'} viewBox={'0 0 32 32'}/>
+                                </a>
+                                <a href="https://www.github.com/" target={'_blank'}>
+                                    <Icon iconId={'github'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
+                                </a>
+                                <a href="https://www.twitter.com/" target={'_blank'}>
+                                    <Icon iconId={'twitter'} width={'62'} height={'62'} viewBox={'0 0 32 32'}/>
+                                </a>
+                                <a href="https://www.linkedin.com/" target={'_blank'}>
+                                    <Icon iconId={'linkedin'} width={'62'} height={'62'} viewBox={'0 0 32 32'}/>
+                                </a>
+                                <a href="https://www.github.com/" target={'_blank'}>
                                     <Icon iconId={'github'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
                                 </a>
                                 <a href="https://www.twitter.com/" target={'_blank'}>
@@ -57,19 +72,10 @@ export const Quote: React.FC = () => {
                         <Wrap>
                             <ImageSlider>
                                 <a href="https://www.github.com/" target={'_blank'}>
-                                    <Icon iconId={'github'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
+                                    <Icon iconId={'gpt2'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
                                 </a>
                                 <a href="https://www.twitter.com/" target={'_blank'}>
-                                    <Icon iconId={'twitter'} width={'62'} height={'62'} viewBox={'0 0 32 32'}/>
-                                </a>
-                                <a href="https://www.linkedin.com/" target={'_blank'}>
-                                    <Icon iconId={'linkedin'} width={'62'} height={'62'} viewBox={'0 0 32 32'}/>
-                                </a>
-                                <a href="https://www.github.com/" target={'_blank'}>
-                                    <Icon iconId={'github'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
-                                </a>
-                                <a href="https://www.twitter.com/" target={'_blank'}>
-                                    <Icon iconId={'twitter'} width={'62'} height={'62'} viewBox={'0 0 32 32'}/>
+                                    <Icon iconId={'gpt'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
                                 </a>
                             </ImageSlider>
                         </Wrap>
@@ -94,7 +100,6 @@ const WrappWrapp = styled.div`
 
 
 const Wrap = styled.div`
-
     width: 100%;
     margin-bottom: 50px;
 `;

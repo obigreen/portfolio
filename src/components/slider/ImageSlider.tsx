@@ -124,7 +124,7 @@ const ImageSpan = styled.span<{ index: number, length: number }>`
     top: 0;
     left: 0;
     width: 100%;
-    transform: ${({ index, length }) => `rotateY(calc(${index} * 360deg / ${length})) translateZ(150px)`};
+    transform: ${({ index, length }) => `rotateY(calc(${index} * 360deg / ${length})) translateZ(120px)`};
 `;
 
 const StyledContent = styled.div`

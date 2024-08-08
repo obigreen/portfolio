@@ -5,6 +5,7 @@ import {TechnologiesMenu} from "../../../../components/TechnologiesMenu";
 import {FlexWrapper} from "../../../../components/FlexWrapper";
 
 import {S} from "../Projects_Styles"
+import {AbsoluteBox} from "../../../../components/absoluteBox/AbsoluteBox";
 
 
 type StyledWorkPropsType = {
@@ -18,6 +19,7 @@ type StyledWorkPropsType = {
 export const Project: React.FC<StyledWorkPropsType> = (props: StyledWorkPropsType) => {
     return (
         <S.Work>
+            <AbsoluteBox height={'140px'} width={'1px'} top={'-140px'} left={'calc(50%)'}/>
             <FlexWrapper>
                 <img src={props.src} alt=""/>
             </FlexWrapper>

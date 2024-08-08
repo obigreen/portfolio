@@ -9,6 +9,9 @@ type FlexWrapperPropsType = {
     padding?: string
     margin?: string
     position?: string
+    background?: string
+    height?: string
+    border?: string
 }
 
 export const FlexWrapper = styled.div<FlexWrapperPropsType>`
@@ -21,4 +24,7 @@ export const FlexWrapper = styled.div<FlexWrapperPropsType>`
     padding: ${props => props.padding};
     margin: ${props => props.margin};
     position: ${props => props.position};
+    background-color: ${props => props.background || 'transparent'};
+    height:${props => props.height};
+    border-radius: ${props => props.border};
 `

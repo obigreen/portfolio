@@ -19,21 +19,21 @@ export const SectionTitle = styled.h3<SectionTitleAfterWidthType>`
     animation: ${AccentAnimationCol} 12s linear infinite alternate;
   }
   
-  &::after {
-    content: '';
-    position: absolute;
-    animation: ${AccentAnimationBg} 12s linear infinite alternate;
-    top: 50%;
-    left: 120%;
-    transform: translateY(-50%);
-    width: ${props => props.width || "100%"};
-    height: 1px;
-    
-    @media ${theme.media.desctop} {
-      width: 100%;
-    }
-    @media ${theme.media.mobile} {
-      display: none;
-    }
-  }
+  // &::after {
+  //   content: '';
+  //   position: absolute;
+  //   animation: ${AccentAnimationBg} 12s linear infinite alternate;
+  //   top: 50%;
+  //   left: 120%;
+  //   transform: translateY(-50%);
+  //   width: ${props => props.width || "100%"};
+  //   height: 1px;
+  //  
+  //   @media ${theme.media.desctop} {
+  //     width: 100%;
+  //   }
+  //   @media ${theme.media.mobile} {
+  //     display: none;
+  //   }
+  // }
 `
