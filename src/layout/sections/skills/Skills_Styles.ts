@@ -2,7 +2,7 @@ import {Rotate} from "../../../styles/AccentAnimation";
 import {theme} from "../../../styles/Theme";
 import styled from "styled-components";
 
-// Quote
+// Skills
 const Quote = styled.section`
     padding-bottom: 74px;
     padding-top: 74px;

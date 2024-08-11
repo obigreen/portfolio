@@ -4,7 +4,7 @@ import {Container} from "../../../styles/Container";
 import {MainPhoto} from "./mainphoto/MainPhoto";
 import {FlexWrapper} from "../../../components/FlexWrapper";
 import {S} from "./Main_Styles"
-import {AbsoluteBox} from "../../../components/absoluteBox/AbsoluteBox";
+import {AbsoluteBox} from "../../../components/absolute/AbsoluteBox";
 
 export const Main: React.FC = () => {
     return (

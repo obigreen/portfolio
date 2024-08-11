@@ -16,8 +16,10 @@ import "slick-carousel/slick/slick-theme.css";
 
 import {S} from "./Projects_Styles"
 import styled from "styled-components";
-import {AbsoluteBox} from "../../../components/absoluteBox/AbsoluteBox";
-import {Line} from "../../../components/absoluteBox/line";
+import {AbsoluteBox} from "../../../components/absolute/AbsoluteBox";
+import {Line} from "../../../components/absolute/line";
+import {AbsolutWrapp} from "../../../components/absolute/AbsolutWrapp";
+import {Icon} from "../../../components/icon/Icon";
 
 
 const infoProjectTitle = [
@@ -86,8 +88,13 @@ export const Projects: React.FC = () => {
                 <FlexWrapper justify={'space-between'} align={'center'} margin={'0 0 48px 0'}>
                     <FlexWrapper position={'relative'}>
                         <SectionTitle>projects</SectionTitle>
-                        <AbsoluteBox bottom={'-109px'} left={'50%'} width={'5px'} height={'100px'}/>
+                        <AbsoluteBox bottom={'-109px'} left={'50%'} width={'3px'} height={'100px'}/>
                         <AbsoluteBox bottom={'45%'} right={'-60px'} width={'50px'} height={'3px'}/>
+
+
+                        <AbsolutWrapp left={'calc(50% - 19px)'} top={'126px'} index={'9'}>
+                            <Icon iconId={'chipsliderMain'} width={'62'} height={'62'} viewBox={'0 0 32 32'}/>
+                        </AbsolutWrapp>
                     </FlexWrapper>
 
                     <RoutLink href={''}>View all ~~&gt;</RoutLink>
