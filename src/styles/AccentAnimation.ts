@@ -106,6 +106,43 @@ export const AccentAnimationBorder = keyframes`
   }
 `
 
+export const AccentAnimationShadow = keyframes`
+    0% {
+        box-shadow: 0 3px 4px 0 rgb(7 242 255 / 10%);
+    }
+    10% {
+        box-shadow: 0 3px 4px 0 rgb(13 243 168 / 10%);
+    }
+    20% {
+        box-shadow: 0 3px 4px 0 rgb(1 243 91 / 10%);
+    }
+    30% {
+        box-shadow: 0 3px 4px 0 rgb(243 211 92 / 10%);
+    }
+    40% {
+        box-shadow: 0 3px 4px 0 rgb(255 124 112 / 10%);
+    }
+    50% {
+        box-shadow: 0 3px 4px 0 rgb(252 103 113 / 10%);
+    }
+    60% {
+        box-shadow: 0 3px 4px 0 rgb(255 79 194 / 10%);
+    }
+    70% {
+        box-shadow: 0 3px 4px 0 rgb(200 98 250 / 10%);
+    }
+    80% {
+        box-shadow: 0 3px 4px 0 rgb(107 165 255 / 10%);
+    }
+    90% {
+        box-shadow: 0 3px 4px 0 rgb(1 239 254 / 10%);
+    }
+    100% {
+        box-shadow: 0 3px 4px 0 rgb(7 242 255 / 10%);
+    }
+`;
+
+
 export const Rotate = keyframes`
   0% {
     transform: rotate(0deg);

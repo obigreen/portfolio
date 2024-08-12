@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, ReactNode } from 'react';
 import styled from 'styled-components';
 import {theme} from "../../styles/Theme";
+import {AccentAnimationCol, AccentAnimationShadow} from "../../styles/AccentAnimation";
 
 
 
@@ -50,7 +51,7 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({ children }) => {
                 ))}
             </ImageContainer>
             <ButtonContainer>
-                <Button onClick={handleNextClick}>Next</Button>
+                <Button onClick={handleNextClick}>⥁</Button>
             </ButtonContainer>
         </Wrapp>
     );
@@ -77,7 +78,7 @@ const ImageContainer = styled.div`
 
 const Cylinder = styled.div`
     position: absolute;
-    top: calc(-50% - -38px);
+    top: calc(-50% - -39px);
     left: 50%;
     width: 100px;
     height: 70px;
@@ -87,7 +88,7 @@ const Cylinder = styled.div`
     .side {
         position: absolute;
         background-size: cover;
-        background-color: ${theme.color.stolb};
+        background-color: ${theme.color.backround};
     }
 
     .front {
@@ -140,21 +141,32 @@ const StyledContent = styled.div`
 
 const ButtonContainer = styled.div`
     position: absolute;
-    top: calc(50% - 21px);
+    width: 56px;
+    cursor: pointer;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
     right: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
+    border-radius: 50%;
+    &:active {
+        transform: translateY(-45%);
+        font-size: 15px;
+        box-shadow: unset;
+    }
 `;
 
 const Button = styled.button`
-    background-color: slateblue;
-    color: white;
+    background-color: #1e1f23;
+    border-radius: 50%;
+    width: 100%;
+    color: ${AccentAnimationCol} 12s linear infinite alternate;
     border: none;
     padding: 10px 10px;
-    border-radius: 5px;
     cursor: pointer;
-    font-size: 20px;
-    &:hover {
-        filter: brightness(1.5);
-    }
+    font-size: 30px;
+    box-shadow: inset 0 2px 5px 3px rgb(0 0 0 / 11%);
 `;
 
 
