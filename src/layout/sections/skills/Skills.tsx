@@ -12,9 +12,9 @@ import telegram from '../../../assets/img/icons/telegram.svg'
 import webstorm from '../../../assets/img/icons/webstorm.svg'
 import {Assistant} from "./assistant/Assistant";
 
-export const Skills: React.FC = () => {
+export const Skills = () => {
     return (
-        <S.Quote>
+        <S.Skill>
             <Container>
                 <FlexWrapper justify={'space-between'} align={'center'}>
                     <WrappWrapp>
@@ -93,7 +93,7 @@ export const Skills: React.FC = () => {
 
                 </FlexWrapper>
             </Container>
-        </S.Quote>
+        </S.Skill>
     );
 };
 

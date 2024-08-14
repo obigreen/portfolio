@@ -56,8 +56,8 @@ const settings = {
     slidesToScroll: 1,
     arrows: false,
     // focusOnSelect: true,
-    autoplay: true,
-    autoplaySpeed: 2400,
+    // autoplay: true,
+    // autoplaySpeed: 2400,
     responsive: [
         {
             breakpoint: 1024,
@@ -82,7 +82,7 @@ export const Projects: React.FC = () => {
 
     return (
         <S.Projects id={'works'}>
-            <Line top={'150px'} height={'2px'}/>
+            <Line top={'224px'} height={'2px'}/>
             <Container>
                 {/*для ссылки на другую страницу*/}
                 <FlexWrapper justify={'space-between'} align={'center'} margin={'0 0 48px 0'}>
@@ -90,6 +90,7 @@ export const Projects: React.FC = () => {
                         <SectionTitle>projects</SectionTitle>
                         <AbsoluteBox bottom={'-109px'} left={'50%'} width={'3px'} height={'100px'}/>
                         <AbsoluteBox bottom={'45%'} right={'-60px'} width={'50px'} height={'3px'}/>
+                        <AbsoluteBox bottom={'45%'} right={'-60px'} width={'3px'} height={'50px'}/>
 
 
                         <AbsolutWrapp left={'calc(50% - 19px)'} top={'126px'} index={'9'}>

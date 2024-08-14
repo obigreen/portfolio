@@ -6,6 +6,7 @@ import {AccentAnimationCol, Rotate} from "../../../styles/AccentAnimation";
 
 // Projects
 const Projects = styled.section`
+    padding-top: 74px;
     padding-bottom: 106px;
     position: relative;
     overflow-x: hidden;
