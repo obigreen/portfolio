@@ -4,7 +4,7 @@ import {Container} from "../../../styles/Container";
 import {MainPhoto} from "./mainphoto/MainPhoto";
 import {FlexWrapper} from "../../../components/FlexWrapper";
 import {S} from "./Main_Styles"
-import {AbsoluteBox} from "../../../components/absolute/AbsoluteBox";
+
 
 export const Main: React.FC = () => {
     return (
@@ -15,8 +15,6 @@ export const Main: React.FC = () => {
                         <S.Title>Добро пожаловать на мой профессиональный сайт</S.Title>
                         <S.Description>Узнайте больше о моих работах, обо мне и как связаться со мной</S.Description>
                         <Button type={'submit'}>Contact me!!</Button>
-
-                        {/*<AbsoluteBox width={'100px'} height={'70px'} bottom={'0'} right={'0'}/>*/}
                     </FlexWrapper>
                     <MainPhoto/>
                 </FlexWrapper>

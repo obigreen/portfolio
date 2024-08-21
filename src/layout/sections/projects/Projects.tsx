@@ -4,7 +4,6 @@ import {FlexWrapper} from "../../../components/FlexWrapper";
 import {SectionTitle} from "../../../components/SectionTitle";
 import {Project} from "./project/Project";
 import {Container} from "../../../styles/Container";
-import {RoutLink} from "../../../components/routLink";
 
 import projectOne from '../../../assets/img/projectOne.png'
 import projectTwo from '../../../assets/img/projectTwo.png'
@@ -77,7 +76,7 @@ const settings = {
     ]
 };
 
-export const Projects: React.FC = () => {
+export const Projects = () => {
 
 
     return (
@@ -85,12 +84,12 @@ export const Projects: React.FC = () => {
             <Line top={'224px'} height={'2px'}/>
             <Container>
                 {/*для ссылки на другую страницу*/}
-                <FlexWrapper justify={'space-between'} align={'center'} margin={'0 0 48px 0'}>
+                <FlexWrapper justify={'start'} align={'center'} margin={'0 0 48px 0'}>
                     <FlexWrapper position={'relative'}>
                         <SectionTitle>projects</SectionTitle>
                         <AbsoluteBox bottom={'-109px'} left={'50%'} width={'3px'} height={'100px'}/>
-                        <AbsoluteBox bottom={'45%'} right={'-60px'} width={'50px'} height={'3px'}/>
-                        <AbsoluteBox bottom={'45%'} right={'-60px'} width={'3px'} height={'50px'}/>
+                        <AbsoluteBox bottom={'45%'} right={'-78px'} width={'65px'} height={'3px'}/>
+                        <AbsoluteBox bottom={'45%'} right={'-78px'} width={'3px'} height={'50px'}/>
 
 
                         <AbsolutWrapp left={'calc(50% - 19px)'} top={'126px'} index={'9'}>
@@ -98,7 +97,6 @@ export const Projects: React.FC = () => {
                         </AbsolutWrapp>
                     </FlexWrapper>
 
-                    <RoutLink href={''}>View all ~~&gt;</RoutLink>
                 </FlexWrapper>
                 <SliderWrapper>
                     <Slider {...settings}>
@@ -122,5 +120,4 @@ export const Projects: React.FC = () => {
 const SliderWrapper = styled.div`
     width: 100%;
     position: relative;
-    
 `;

@@ -5,7 +5,8 @@ type AbsoluteBoxPropsType = {
     right?: string;
     top?: string;
     left?: string;
-    index?: string
+    index?: string;
+    rotate?: string;
 }
 
 export const AbsolutWrapp = styled.div<AbsoluteBoxPropsType>`
@@ -15,4 +16,5 @@ export const AbsolutWrapp = styled.div<AbsoluteBoxPropsType>`
     top: ${props => props.top || 'auto'};
     left: ${props => props.left || 'auto'};
     z-index: ${props => props.index || '0'};;
+    rotate: ${props => props.rotate || '0deg'};
 `;

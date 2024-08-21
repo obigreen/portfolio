@@ -5,7 +5,6 @@ import {FlexWrapper} from "../../../components/FlexWrapper";
 import BottomFhoto from "../../../assets/img/photo-bottom.png"
 import {Button} from "../../../components/Button";
 import {Container} from "../../../styles/Container";
-import {RoutLink} from "../../../components/routLink";
 
 import {S} from "./AboutMe_Styles"
 
@@ -31,9 +30,6 @@ export const AboutMe = () => {
                             about the
                             newest technologies and frameworks.
                         </SectionText>
-                        <Button>
-                            <RoutLink href={''}>Read more -&gt;</RoutLink>
-                        </Button>
                     </FlexWrapper>
                     <S.ImageWrapper>
                         <S.Image src={BottomFhoto} alt=""/>

@@ -11,6 +11,7 @@ import nodeJs from '../../../assets/img/icons/nodeJs.svg'
 import telegram from '../../../assets/img/icons/telegram.svg'
 import webstorm from '../../../assets/img/icons/webstorm.svg'
 import {Assistant} from "./assistant/Assistant";
+import {theme} from "../../../styles/Theme";
 
 export const Skills = () => {
     return (
@@ -21,34 +22,34 @@ export const Skills = () => {
                         {/*tehnologies*/}
                         <Wrap>
                             <ImageSlider>
-                                <IconLink href="https://github.com/obigreen" target={'_blank'}>
+                                <IconLink href="https://developer.mozilla.org/en-US/docs/Web/HTML" target={'_blank'}>
                                     <Icon iconId={'html'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
                                 </IconLink>
-                                <IconLink href="https://www.github.com/" target={'_blank'}>
+                                <IconLink href="https://developer.mozilla.org/en-US/docs/Web/CSS" target={'_blank'}>
                                     <Icon iconId={'css'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
                                 </IconLink>
-                                <IconLink href="https://www.github.com/" target={'_blank'}>
+                                <IconLink href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target={'_blank'}>
                                     <Icon iconId={'js'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
                                 </IconLink>
-                                <IconLink href="https://www.github.com/" target={'_blank'}>
+                                <IconLink href="https://www.typescriptlang.org/docs/" target={'_blank'}>
                                     <Icon iconId={'ts'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
                                 </IconLink>
-                                <IconLink href="https://www.github.com/" target={'_blank'}>
+                                <IconLink href="https://api.jquery.com/" target={'_blank'}>
                                     <Icon iconId={'jquery'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
                                 </IconLink>
-                                <IconLink href="https://www.github.com/" target={'_blank'}>
+                                <IconLink href="https://react.dev/" target={'_blank'}>
                                     <Icon iconId={'react'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
                                 </IconLink>
-                                <IconLink href="https://www.github.com/" target={'_blank'}>
+                                <IconLink href="https://nextjs.org/docs" target={'_blank'}>
                                     <Icon iconId={'nextJs'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
                                 </IconLink>
-                                <IconLink href="https://www.github.com/" target={'_blank'}>
+                                <IconLink href="https://git-scm.com/doc" target={'_blank'}>
                                     <Icon iconId={'git'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
                                 </IconLink>
-                                <IconLink href="https://www.github.com/" target={'_blank'}>
+                                <IconLink href="https://www.npmjs.com/package/documentation" target={'_blank'}>
                                     <Icon iconId={'npm'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
                                 </IconLink>
-                                <IconLink href="" target={'_blank'}>
+                                <IconLink href="https://nodejs.org/docs/latest/api/" target={'_blank'}>
                                     <Img src={nodeJs} alt=""/>
                                 </IconLink>
                             </ImageSlider>
@@ -56,20 +57,20 @@ export const Skills = () => {
                         {/*tools*/}
                         <Wrap>
                             <ImageSlider>
-                                <IconLink href="https://www.twitter.com/" target={'_blank'}>
+                                <IconLink href="https://code.visualstudio.com/" target={'_blank'}>
                                     <Icon iconId={'vscode'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
                                 </IconLink>
-                                <IconLink href="https://www.github.com/" target={'_blank'}>
-                                    <Icon iconId={'figma'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
-                                </IconLink>
-                                <IconLink href="https://www.github.com/" target={'_blank'}>
-                                    <Icon iconId={'photoshop'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
-                                </IconLink>
-                                <IconLink href="https://www.github.com/" target={'_blank'}>
-                                    <Icon iconId={'premerePro'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
+                                <IconLink href="https://www.jetbrains.com/webstorm/" target={'_blank'}>
+                                    <Img src={webstorm} alt=""/>
                                 </IconLink>
                                 <IconLink href="" target={'_blank'}>
-                                    <Img src={webstorm} alt=""/>
+                                    <Icon iconId={'figma'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
+                                </IconLink>
+                                <IconLink href="" target={'_blank'}>
+                                    <Icon iconId={'photoshop'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
+                                </IconLink>
+                                <IconLink href="" target={'_blank'}>
+                                    <Icon iconId={'premerePro'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
                                 </IconLink>
                             </ImageSlider>
                         </Wrap>
@@ -79,10 +80,10 @@ export const Skills = () => {
                                 <IconLink href="https://github.com/obigreen" target={'_blank'}>
                                     <Icon iconId={'gitHub'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
                                 </IconLink>
-                                <IconLink href="https://youshtuchka@gmail.com" target={'_blank'}>
+                                <IconLink href="mailto:https://youshtuchka@gmail.com" target={'_blank'}>
                                     <Icon iconId={'gmail'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
                                 </IconLink>
-                                <IconLink href="" target={'_blank'}>
+                                <IconLink href="https://t.me/Youpushka" target={'_blank'}>
                                     <Img src={telegram} alt=""/>
                                 </IconLink>
                             </ImageSlider>
@@ -102,16 +103,16 @@ const WrappWrapp = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-
 `;
 
 
 const Wrap = styled.div`
     width: 100%;
+
     &:not(:last-child) {
         margin-bottom: 50px;
     }
-    
+
 `;
 
 const IconLink = styled.a`
@@ -119,7 +120,6 @@ const IconLink = styled.a`
     display: flex;
     margin-top: 2px;
 `
-
 
 
 const Img = styled.img`

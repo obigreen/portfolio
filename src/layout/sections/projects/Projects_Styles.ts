@@ -12,26 +12,26 @@ const Projects = styled.section`
     overflow-x: hidden;
 
     ${Container} {
-        position: relative;
-        
-        &::before, &::after {
-            content: '';
-            position: absolute;
-            top: 220px;
-            bottom: 0;
-            width: 30px;
-            z-index: 999;
-        }
-
-        &::before {
-            left: -1px;
-            background: linear-gradient(to right, rgb(30, 31, 35), rgba(30, 31, 35, 0));
-        }
-
-        &::after {
-            right: -1px;
-            background: linear-gradient(to left, rgb(30, 31, 35), rgba(30, 31, 35, 0));
-        }
+        //position: relative;
+        //
+        //&::before, &::after {
+        //    content: '';
+        //    position: absolute;
+        //    top: 220px;
+        //    bottom: 0;
+        //    width: 30px;
+        //    z-index: 999;
+        //}
+        //
+        //&::before {
+        //    left: -1px;
+        //    background: linear-gradient(to right, rgb(30, 31, 35), rgba(30, 31, 35, 0));
+        //}
+        //
+        //&::after {
+        //    right: -1px;
+        //    background: linear-gradient(to left, rgb(30, 31, 35), rgba(30, 31, 35, 0));
+        //}
 
         .slick-slide > div {
             margin: 0 10px;
@@ -72,6 +72,7 @@ const Work = styled.div`
   position: relative;
   width: 100%;
   outline: 1px solid ${theme.color.main};
+    background-color: ${theme.color.backround};
   
   ${FlexWrapper} > img {
     width: 100%;
