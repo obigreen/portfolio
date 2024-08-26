@@ -86,6 +86,9 @@ export const Skills = () => {
                                 <IconLink href="https://t.me/Youpushka" target={'_blank'}>
                                     <Img src={telegram} alt=""/>
                                 </IconLink>
+                                <IconLink href="" target={'_blank'}>
+                                    <Icon iconId={'whatsapp'} width={'60'} height={'60'} viewBox={'0 0 32 32'}/>
+                                </IconLink>
                             </ImageSlider>
                         </Wrap>
                     </WrappWrapp>
