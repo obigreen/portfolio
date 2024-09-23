@@ -1,17 +1,31 @@
 import styled from "styled-components";
 import {font} from "../../../styles/Common";
-import {AccentAnimationCol, AccentAnimationBg} from "../../../styles/AccentAnimation";
 import {FlexWrapper} from "../../../components/FlexWrapper";
 import {theme} from "../../../styles/Theme";
 import {Container} from "../../../styles/Container";
-import before from "../../../assets/img/pseudoelements/dot.svg"
+import bgImage from '../../../assets/img/bg.webp';
 
 // Main
 const Main = styled.section`
     padding-top: 123px;
-    padding-bottom: 73px;
     position: relative;
+    background-image: url(${bgImage});
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    box-shadow: inset 3px -2px 20px 20px rgb(30 31 35);
 
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: ${theme.color.backround};
+        opacity: 0.78; /* Прозрачность цветного слоя */
+        z-index: -1;
+    }
 
     ${Container} > ${FlexWrapper} {
         @media ${theme.media.desctop} {
@@ -25,11 +39,6 @@ const Title = styled.h1`
     max-width: 500px;
     ${font({weight: 600, maxW: 32, minW: 25})};
     color: ${theme.color.mainFont};
-
-    span {
-            // color: ${theme.color.accent};
-            // animation: ${AccentAnimationCol} 12s linear infinite alternate;
-    }
 `
 
 const Description = styled.h2`
@@ -43,45 +52,17 @@ const Description = styled.h2`
 
 // MainPhoto
 const MainProtoWrapper = styled.div`
+    box-shadow: inset 0 -19px 10px -10px rgb(30, 31, 35);
 
 `
 
 const ImgWrapp = styled.div`
     display: flex;
-    z-index: 0;
+    z-index: -1;
     position: relative;
     max-width: 550px;
-
-
-    //здесь дот через абсолют
-    // &::before {
-    //   content: "";
-        //   background-image: url(${before});
-    //   background-repeat: no-repeat;
-    //   position: absolute;
-    //   bottom: 60px;
-    //   right: 15px;
-    //   width: 84px;
-    //   height: 84px;
-    // }
 `
 
-const IconAbsolutWrapp = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 85px;
-    left: 0;
-    z-index: -1;
-    width: 156px;
-    height: 156px;
-    animation: ${AccentAnimationCol} 12s linear infinite alternate;
-
-    @media ${theme.media.mobile} {
-        top: 0;
-    }
-`
 
 const Img = styled.img`
     width: 100%;
@@ -118,11 +99,11 @@ const ImgTitle = styled.div`
         top: 50%;
         transform: translateY(-50%);
         left: 8px;
-        animation: ${AccentAnimationBg} 12s linear infinite alternate;
+        background-color: ${theme.color.main};
     }
 `
 
 export const S = {
     Main, Title, Description,
-    MainProtoWrapper, ImgWrapp, IconAbsolutWrapp, Img, ImgTitle
+    MainProtoWrapper, ImgWrapp, Img, ImgTitle
 }

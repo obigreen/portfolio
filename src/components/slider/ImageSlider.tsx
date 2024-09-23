@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, ReactNode } from 'react';
 import styled from 'styled-components';
 import {theme} from "../../styles/Theme";
-import {AccentAnimationCol, AccentAnimationShadow} from "../../styles/AccentAnimation";
+import {ButtonWin98} from "../ButtonWin98";
 
 
 
@@ -51,7 +51,7 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({ children }) => {
                 ))}
             </ImageContainer>
             <ButtonContainer>
-                <Button onClick={handleNextClick}>⥁</Button>
+                <ButtonWin98 onClick={handleNextClick}>Крутануть</ButtonWin98>
             </ButtonContainer>
         </Wrapp>
     );
@@ -141,34 +141,34 @@ const StyledContent = styled.div`
 
 const ButtonContainer = styled.div`
     position: absolute;
-    width: 56px;
     cursor: pointer;
-    text-align: center;
     top: 50%;
     transform: translateY(-50%);
     right: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.5s ease;
-    border-radius: 50%;
-    &:active {
-        transform: translateY(-45%);
-        font-size: 15px;
-        box-shadow: unset;
-    }
 `;
 
 const Button = styled.button`
-    background-color: #1e1f23;
-    border-radius: 50%;
-    width: 100%;
-    color: ${AccentAnimationCol} 12s linear infinite alternate;
-    border: none;
-    padding: 10px 10px;
+    font-size: 14px;
+    color: ${theme.color.backround};
+    background-color: #abb2bf;
+    border-top-color: #abb2bf;
+    border-left-color: #abb2bf;
+    border-right-color: #fff;
+    border-bottom-color: #fff;
+    padding: 5px 10px;
+    box-shadow: 1px 1px 0 #808080;
     cursor: pointer;
-    font-size: 30px;
-    box-shadow: inset 0 2px 5px 3px rgb(0 0 0 / 11%);
-`;
+    outline: none;
 
+    &:active {
+        border-right-color: #fff;
+        border-bottom-color: #fff;
+        border-top-color: #abb2bf;
+        border-left-color: #abb2bf;
+        box-shadow: inset 1px 1px 0 #808080;
+        transform: translate(1px, 1px); /* Смещение текста при нажатии */
+    }
+`;
 
 
 

@@ -2,44 +2,41 @@ import styled from "styled-components";
 import {FlexWrapper} from "../../../components/FlexWrapper";
 import {Container} from "../../../styles/Container";
 import {theme} from "../../../styles/Theme";
-import {AccentAnimationCol, Rotate} from "../../../styles/AccentAnimation";
+import bgImage2 from '../../../assets/img/bg2.webp'
 
 // Projects
 const Projects = styled.section`
-    padding-top: 74px;
     padding-bottom: 106px;
+    padding-top: 74px;
     position: relative;
     overflow-x: hidden;
+    background-image: url(${bgImage2});
+
+    background-size: cover;
+    background-position: center;
+    box-shadow: inset 3px -2px 20px 20px rgb(30 31 35);
+
+    //
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: ${theme.color.backround};
+        opacity: 0.78; /* Прозрачность цветного слоя */
+        //z-index: 0;
+    }
 
     ${Container} {
-        //position: relative;
-        //
-        //&::before, &::after {
-        //    content: '';
-        //    position: absolute;
-        //    top: 220px;
-        //    bottom: 0;
-        //    width: 30px;
-        //    z-index: 999;
-        //}
-        //
-        //&::before {
-        //    left: -1px;
-        //    background: linear-gradient(to right, rgb(30, 31, 35), rgba(30, 31, 35, 0));
-        //}
-        //
-        //&::after {
-        //    right: -1px;
-        //    background: linear-gradient(to left, rgb(30, 31, 35), rgba(30, 31, 35, 0));
-        //}
-
         .slick-slide > div {
             margin: 0 10px;
         }
 
         .slick-list {
             margin: 0 -10px;
-            padding-top: 200px;
+            padding-top: 30px;
             padding-bottom: 10px;
         }
     }
@@ -52,18 +49,6 @@ const Projects = styled.section`
             gap: 18px;
         }
     }
-
-    // &::after {
-    //   content: '';
-    //   position: absolute;
-    //   width: 155px;
-    //   height: 155px;
-        //   border: 1px solid ${theme.color.main};
-    //   background-color: transparent;
-    //   right: calc(50% - 830px);
-    //   top: 40%;
-        //   animation: ${Rotate} 16s linear infinite;
-    // }
 `
 
 // Project
@@ -90,7 +75,9 @@ const Title = styled.h3`
   font-size: 24px;
   color: ${theme.color.mainFont};
 `
-const ProjectLink = styled.a``
+const ProjectLink = styled.a`
+
+`
 
 
 export const S = {

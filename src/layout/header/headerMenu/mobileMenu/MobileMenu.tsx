@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
-import {MediaLinks} from "../../../../components/mediaLinks/MediaLinks";
 import {S} from "../HeaderMenu_Styles"
 import {Menu} from "../menu/Menu";
 
 
-export const MobileMenu: React.FC = () => {
+export const MobileMenu = () => {
 
     const [menuIsOpen, setmenuIsOpen] = useState(false)
     const onBurgerBtnClick = () => {
@@ -18,7 +17,6 @@ export const MobileMenu: React.FC = () => {
             </S.BurgerButton>
             <S.MobileMenuPopup isOpen={menuIsOpen}>
                 <Menu setmenuIsOpen={setmenuIsOpen}/>
-                <MediaLinks/>
             </S.MobileMenuPopup>
         </S.MobileMenu>
     );

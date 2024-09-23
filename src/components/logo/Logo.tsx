@@ -5,12 +5,11 @@ import {S} from "./Logo_Styles"
 
 
 
-export const Logo: React.FC = () => {
+export const Logo = () => {
     return (
         <S.LogoLinkWrapp href={''}>
             <FlexWrapper align={'center'}>
-                <Icon iconId={'logo'} width={'16'} height={'16'} viewBox={'0 0 16 16'}/>
-                <S.LogoText>Elias</S.LogoText>
+                <Icon iconId={'logo'} width={'32'} height={'32'} viewBox={'0 0 32 32'}/>
             </FlexWrapper>
         </S.LogoLinkWrapp>
     );
