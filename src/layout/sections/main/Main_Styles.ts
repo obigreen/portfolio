@@ -3,7 +3,7 @@ import {font} from "../../../styles/Common";
 import {FlexWrapper} from "../../../components/FlexWrapper";
 import {theme} from "../../../styles/Theme";
 import {Container} from "../../../styles/Container";
-import bgImage from '../../../assets/img/bg.webp';
+import bgImage from '../../../assets/img/bg1.png';
 
 // Main
 const Main = styled.section`
@@ -13,7 +13,7 @@ const Main = styled.section`
     background-size: cover;
     background-position: center;
     z-index: 1;
-    box-shadow: inset 3px -2px 20px 20px rgb(30 31 35);
+    box-shadow: inset 0 -10px 50px 50px rgb(30 31 35);
 
     &:before {
         content: "";

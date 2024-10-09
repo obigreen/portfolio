@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {FlexWrapper} from "../../../components/FlexWrapper";
 import {Container} from "../../../styles/Container";
 import {theme} from "../../../styles/Theme";
-import bgImage2 from '../../../assets/img/bg2.webp'
+import bgImage2 from '../../../assets/img/bg2.png'
 
 // Projects
 const Projects = styled.section`
@@ -14,7 +14,7 @@ const Projects = styled.section`
 
     background-size: cover;
     background-position: center;
-    box-shadow: inset 3px -2px 20px 20px rgb(30 31 35);
+    box-shadow: inset 0 -10px 50px 50px rgb(30 31 35);
 
     //
     &:before {

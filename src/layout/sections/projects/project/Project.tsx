@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SectionText } from "../../../../components/SectionText";
 import { Button } from "../../../../components/Button";
 import { TechnologiesMenu } from "../../../../components/TechnologiesMenu";
 import { FlexWrapper } from "../../../../components/FlexWrapper";
 import { S } from "../Projects_Styles";
-import styled from "styled-components";
-import {theme} from "../../../../styles/Theme";
 
 type StyledWorkPropsType = {
     title: string;
@@ -23,8 +21,8 @@ export const Project: React.FC<StyledWorkPropsType> = (props) => {
 
     return (
         <S.Work id={'projects'}>
-            <FlexWrapper>
-                <img src={props.src} alt="" />
+            <FlexWrapper height={'200px'} overflow={'hidden'} >
+                <img src={props.src} alt="" style={{ width: '100%', objectFit: 'cover', height: '100%', objectPosition: 'top' }}/>
             </FlexWrapper>
             <TechnologiesMenu>{props.technologies}</TechnologiesMenu>
             <S.InfoProjectWrapper>

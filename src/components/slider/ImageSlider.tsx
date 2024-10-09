@@ -145,30 +145,35 @@ const ButtonContainer = styled.div`
     top: 50%;
     transform: translateY(-50%);
     right: 10px;
-`;
-
-const Button = styled.button`
-    font-size: 14px;
-    color: ${theme.color.backround};
-    background-color: #abb2bf;
-    border-top-color: #abb2bf;
-    border-left-color: #abb2bf;
-    border-right-color: #fff;
-    border-bottom-color: #fff;
-    padding: 5px 10px;
-    box-shadow: 1px 1px 0 #808080;
-    cursor: pointer;
-    outline: none;
-
-    &:active {
-        border-right-color: #fff;
-        border-bottom-color: #fff;
-        border-top-color: #abb2bf;
-        border-left-color: #abb2bf;
-        box-shadow: inset 1px 1px 0 #808080;
-        transform: translate(1px, 1px); /* Смещение текста при нажатии */
+    
+    @media ${theme.media.desctop} {
+        top: 130%;
+        right: calc(50% - 40px);
     }
 `;
+
+// const Button = styled.button`
+//     font-size: 14px;
+//     color: ${theme.color.backround};
+//     background-color: #abb2bf;
+//     border-top-color: #abb2bf;
+//     border-left-color: #abb2bf;
+//     border-right-color: #fff;
+//     border-bottom-color: #fff;
+//     padding: 5px 10px;
+//     box-shadow: 1px 1px 0 #808080;
+//     cursor: pointer;
+//     outline: none;
+//
+//     &:active {
+//         border-right-color: #fff;
+//         border-bottom-color: #fff;
+//         border-top-color: #abb2bf;
+//         border-left-color: #abb2bf;
+//         box-shadow: inset 1px 1px 0 #808080;
+//         transform: translate(1px, 1px); /* Смещение текста при нажатии */
+//     }
+// `;
 
 
 

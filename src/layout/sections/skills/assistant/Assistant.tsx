@@ -65,7 +65,6 @@ const TextariaOutp = styled.textarea`
     resize: none;
     overflow: auto;
     padding: 10px;
-    margin-bottom: 20px;
     height: 200px;
     background: transparent;
     border: none;
