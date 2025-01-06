@@ -17,8 +17,33 @@ const Skill = styled.section`
         }
     }
 `
+//Wrapp for sliders with skills
+const WrappWrapp = styled.div`
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+`;
 
+const Wrap = styled.div`
+    width: 100%;
+
+    &:not(:last-child) {
+        margin-bottom: 50px;
+    }
+`;
+
+const IconLink = styled.a`
+    display: flex;
+    margin-top: 2px;
+`;
+
+const Img = styled.img`
+    width: 60px;
+    height: 60px;
+`;
 
 export const S = {
-    Skill
+    Skill,
+    WrappWrapp, Wrap, IconLink, Img
 }

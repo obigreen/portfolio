@@ -2,9 +2,8 @@ import React from 'react';
 import { Container } from "../../../styles/Container";
 import { FlexWrapper } from "../../../components/FlexWrapper";
 import { S } from "./Skills_Styles";
-import { ImageSlider } from "../../../components/slider/ImageSlider";
+import { ImageSlider } from "./slider/ImageSlider";
 import { Icon } from "../../../components/icon/Icon";
-import styled from 'styled-components';
 
 import nodeJs from '../../../assets/img/icons/nodeJs.svg';
 import telegram from '../../../assets/img/icons/telegram.svg';
@@ -46,23 +45,23 @@ export const Skills = () => {
             <Container>
                 <SectionTitle>Skills</SectionTitle>
                 <FlexWrapper justify={'space-between'} align={'center'}>
-                    <WrappWrapp>
+                    <S.WrappWrapp>
                         {[technologies, tools, socials].map((items, index) => (
-                            <Wrap key={index}>
+                            <S.Wrap key={index}>
                                 <ImageSlider>
                                     {items.map((item, idx) => (
-                                        <IconLink key={idx} href={item.href} target={'_blank'}>
+                                        <S.IconLink key={idx} href={item.href} target={'_blank'}>
                                             {item.iconId ? (
                                                 <Icon iconId={item.iconId} width={'60'} height={'60'} viewBox={'0 0 32 32'} />
                                             ) : (
-                                                <Img src={item.imgSrc} alt="" />
+                                                <S.Img src={item.imgSrc} alt="" />
                                             )}
-                                        </IconLink>
+                                        </S.IconLink>
                                     ))}
                                 </ImageSlider>
-                            </Wrap>
+                            </S.Wrap>
                         ))}
-                    </WrappWrapp>
+                    </S.WrappWrapp>
 
                     <Assistant />
                 </FlexWrapper>
@@ -71,30 +70,7 @@ export const Skills = () => {
     );
 };
 
-const WrappWrapp = styled.div`
-    max-width: 500px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-`;
 
-const Wrap = styled.div`
-    width: 100%;
-
-    &:not(:last-child) {
-        margin-bottom: 50px;
-    }
-`;
-
-const IconLink = styled.a`
-    display: flex;
-    margin-top: 2px;
-`;
-
-const Img = styled.img`
-    width: 60px;
-    height: 60px;
-`;
 
 
 

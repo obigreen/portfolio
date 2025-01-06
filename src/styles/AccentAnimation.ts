@@ -29,7 +29,7 @@ export const ColorAnimation = keyframes`
         color: #6BA5FF;
     }
     90% {
-        color: #01EFFE;
+        color: #01bbfe;
     }
     100% {
         color: #07F2FF;
@@ -67,7 +67,7 @@ export const BorderAnimation = keyframes`
         border-color: #6BA5FF;
     }
     90% {
-        border-color: #01EFFE;
+        border-color: #01bbfe;
     }
     100% {
         border-color: #07F2FF;

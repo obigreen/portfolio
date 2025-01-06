@@ -53,7 +53,6 @@ const Description = styled.h2`
 // MainPhoto
 const MainProtoWrapper = styled.div`
     box-shadow: inset 0 -19px 10px -10px rgb(30, 31, 35);
-
 `
 
 const ImgWrapp = styled.div`
@@ -67,43 +66,13 @@ const ImgWrapp = styled.div`
 const Img = styled.img`
     width: 100%;
     @media ${theme.media.mobile} {
-        width: 350px;
+        max-width: 350px;
     }
 `
 
-const ImgTitle = styled.div`
-    position: relative;
-    padding: 8px 8px 8px 34px;
-    color: ${theme.color.main};
-    outline: 1px solid ${theme.color.main};
-    max-width: 400px;
-    width: 100%;
-    background-color: ${theme.color.backround};
 
-
-    @media ${theme.media.mobile} {
-        width: 330px;
-        margin-right: 0;
-    }
-
-    span {
-        color: ${theme.color.mainFont};
-        font-weight: bold;
-    }
-
-    &:before {
-        content: '';
-        width: 16px;
-        height: 16px;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        left: 8px;
-        background-color: ${theme.color.main};
-    }
-`
 
 export const S = {
     Main, Title, Description,
-    MainProtoWrapper, ImgWrapp, Img, ImgTitle
+    MainProtoWrapper, ImgWrapp, Img
 }

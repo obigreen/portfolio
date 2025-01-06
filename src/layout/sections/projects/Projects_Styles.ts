@@ -50,6 +50,9 @@ const Projects = styled.section`
         }
     }
 `
+const SliderWrapper = styled.div`
+    width: 100%;
+`;
 
 // Project
 const Work = styled.div`
@@ -70,17 +73,22 @@ const InfoProjectWrapper = styled.div`
   flex-direction: column;
 `
 
-const Title = styled.h3`
+export const Title = styled.h3`
   font-weight: 500;
   font-size: 24px;
   color: ${theme.color.mainFont};
 `
-const ProjectLink = styled.a`
-
+export const TechnologiesMenu = styled.h2`
+    font-weight: 400;
+    font-size: 16px;
+    color: ${theme.color.main};
+    line-height: 156%;
+    border-bottom: 1px solid ${theme.color.main};
+    padding: 8px;
 `
 
 
 export const S = {
-  Projects,
-  Work, InfoProjectWrapper, Title, ProjectLink
+  Projects, SliderWrapper,
+  Work, InfoProjectWrapper
 }

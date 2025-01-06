@@ -13,13 +13,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 
 import {S} from "./Projects_Styles"
-import styled from "styled-components";
 import {SectionTitle} from "../../../components/SectionTitle";
-import {theme} from "../../../styles/Theme";
-import {FlexWrapper} from "../../../components/FlexWrapper";
-import {SectionText} from "../../../components/SectionText";
-import {TechnologiesMenu} from "../../../components/TechnologiesMenu";
-import {ButtonWin98} from "../../../components/ButtonWin98";
+import {ModalOverlayComponent} from "./modalOverlay/ModalOverlay";
 
 type ProjectType = {
     src: string;
@@ -28,8 +23,6 @@ type ProjectType = {
     text: string;
     buttonText: string;
 };
-
-
 
 
 const infoProjectTitle = [
@@ -62,7 +55,6 @@ const infoProjectDescription = [
     {
         desktopSrc: bomBurgerdesctop,
         mobileSrc: bomBurgermobile,
-        // src: bomBurgerdesctop,
         technologies: "HTML SCSS JS GULP",
         title: "Boom Burger",
         text: "Разработал интерактивный лендинг для BoomBurger с акцентом на пользовательский опыт и современные технологии. Среди ключевых функциональных элементов, реализованных на странице:\n" +
@@ -97,9 +89,6 @@ const infoProjectDescription = [
 
 
 export const Projects = () => {
-
-
-
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [modalContent, setModalContent] = useState<{
         desktopSrc: string;
@@ -109,6 +98,8 @@ export const Projects = () => {
         title: string;
         text: string
     } | null>(null);
+
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     // Функция для блокировки скролла на основном контенте
     const lockScroll = () => {
@@ -155,9 +146,9 @@ export const Projects = () => {
                 label: "Mobile"
             }
         ]
-        : [];
-
-    const [currentIndex, setCurrentIndex] = useState(0);
+        :
+        []
+    ;
 
 
     const mSlide = () => {
@@ -201,7 +192,7 @@ export const Projects = () => {
         <S.Projects id={'works'}>
             <Container>
                 <SectionTitle>Projects</SectionTitle>
-                <SliderWrapper>
+                <S.SliderWrapper>
                     <Slider {...settings}>
                         {infoProjectTitle.map((p, index) => (
                             <Project
@@ -215,96 +206,20 @@ export const Projects = () => {
                             />
                         ))}
                     </Slider>
-                </SliderWrapper>
+                </S.SliderWrapper>
             </Container>
-            {isModalOpen && modalContent && (
-                <ModalOverlay onClick={handleCloseModal}>
-                    <ModalContent onClick={(e) => e.stopPropagation()}>
-                        <FlexWrapper justify={'center'} gap={'30px'}>
-                            <div style={{position: 'relative', maxWidth: '600px', width: '100%'}}>
-                                <div style={{position: "absolute"}}>
-                                    <ButtonWin98 onClick={mSlide}>
-                                        {currentIndex === 0 ? "Mobile" : "Desktop"}
-                                    </ButtonWin98>
-                                </div>
-
-                                {images.length > 0 && (
-                                    <img
-                                        src={images[currentIndex]?.src}
-                                        alt={images[currentIndex]?.label}
-                                        style={{ width: '100%', maxWidth: '600px' }}
-                                    />
-                                )}
-
-
-                            </div>
-                            <ProjectInfo>
-                                <S.Title>{modalContent.title}</S.Title>
-                                <TechnologiesMenu
-                                    style={{padding: '8px 8px 8px 0'}}>{modalContent.technologies}</TechnologiesMenu>
-                                <SectionText>{modalContent.text}</SectionText>
-                                <CloseButton onClick={handleCloseModal}>X</CloseButton>
-                            </ProjectInfo>
-                        </FlexWrapper>
-                    </ModalContent>
-                </ModalOverlay>
-            )}
+            <ModalOverlayComponent
+                isModalOpen={isModalOpen}
+                handleCloseModal={handleCloseModal}
+                currentIndex={currentIndex}
+                mSlide={mSlide}
+                images={images}
+                modalContent={modalContent}
+            />
         </S.Projects>
     );
 };
 
-const SliderWrapper = styled.div`
-    width: 100%;
-`;
 
 
-const ModalOverlay = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 999;
-    overflow-y: auto; /* Это позволит прокручивать модальное окно */
-    background: ${theme.color.backround};
-`;
 
-const ModalContent = styled.div`
- 
-    position: relative;
-    gap: 30px;
-    padding: 120px 20px 20px 20px;
-    max-width: 100%;
-    width: 100%;
-    z-index: 999;
-    height: auto; /* Позволяет контенту определять высоту */
-`;
-
-const CloseButton = styled.button`
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: ${theme.color.main};
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    font-family: 'Tahoma', sans-serif;
-    font-size: 14px;
-    color: black;
-    background-color: #c0c0c0;
-    border: 2px solid #fff;
-    border-right-color: #808080;
-    border-bottom-color: #808080;
-    border-left-color: #dfdfdf;
-    border-top-color: #dfdfdf;
-    padding: 2px 6px;
-    box-shadow: 1px 1px 0 #808080, inset 1px 1px 0 #fff;
-    text-align: center;
-`;
-
-
-const ProjectInfo = styled.div`
-    max-width: 600px;
-    position: relative;
-`
