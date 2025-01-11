@@ -13,6 +13,7 @@ export const SectionTitle = styled.h3<SectionTitleAfterWidthType>`
     color: ${theme.color.mainFont};
     display: inline-block;
     position: relative;
+    margin-bottom: 40px;
 
     &::before {
         content: '#';

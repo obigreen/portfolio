@@ -12,7 +12,7 @@ const Skill = styled.section`
 
     ${FlexWrapper} {
         @media ${theme.media.desctop} {
-            flex-direction: column-reverse;
+            flex-direction: column;
             gap: 80px;
         }
     }
