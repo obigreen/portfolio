@@ -1,7 +1,7 @@
 import bomBurgerdesctop from "../assets/img/portfolio-pages/boom-burger/bomBurger-desctop.webp";
 import bomBurgermobile from "../assets/img/portfolio-pages/boom-burger/bomBurger-mobile.webp";
-import projectTwo from "../assets/img/projectTwo.png";
-import projectThree from "../assets/img/projectThree.png";
+import projectTwo from "../assets/img/portfolio-pages/projectTwo.png";
+import projectThree from "../assets/img/portfolio-pages/projectThree.png";
 
 
 export type ProjectType = {
@@ -44,4 +44,16 @@ export const projectsData: ProjectType[] = [
         descText: 'Инструмент для получения ответов на Kahoot-викторины. Позволяет мгновенно извлекать правильные ответы с использованием Express.js и Node.js.',
         buttonText: 'Live <~>',
     },
+
+
+    {
+        desktopSrc: projectThree,
+        mobileSrc: projectThree,
+        technologies: 'CSS Express Node.js',
+        title: 'Kahoot Answers Viewer',
+        slideText: 'Kahoot quiz helper',
+        descText: 'Инструмент для получения ответов на Kahoot-викторины. Позволяет мгновенно извлекать правильные ответы с использованием Express.js и Node.js.',
+        buttonText: 'Live <~>',
+    },
+
 ];

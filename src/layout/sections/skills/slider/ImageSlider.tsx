@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import {ButtonWin98} from "../../../../components/ButtonWin98";
 import {S} from "./Slider_Styles"
+import {useImageSlider} from "../../../../utils/slider/sliderUtils";
 
 
 
@@ -9,30 +10,8 @@ type ImageSliderProps = {
 }
 
 export const ImageSlider = ({ children }:ImageSliderProps) => {
-    const [x, setX] = useState(0);
-    const timerRef = useRef<number | undefined>(undefined);
 
-    const updateGallery = () => {
-        setX((prevX) => prevX - (360 / children.length));
-        timerRef.current = window.setTimeout(updateGallery, 3000);
-    };
-
-    useEffect(() => {
-        updateGallery();
-        return () => {
-            if (timerRef.current) {
-                clearTimeout(timerRef.current);
-            }
-        };
-    }, [children.length]);
-
-    const handleNextClick = () => {
-        setX((prevX) => prevX - (360 / children.length));
-        if (timerRef.current) {
-            clearTimeout(timerRef.current);
-        }
-        updateGallery();
-    };
+    const { x, handleNextClick } = useImageSlider(children.length);
 
     return (
         <S.Wrapp>

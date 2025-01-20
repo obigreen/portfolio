@@ -12,7 +12,7 @@ export const Main = () => {
                 <FlexWrapper justify={'space-between'} gap={'10px'}>
                     <FlexWrapper direction={'column'} position={'relative'} height={'max-content'} padding={'15px'} background={"#1e1f23c4"}>
                         <S.Title>Добро пожаловать на мой профессиональный сайт</S.Title>
-                        <S.Description>Узнайте больше о моих работах, обо мне и как связаться со мной</S.Description>
+                        <S.Description>Узнайте больше о моих работах, обо мне и о способах связи</S.Description>
                     </FlexWrapper>
                     <MainPhoto/>
                 </FlexWrapper>

@@ -1,4 +1,4 @@
-export const sliderSettings = {
+export const sliderProjects = {
     infinite: true,
     accessibility: true,
     speed: 1000,
@@ -13,14 +13,14 @@ export const sliderSettings = {
             settings: {
                 slidesToShow: 2,
                 slidesToScroll: 1,
-                infinite: true,
+                // infinite: true,
             }
         },
         {
             breakpoint: 600,
             settings: {
                 slidesToShow: 1,
-                slidesToScroll: 1
+                slidesToScroll: 1,
             }
         }
     ]

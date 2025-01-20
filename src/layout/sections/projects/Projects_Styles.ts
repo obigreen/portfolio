@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {FlexWrapper} from "../../../components/FlexWrapper";
 import {Container} from "../../../styles/Container";
 import {theme} from "../../../styles/Theme";
-import bgImage2 from '../../../assets/img/bg2.png'
+import bgImage2 from '../../../assets/img/background/bg2.webp'
 
 // Projects
 const Projects = styled.section`
@@ -17,6 +17,7 @@ const Projects = styled.section`
     box-shadow: inset 0 -10px 50px 50px rgb(30 31 35);
 
     //
+
     &:before {
         content: "";
         position: absolute;
@@ -30,17 +31,16 @@ const Projects = styled.section`
     }
 
     ${Container} {
-        .slick-slide > div {
-            margin: 0 10px;
+        .swiper-slide {
+            width: 328px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px; /* Отступы вокруг слайда */
         }
 
-        .slick-list {
-            margin: 0 -10px;
-            padding-top: 30px;
-            padding-bottom: 10px;
-        }
-    }
 
+     }
 
     ${Container} > ${FlexWrapper}:last-child {
         @media ${theme.media.desctop} {
@@ -54,18 +54,20 @@ const SliderWrapper = styled.div`
     width: 100%;
 `;
 
-// Project
 const Work = styled.div`
-  max-width: 330px;
-  position: relative;
-  width: 100%;
-  outline: 1px solid ${theme.color.main};
-    background-color: ${theme.color.backround};
-  
-  ${FlexWrapper} > img {
+
+    max-width: 330px;
     width: 100%;
-  }
-`
+    margin: 0 auto; /* Центрируем карточку */
+    outline: 1px solid ${theme.color.main};
+    background-color: ${theme.color.backround};
+
+    ${FlexWrapper} > img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+`;
 
 const InfoProjectWrapper = styled.div`
   padding: 16px;

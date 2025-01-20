@@ -7,12 +7,12 @@ const items = [
         href: "skills"
     },
     {
-        title: "about-me",
-        href: "about-me"
-    },
-    {
         title: "projects",
         href: "projects"
+    },
+    {
+        title: "about-me",
+        href: "about-me"
     },
 ]
 

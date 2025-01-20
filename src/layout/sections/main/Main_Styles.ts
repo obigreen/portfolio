@@ -3,7 +3,7 @@ import {font} from "../../../styles/Common";
 import {FlexWrapper} from "../../../components/FlexWrapper";
 import {theme} from "../../../styles/Theme";
 import {Container} from "../../../styles/Container";
-import bgImage from '../../../assets/img/bg1.png';
+import bgImage from '../../../assets/img/background/bg1.webp';
 
 // Main
 const Main = styled.section`
