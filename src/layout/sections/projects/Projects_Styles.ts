@@ -31,12 +31,19 @@ const Projects = styled.section`
     }
 
     ${Container} {
+        
+        max-width: 1056px;
+        
         .swiper-slide {
             width: 328px;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 10px; /* Отступы вокруг слайда */
+            //padding: 10px; /* Отступы вокруг слайда */
+
+            //margin: 0px -10px;
+            padding: 30px 1px 10px 1px;
+            //padding-bottom: 10px;
         }
 
 
@@ -55,10 +62,9 @@ const SliderWrapper = styled.div`
 `;
 
 const Work = styled.div`
-
-    max-width: 330px;
-    width: 100%;
-    margin: 0 auto; /* Центрируем карточку */
+    width: 328px;
+    margin: 0 auto;
+    
     outline: 1px solid ${theme.color.main};
     background-color: ${theme.color.backround};
 

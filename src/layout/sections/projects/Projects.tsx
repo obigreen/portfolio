@@ -49,7 +49,7 @@ export const Projects = () => {
                             },
                             768: {
                                 slidesPerView: 2,
-                                spaceBetween: 5,
+                                spaceBetween: 10,
                             },
                             480: {
                                 slidesPerView: 1,
