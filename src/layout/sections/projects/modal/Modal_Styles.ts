@@ -1,7 +1,7 @@
 import {theme} from "../../../../styles/Theme";
 import styled from "styled-components";
 
-const ModalOverlay = styled.div`
+const Modal = styled.div`
     position: fixed;
     top: 0;
     left: 0;
@@ -55,5 +55,5 @@ const ProjectLink = styled.a`
 `
 
 export const S = {
-    ModalOverlay, ModalContent, CloseButton, ProjectInfo, ProjectLink
+    Modal, ModalContent, CloseButton, ProjectInfo, ProjectLink
 }

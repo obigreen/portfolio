@@ -4,15 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {GlobalStyles} from "./styles/GlobalStyles";
+import {store} from "./store";
+import {Provider} from "react-redux";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+    document.getElementById('root') as HTMLElement
 );
 root.render(
-  <>
-    <App />
-      <GlobalStyles/>
-  </>
+    <>
+        <Provider store={store}>
+            <App/>
+            <GlobalStyles/>
+        </Provider>
+    </>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,15 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {FlexWrapper} from '../../../../components/FlexWrapper';
 import {SectionText} from '../../../../components/SectionText';
 import {ButtonWin98} from '../../../../components/ButtonWin98';
-import {S} from "./ModalOverlay_Styles";
+import {S} from "./Modal_Styles";
 import {TechnologiesMenu, Title} from "../Projects_Styles";
 
 type ModalOverlayProps = {
     isModalOpen: boolean;
     handleCloseModal: () => void;
-    currentIndex: number;
-    mSlide: () => void;
     images: { src: string; label: string }[];
     modalContent: {
         title: string;
@@ -18,19 +16,27 @@ type ModalOverlayProps = {
     } | null;
 };
 
-export const ModalOverlayComponent = (
+export const Modal = (
     {
         isModalOpen,
         handleCloseModal,
-        currentIndex,
-        mSlide,
         images,
         modalContent,
     }: ModalOverlayProps) => {
+
+
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const mSlide = () => {
+        setCurrentIndex((prevIndex) =>
+            prevIndex === 0 ? images.length - 1 : prevIndex - 1
+        );
+    };
+
     if (!isModalOpen || !modalContent) return null;
 
     return (
-        <S.ModalOverlay onClick={handleCloseModal}>
+        <S.Modal onClick={handleCloseModal}>
             <S.ModalContent onClick={(e) => e.stopPropagation()}>
                 <FlexWrapper justify={'center'} gap={'30px'}>
                     <div style={{position: 'relative', maxWidth: '600px', width: '100%'}}>
@@ -57,7 +63,7 @@ export const ModalOverlayComponent = (
                     </S.ProjectInfo>
                 </FlexWrapper>
             </S.ModalContent>
-        </S.ModalOverlay>
+        </S.Modal>
     );
 };
 
