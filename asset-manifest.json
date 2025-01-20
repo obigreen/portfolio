@@ -1,30 +1,26 @@
 {
   "files": {
-    "main.css": "/portfolio/static/css/main.58f9b522.css",
-    "main.js": "/portfolio/static/js/main.16ff2f81.js",
+    "main.css": "/portfolio/static/css/main.717f300e.css",
+    "main.js": "/portfolio/static/js/main.98dadcc6.js",
     "static/js/787.6658d8b7.chunk.js": "/portfolio/static/js/787.6658d8b7.chunk.js",
-    "static/media/bomBurger-desctop.webp": "/portfolio/static/media/bomBurger-desctop.905768d8c81cd6246e2b.webp",
-    "static/media/photo-top.png": "/portfolio/static/media/photo-top.11f3123685398dbabd36.png",
-    "static/media/bg2.png": "/portfolio/static/media/bg2.ae4d46ef05046951b5a4.png",
-    "static/media/bg1.png": "/portfolio/static/media/bg1.0571368d0e34e7c90354.png",
-    "static/media/bomBurger-mobile.webp": "/portfolio/static/media/bomBurger-mobile.14ea22fb2efd90a640e4.webp",
+    "static/media/bomBurger-desctop.webp": "/portfolio/static/media/bomBurger-desctop.80a7017fdab37c0d3d37.webp",
+    "static/media/bomBurger-mobile.webp": "/portfolio/static/media/bomBurger-mobile.2bfeece055d92e503961.webp",
+    "static/media/my-photo.webp": "/portfolio/static/media/my-photo.fa97f385f4743177893c.webp",
+    "static/media/bg1.webp": "/portfolio/static/media/bg1.a69bbd4600b4df06df40.webp",
     "static/media/icons-sprite.svg": "/portfolio/static/media/icons-sprite.f9ed5744a98f858343dd274d22f7e519.svg",
+    "static/media/bg2.webp": "/portfolio/static/media/bg2.ee6174dbb7d205b4e167.webp",
     "static/media/projectTwo.png": "/portfolio/static/media/projectTwo.9aba34b9b04662ba89c1.png",
     "static/media/projectThree.png": "/portfolio/static/media/projectThree.6876c590047801b04f2c.png",
     "static/media/nodeJs.svg": "/portfolio/static/media/nodeJs.c107ec78b481b45bfc2c3c65dfe4a3a2.svg",
     "static/media/webstorm.svg": "/portfolio/static/media/webstorm.d99f10f526cc08a892f4d245ec29d292.svg",
-    "static/media/slick.svg": "/portfolio/static/media/slick.2630a3e3eab21c607e21.svg",
-    "static/media/slick.eot": "/portfolio/static/media/slick.a4e97f5a2a64f0ab1323.eot",
-    "static/media/slick.ttf": "/portfolio/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/telegram.svg": "/portfolio/static/media/telegram.75a9c857c385d91d8c98063d09900840.svg",
-    "static/media/slick.woff": "/portfolio/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/portfolio/index.html",
-    "main.58f9b522.css.map": "/portfolio/static/css/main.58f9b522.css.map",
-    "main.16ff2f81.js.map": "/portfolio/static/js/main.16ff2f81.js.map",
+    "main.717f300e.css.map": "/portfolio/static/css/main.717f300e.css.map",
+    "main.98dadcc6.js.map": "/portfolio/static/js/main.98dadcc6.js.map",
     "787.6658d8b7.chunk.js.map": "/portfolio/static/js/787.6658d8b7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.58f9b522.css",
-    "static/js/main.16ff2f81.js"
+    "static/css/main.717f300e.css",
+    "static/js/main.98dadcc6.js"
   ]
 }
