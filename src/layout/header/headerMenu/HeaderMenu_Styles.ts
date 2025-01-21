@@ -43,7 +43,7 @@ const MobileMenu = styled.nav`
 
 const BurgerButton = styled.button<{ isOpen: boolean }>`
     position: fixed;
-    top: 31px;
+    top: 14px;
     right: 10px;
     width: 30px;
     height: 30px;
@@ -66,6 +66,7 @@ const BurgerButton = styled.button<{ isOpen: boolean }>`
             background-color: ${theme.color.mainFont};
             background-color: ${theme.color.mainFont};
             position: absolute;
+            transition: ${theme.animations.transition};
             transform: translateY(-5px);
 
             ${props => props.isOpen && css<{ isOpen: boolean }>`

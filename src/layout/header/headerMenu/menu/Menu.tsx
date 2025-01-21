@@ -1,22 +1,18 @@
 import React from 'react';
 import {S} from "../HeaderMenu_Styles"
 
-const items = [
-    {
-        title: "skills",
-        href: "skills"
-    },
-    {
-        title: "projects",
-        href: "projects"
-    },
-    {
-        title: "about-me",
-        href: "about-me"
-    },
-]
+type MenuProps = {
+    setmenuIsOpen?: (isOpen: boolean) => void;
+};
 
-export const Menu: React.FC<{ setmenuIsOpen?: (isOpen: boolean) => void }> = ({setmenuIsOpen}) => {
+
+const items = [
+    { id: "skills", title: "skills", href: "skills" },
+    { id: "projects", title: "projects", href: "projects" },
+    { id: "about-me", title: "about-me", href: "about-me" },
+];
+
+export const Menu = ({ setmenuIsOpen }: MenuProps) => {
 
     const onMenuItemClick = () => {
         if (setmenuIsOpen) {
@@ -27,7 +23,7 @@ export const Menu: React.FC<{ setmenuIsOpen?: (isOpen: boolean) => void }> = ({s
     return (
         <ul>
             {items.map((item, index) => {
-                return <S.MenuItem key={index}>
+                return <S.MenuItem key={item.id}>
                     <S.NavLink activeClass={"active"}
                                to={item.href}
                                onClick={onMenuItemClick}
