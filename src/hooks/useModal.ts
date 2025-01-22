@@ -20,6 +20,7 @@ export const useModal = () => {
                 technologies: project.technologies,
                 title: project.title,
                 text: project.descText,
+                link: project.link,
             }));
         }
         document.body.style.overflow = 'hidden';

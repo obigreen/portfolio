@@ -13,6 +13,7 @@ type FlexWrapperPropsType = {
     height?: string
     border?: string
     overflow?: string
+    maxWidth?: string
 }
 
 export const FlexWrapper = styled.div<FlexWrapperPropsType>`
@@ -28,5 +29,6 @@ export const FlexWrapper = styled.div<FlexWrapperPropsType>`
     background-color: ${props => props.background || 'transparent'};
     height:${props => props.height};
     border-radius: ${props => props.border};
-    overflow-y: ${props => props.overflow}
+    overflow-y: ${props => props.overflow};
+    max-width: ${props => props.maxWidth || `100%`};
 `

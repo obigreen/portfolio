@@ -5,6 +5,7 @@ import {ButtonWin98} from '../../../../components/ButtonWin98';
 import {S} from "./Modal_Styles";
 import {TechnologiesMenu, Title} from "../Projects_Styles";
 
+
 type ModalOverlayProps = {
     isModalOpen: boolean;
     handleCloseModal: () => void;
@@ -13,6 +14,7 @@ type ModalOverlayProps = {
         title: string;
         technologies: string;
         text: string;
+        link?: string
     } | null;
 };
 
@@ -38,14 +40,13 @@ export const Modal = (
     return (
         <S.Modal onClick={handleCloseModal}>
             <S.ModalContent onClick={(e) => e.stopPropagation()}>
-                <FlexWrapper justify={'center'} gap={'30px'}>
+                <FlexWrapper justify={'center'} direction={'column-reverse'} align={'center'} gap={'30px'}>
                     <div style={{position: 'relative', maxWidth: '600px', width: '100%'}}>
                         <div style={{position: 'absolute'}}>
                             <ButtonWin98 onClick={mSlide}>
                                 {currentIndex === 0 ? 'Mobile' : 'Desktop'}
                             </ButtonWin98>
                         </div>
-
                         {images.length > 0 && (
                             <img
                                 src={images[currentIndex]?.src}
@@ -56,10 +57,14 @@ export const Modal = (
                     </div>
                     <S.ProjectInfo>
                         <Title>{modalContent.title}</Title>
-                        <TechnologiesMenu style={{padding: "8px 8px 8px 0px", borderBottom: "none", marginBottom: "10px"}}>{modalContent.technologies}</TechnologiesMenu>
+                        <TechnologiesMenu style={{
+                            padding: "8px 8px 8px 0px",
+                            borderBottom: "none",
+                            marginBottom: "10px"
+                        }}>{modalContent.technologies}</TechnologiesMenu>
                         <SectionText>{modalContent.text}</SectionText>
                         <S.CloseButton onClick={handleCloseModal}>X</S.CloseButton>
-                        <S.ProjectLink href={""}></S.ProjectLink>
+                        <S.ProjectLink href={modalContent.link || "#"} target={"_blank"}> {modalContent.link ? 'View Project' : 'No Link Available'}</S.ProjectLink>
                     </S.ProjectInfo>
                 </FlexWrapper>
             </S.ModalContent>

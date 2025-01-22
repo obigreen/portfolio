@@ -32,7 +32,18 @@ const Main = styled.section`
             flex-direction: column;
             gap: 60px;
         }
+        
+        
     }
+
+    ${Container} > ${FlexWrapper} > ${FlexWrapper}{
+        @media ${theme.media.desctop} {
+      margin: 0 auto;
+        }
+
+
+    }
+    
 `
 
 const Title = styled.h1`

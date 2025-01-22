@@ -12,6 +12,7 @@ import { projectsData, ProjectType } from "../../../data/projectsData";
 import { useModal } from "../../../hooks/useModal";
 import { Modal } from "./modal/Modal";
 import {Autoplay, Mousewheel} from "swiper/modules";
+import type { Swiper as SwiperCore } from "swiper";
 
 export const Projects = () => {
     const { isModalOpen, modalContent, open, close, images } = useModal();
@@ -23,6 +24,15 @@ export const Projects = () => {
     const handleCloseModal = () => {
         close();
     };
+
+
+    const handleSlideChange = (swiper: SwiperCore) => {
+        const userSwipedForward = swiper.activeIndex > swiper.previousIndex;
+        swiper.params.autoplay.reverseDirection = !userSwipedForward;
+        swiper.autoplay.stop();
+        swiper.autoplay.start();
+    };
+
 
 
 
@@ -37,8 +47,9 @@ export const Projects = () => {
                         spaceBetween={20}
                         centeredSlides={false}
                         autoplay={{
-                            delay: 2400,
+                            delay: 4500,
                             disableOnInteraction: true,
+                            pauseOnMouseEnter: true,
                         }}
                         loop={true}
                         mousewheel={true}
@@ -60,15 +71,16 @@ export const Projects = () => {
                                 spaceBetween: 10,
                             },
                         }}
-                    >
+                        onSlideChangeTransitionStart={handleSlideChange}>
                         {projectsData.map((project, index) => (
                             <SwiperSlide key={index}>
                                 <Project
-                                    src={project.desktopSrc}
+                                    src={project.previewImg}
                                     technologies={project.technologies}
                                     title={project.title}
                                     text={project.slideText}
                                     buttonText={project.buttonText}
+                                    link={project.link}
                                     onOpenModal={() => handleOpenModal(project)}
                                 />
                             </SwiperSlide>

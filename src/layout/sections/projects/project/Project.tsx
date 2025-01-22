@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import { SectionText } from "../../../../components/SectionText";
 import { Button } from "../../../../components/Button";
 import { FlexWrapper } from "../../../../components/FlexWrapper";
@@ -10,12 +10,13 @@ type StyledWorkPropsType = {
     src?: string;
     technologies: string;
     buttonText: string;
-    onOpenModal: (title: string, text: string) => void;
+    link?: string
+    onOpenModal: (title: string, text: string, link: string) => void;
 }
 
-export const Project = ({title, text, src, technologies, buttonText, onOpenModal }: StyledWorkPropsType) => {
+export const Project = memo(({title, text, src, link, technologies, buttonText, onOpenModal }: StyledWorkPropsType) => {
     const handleButtonClick = () => {
-        onOpenModal(title, text);
+        onOpenModal(title, text, link || "");
     };
 
     return (
@@ -31,6 +32,6 @@ export const Project = ({title, text, src, technologies, buttonText, onOpenModal
             </S.InfoProjectWrapper>
         </S.Work>
     );
-};
+});
 
 

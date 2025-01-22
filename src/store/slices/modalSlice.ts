@@ -7,6 +7,7 @@ interface ModalContent {
     technologies: string;
     title: string;
     text: string;
+    link?: string;
 }
 
 interface ModalState {

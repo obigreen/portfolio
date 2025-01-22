@@ -1,6 +1,8 @@
 import nodeJs from "../assets/img/icons/nodeJs.svg";
 import webstorm from "../assets/img/icons/webstorm.svg";
 import telegram from "../assets/img/icons/telegram.svg";
+import stComm from "../assets/img/icons/styled-components.svg";
+
 
 export const skillsData = {
     technologies: [
@@ -12,7 +14,8 @@ export const skillsData = {
         {href: "https://react.dev/", iconId: "react"},
         {href: "https://git-scm.com/doc", iconId: "git"},
         {href: "https://www.npmjs.com/package/documentation", iconId: "npm"},
-        {href: "https://nodejs.org/docs/latest/api/", imgSrc: nodeJs}
+        {href: "https://nodejs.org/docs/latest/api/", imgSrc: nodeJs},
+        {href: "https://styled-components.com/", imgSrc: stComm}
     ],
 
     tools: [
@@ -20,7 +23,8 @@ export const skillsData = {
         {href: "https://www.jetbrains.com/webstorm/", imgSrc: webstorm},
         {href: "https://www.figma.com/", iconId: "figma"},
         {href: "https://www.adobe.com/products/photoshop.html", iconId: "photoshop"},
-        {href: "https://www.adobe.com/products/premiere.html", iconId: "premerePro"}
+        {href: "https://www.adobe.com/products/premiere.html", iconId: "premerePro"},
+        {href: "https://openai.com/", iconId: "gpt"}
     ],
 
     socials: [
