@@ -1,5 +1,6 @@
 import {theme} from "../../../../styles/Theme";
 import styled from "styled-components";
+import {AccentAnimationText} from "../../../../styles/AccentAnimation";
 
 const Modal = styled.div`
     position: fixed;
@@ -49,11 +50,15 @@ const ProjectInfo = styled.div`
     max-width: 600px;
     position: relative;
 `
+const ProjectLinkWrapp = styled.div`
+    margin-top: 20px;
+`
 
 const ProjectLink = styled.a`
-
+    margin-top: 20px;
+   ${AccentAnimationText};
 `
 
 export const S = {
-    Modal, ModalContent, CloseButton, ProjectInfo, ProjectLink
+    Modal, ModalContent, CloseButton, ProjectInfo, ProjectLink, ProjectLinkWrapp
 }

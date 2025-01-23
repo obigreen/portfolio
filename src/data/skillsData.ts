@@ -14,7 +14,7 @@ export const skillsData = {
         {href: "https://react.dev/", iconId: "react"},
         {href: "https://git-scm.com/doc", iconId: "git"},
         {href: "https://www.npmjs.com/package/documentation", iconId: "npm"},
-        {href: "https://nodejs.org/docs/latest/api/", imgSrc: nodeJs},
+        // {href: "https://nodejs.org/docs/latest/api/", imgSrc: nodeJs},
         {href: "https://styled-components.com/", imgSrc: stComm}
     ],
 
@@ -28,9 +28,9 @@ export const skillsData = {
     ],
 
     socials: [
-        {href: "https://github.com/obigreen", iconId: "gitHub"},
-        {href: "mailto:youshtuchka@gmail.com", iconId: "gmail"},
-        {href: "https://t.me/Youpushka", imgSrc: telegram},
-        {href: "https://wa.me/79060287084", iconId: "whatsapp"}
+        { href: "https://github.com/obigreen", iconId: "gitHub", imgSrc: undefined },
+        { href: "mailto:youshtuchka@gmail.com", iconId: "gmail", imgSrc: undefined },
+        { href: "https://t.me/Youpushka", iconId: "telegram", imgSrc: undefined },
+        { href: "https://wa.me/79060287084", iconId: "whatsapp", imgSrc: undefined },
     ]
 }

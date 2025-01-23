@@ -23,7 +23,7 @@ const Main = styled.section`
         width: 100%;
         height: 100%;
         background-color: ${theme.color.backround};
-        opacity: 0.78; /* Прозрачность цветного слоя */
+        opacity: 0.78;
         z-index: -1;
     }
 

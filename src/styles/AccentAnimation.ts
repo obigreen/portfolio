@@ -78,3 +78,6 @@ export const AccentAnimationBr = css`
     animation: ${BorderAnimation} 12s linear infinite alternate;
 `;
 
+export const AccentAnimationText = css`
+    animation: ${ColorAnimation} 12s linear infinite alternate;
+`;

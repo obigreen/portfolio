@@ -3,7 +3,7 @@ import iconSprite from '../../assets/img/icons-sprite.svg'
 
 
 type IconPropsType = {
-    iconId: string
+    iconId?: string
     width?: string
     height?: string
     viewBox?: string

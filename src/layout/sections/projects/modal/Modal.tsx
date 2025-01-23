@@ -63,8 +63,11 @@ export const Modal = (
                             marginBottom: "10px"
                         }}>{modalContent.technologies}</TechnologiesMenu>
                         <SectionText>{modalContent.text}</SectionText>
+                        <S.ProjectLinkWrapp>
+                            <S.ProjectLink href={modalContent.link || "#"} target={"_blank"}> {modalContent.link ? 'View Project' : 'No Link Available'}</S.ProjectLink>
+                        </S.ProjectLinkWrapp>
+
                         <S.CloseButton onClick={handleCloseModal}>X</S.CloseButton>
-                        <S.ProjectLink href={modalContent.link || "#"} target={"_blank"}> {modalContent.link ? 'View Project' : 'No Link Available'}</S.ProjectLink>
                     </S.ProjectInfo>
                 </FlexWrapper>
             </S.ModalContent>

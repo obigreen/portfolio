@@ -26,4 +26,9 @@ export const ButtonWin98 = styled.button`
         box-shadow: inset 1px 1px 0 #808080, 1px 1px 0 #fff;
         transform: translate(1px, 1px);
     }
+
+    &:disabled {
+        cursor: not-allowed; /* Запрещённый курсор */
+    }
+    
 `

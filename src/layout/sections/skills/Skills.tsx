@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from "../../../styles/Container";
 import { FlexWrapper } from "../../../components/FlexWrapper";
-import { S } from "./Skills_Styles";
+import {S} from "./Skills_Styles";
 import { ImageSlider } from "./slider/ImageSlider";
 import { Icon } from "../../../components/icon/Icon";
 

@@ -9,8 +9,29 @@ const Footer = styled.footer`
 
 `
 
+const FooterSocials = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 20px;
+justify-content: end;
+
+
+`
+
+const FooterSocialsLink = styled.a`
+display: flex;
+    align-content: center;
+    justify-content: center;
+    
+`
+const FooterSocialsIcons = styled.img`
+display: flex;
+    align-content: center; 
+    justify-content: center;
+`
+
 
 
 export const S = {
-    Footer
+    Footer, FooterSocials, FooterSocialsLink, FooterSocialsIcons
 }

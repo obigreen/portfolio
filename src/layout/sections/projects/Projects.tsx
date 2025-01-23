@@ -56,7 +56,7 @@ export const Projects = () => {
                         speed={1000}
                         breakpoints={{
                             1024: {
-                                slidesPerView: "auto",
+                                slidesPerView: 3,
                             },
                             768: {
                                 slidesPerView: 2,
