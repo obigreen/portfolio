@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import {SectionTitle} from "../../../components/SectionTitle";
 import {theme} from "../../../styles/Theme";
+import {FlexWrapper} from "../../../components/FlexWrapper";
+import {SectionText} from "../../../components/SectionText";
 
 const AboutMe = styled.section`
     padding-bottom: 74px;
@@ -19,6 +21,15 @@ const AboutMePage = styled.div`
 `
 const Article = styled.div`
     padding: 30px 15px;
+    
+    
+    ${FlexWrapper} {
+        padding: 0 0 0 35px;
+
+        @media ${theme.media.tablet} {
+            padding: 0 0 0 15px;
+        }
+    }
 `
 
 const AboutMePageHeader = styled.div`
@@ -64,6 +75,16 @@ const Ptitle = styled.div`
 const Ptext = styled.div`
     margin-bottom: 20px;
     max-width: 800px;
+    
+    ${SectionText} {
+        padding-left: 35px;
+
+
+        @media ${theme.media.tablet} {
+            padding-left: 20px;
+            font-size: 14px;
+        }
+    }
 `;
 const Class = styled.span`
     letter-spacing: 0.5px;

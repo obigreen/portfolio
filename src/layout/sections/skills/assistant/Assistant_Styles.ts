@@ -70,7 +70,6 @@ const GearWrap = styled.div`
     right: 25px;
     width: 100px;
     height: 100px;
-    z-index: 99;
 `;
 
 const GearWrap2 = styled.div`

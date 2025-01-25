@@ -21,16 +21,16 @@ export const AboutMe = () => {
 
                     <S.Article>
                         <S.Tag>&lt;Article&gt;</S.Tag>
-                        <FlexWrapper padding={'0 0 0 35px'} direction={'column'}>
+                        <FlexWrapper direction={'column'}>
                             <S.Ptitle>
                                 <S.Tag>&lt;h1&gt;</S.Tag>
-                                <h4>Привет! Меня зовут Сергей</h4>
+                                <h4>Hi! My name Sergey</h4>
                                 <S.Tag>&lt;/h1&gt;</S.Tag>
                             </S.Ptitle>
 
                             <S.Ptext>
-                                <S.Tag>&lt;p <S.Class>class=<S.Green>"Обо мне"</S.Green></S.Class>&gt;</S.Tag>
-                                <SectionText paddingLeft={'35px'}>
+                                <S.Tag>&lt;p <S.Class>class=<S.Green>"about-me"</S.Green></S.Class>&gt;</S.Tag>
+                                <SectionText>
                                     Я начинающий frontend-разработчик. Увлекаюсь созданием сайтов и приложений, изучаю современные технологии и стараюсь развиваться каждый день.
                                     В основном работаю с HTML/CSS/JavaScript, а также активно изучаю React/Redux/TypeScript и не только. Иногда экспериментирую с нативной логикой. Это помогает мне лучше понять базовые принципы программирования.
                                     Сейчас я работаю HTML-верстальщиком, создаю адаптивные лендинги и помогаю улучшать интерфейсы.
@@ -39,8 +39,8 @@ export const AboutMe = () => {
                             </S.Ptext>
 
                             <S.Ptext>
-                                <S.Tag>&lt;p <S.Class>class=<S.Green>"Моё обучение"</S.Green></S.Class>&gt;</S.Tag>
-                                <SectionText paddingLeft={'35px'}>
+                                <S.Tag>&lt;p <S.Class>class=<S.Green>"studies"</S.Green></S.Class>&gt;</S.Tag>
+                                <SectionText>
                                     Прошёл обучение в IT-Incubator, где углубляюсь в frontend-разработку и осваиваю современные подходы к созданию приложений. Сейчас применяю полученные знания на практике, работая над дипломным проектом в институте и развивая свои пет-проекты.
                                     Также использую нейросети, чтобы ускорять рутинные задачи и решать интересные кейсы.
                                 </SectionText>

@@ -40,8 +40,6 @@ const Main = styled.section`
         @media ${theme.media.desctop} {
       margin: 0 auto;
         }
-
-
     }
     
 `
