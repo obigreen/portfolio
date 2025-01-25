@@ -1,7 +1,7 @@
 import nodeJs from "../assets/img/icons/nodeJs.svg";
 import webstorm from "../assets/img/icons/webstorm.svg";
-import telegram from "../assets/img/icons/telegram.svg";
 import stComm from "../assets/img/icons/styled-components.svg";
+
 
 
 export const skillsData = {
@@ -10,10 +10,12 @@ export const skillsData = {
         {href: "https://developer.mozilla.org/en-US/docs/Web/CSS", iconId: "css"},
         {href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript", iconId: "js"},
         {href: "https://www.typescriptlang.org/docs/", iconId: "ts"},
+        {href: "https://sass-lang.com/install/", iconId: "sass"},
         {href: "https://api.jquery.com/", iconId: "jquery"},
         {href: "https://react.dev/", iconId: "react"},
         {href: "https://git-scm.com/doc", iconId: "git"},
         {href: "https://www.npmjs.com/package/documentation", iconId: "npm"},
+        {href: "https://gulpjs.com/", iconId: "gulp"},
         // {href: "https://nodejs.org/docs/latest/api/", imgSrc: nodeJs},
         {href: "https://styled-components.com/", imgSrc: stComm}
     ],
