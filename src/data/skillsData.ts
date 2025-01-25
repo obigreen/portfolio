@@ -8,9 +8,9 @@ export const skillsData = {
     technologies: [
         {href: "https://developer.mozilla.org/en-US/docs/Web/HTML", iconId: "html"},
         {href: "https://developer.mozilla.org/en-US/docs/Web/CSS", iconId: "css"},
+        {href: "https://sass-lang.com/install/", iconId: "sass"},
         {href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript", iconId: "js"},
         {href: "https://www.typescriptlang.org/docs/", iconId: "ts"},
-        {href: "https://sass-lang.com/install/", iconId: "sass"},
         {href: "https://api.jquery.com/", iconId: "jquery"},
         {href: "https://react.dev/", iconId: "react"},
         {href: "https://git-scm.com/doc", iconId: "git"},
