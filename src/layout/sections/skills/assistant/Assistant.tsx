@@ -58,7 +58,8 @@ export const Assistant = () => {
                 <S.TextareaInp
                     value={inputText}
                     onChange={handleInputChange}
-                    placeholder="Напишите что-то..."
+                    placeholder="Напишите что-то... [временно не активно]"
+                    disabled
                 />
                 <S.Aibutton>
                     <ButtonWin98 onClick={handleSubmit} disabled>
