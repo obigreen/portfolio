@@ -1,27 +1,29 @@
 {
   "files": {
     "main.css": "/portfolio/static/css/main.717f300e.css",
-    "main.js": "/portfolio/static/js/main.44cf6d21.js",
+    "main.js": "/portfolio/static/js/main.d72785fe.js",
     "static/js/787.6658d8b7.chunk.js": "/portfolio/static/js/787.6658d8b7.chunk.js",
-    "static/media/bomBurger-desctop.webp": "/portfolio/static/media/bomBurger-desctop.80a7017fdab37c0d3d37.webp",
+    "static/media/bomBurger-desktop.webp": "/portfolio/static/media/bomBurger-desktop.80a7017fdab37c0d3d37.webp",
     "static/media/bomBurger-mobile.webp": "/portfolio/static/media/bomBurger-mobile.2bfeece055d92e503961.webp",
     "static/media/my-photo.webp": "/portfolio/static/media/my-photo.fa97f385f4743177893c.webp",
     "static/media/icons-sprite.svg": "/portfolio/static/media/icons-sprite.51ff840df5b7e872e6990cf7fce943e2.svg",
     "static/media/bg1.webp": "/portfolio/static/media/bg1.a69bbd4600b4df06df40.webp",
     "static/media/bg2.webp": "/portfolio/static/media/bg2.ee6174dbb7d205b4e167.webp",
+    "static/media/practiceJsDesktop.webp": "/portfolio/static/media/practiceJsDesktop.91384866483110af730f.webp",
+    "static/media/forEmptyCard.jpg": "/portfolio/static/media/forEmptyCard.42b2b69c3de9e2b560d3.jpg",
+    "static/media/practiceJsMobile.webp": "/portfolio/static/media/practiceJsMobile.5072193ccf994d802782.webp",
     "static/media/boomBurgerPrev.webp": "/portfolio/static/media/boomBurgerPrev.903cd658f45e1ec4fb82.webp",
-    "static/media/projectTwo.png": "/portfolio/static/media/projectTwo.9aba34b9b04662ba89c1.png",
-    "static/media/projectThree.png": "/portfolio/static/media/projectThree.6876c590047801b04f2c.png",
+    "static/media/practiceJsPrew.webp": "/portfolio/static/media/practiceJsPrew.4d00c3a7233dc62b6bca.webp",
     "static/media/gear.svg": "/portfolio/static/media/gear.066a78bfb0b970e3c260c6c118dc3632.svg",
     "static/media/styled-components.svg": "/portfolio/static/media/styled-components.22fc511a8538dcc9615a34ea0f2e5a0a.svg",
     "static/media/webstorm.svg": "/portfolio/static/media/webstorm.d99f10f526cc08a892f4d245ec29d292.svg",
     "index.html": "/portfolio/index.html",
     "main.717f300e.css.map": "/portfolio/static/css/main.717f300e.css.map",
-    "main.44cf6d21.js.map": "/portfolio/static/js/main.44cf6d21.js.map",
+    "main.d72785fe.js.map": "/portfolio/static/js/main.d72785fe.js.map",
     "787.6658d8b7.chunk.js.map": "/portfolio/static/js/787.6658d8b7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.717f300e.css",
-    "static/js/main.44cf6d21.js"
+    "static/js/main.d72785fe.js"
   ]
 }
