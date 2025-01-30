@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/portfolio/static/css/main.717f300e.css",
-    "main.js": "/portfolio/static/js/main.4e8af150.js",
+    "main.js": "/portfolio/static/js/main.9d87729d.js",
     "static/js/787.6658d8b7.chunk.js": "/portfolio/static/js/787.6658d8b7.chunk.js",
     "static/media/bomBurger-desktop.webp": "/portfolio/static/media/bomBurger-desktop.80a7017fdab37c0d3d37.webp",
     "static/media/bomBurger-mobile.webp": "/portfolio/static/media/bomBurger-mobile.2bfeece055d92e503961.webp",
@@ -9,6 +9,7 @@
     "static/media/icons-sprite.svg": "/portfolio/static/media/icons-sprite.51ff840df5b7e872e6990cf7fce943e2.svg",
     "static/media/bg1.webp": "/portfolio/static/media/bg1.a69bbd4600b4df06df40.webp",
     "static/media/bg2.webp": "/portfolio/static/media/bg2.ee6174dbb7d205b4e167.webp",
+    "static/media/smaurai.webp": "/portfolio/static/media/smaurai.0c71ce1e3d501fdbec06.webp",
     "static/media/practiceJsDesktop.webp": "/portfolio/static/media/practiceJsDesktop.91384866483110af730f.webp",
     "static/media/forEmptyCard.jpg": "/portfolio/static/media/forEmptyCard.42b2b69c3de9e2b560d3.jpg",
     "static/media/practiceJsMobile.webp": "/portfolio/static/media/practiceJsMobile.5072193ccf994d802782.webp",
@@ -19,11 +20,11 @@
     "static/media/webstorm.svg": "/portfolio/static/media/webstorm.d99f10f526cc08a892f4d245ec29d292.svg",
     "index.html": "/portfolio/index.html",
     "main.717f300e.css.map": "/portfolio/static/css/main.717f300e.css.map",
-    "main.4e8af150.js.map": "/portfolio/static/js/main.4e8af150.js.map",
+    "main.9d87729d.js.map": "/portfolio/static/js/main.9d87729d.js.map",
     "787.6658d8b7.chunk.js.map": "/portfolio/static/js/787.6658d8b7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.717f300e.css",
-    "static/js/main.4e8af150.js"
+    "static/js/main.9d87729d.js"
   ]
 }
