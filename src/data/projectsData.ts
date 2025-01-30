@@ -1,9 +1,12 @@
 import bomBurgerPrev from "../assets/img/portfolio-pages/boom-burger/boomBurgerPrev.webp";
 import boomBurgerDesktop from "../assets/img/portfolio-pages/boom-burger/bomBurger-desktop.webp";
 import boomBurgerMobile from "../assets/img/portfolio-pages/boom-burger/bomBurger-mobile.webp";
+
 import practiceJsPrew from "../assets/img/portfolio-pages/practiceJs/practiceJsPrew.webp";
 import practiceJsDesktop from "../assets/img/portfolio-pages/practiceJs/practiceJsDesktop.webp";
 import practiceJsMobile from "../assets/img/portfolio-pages/practiceJs/practiceJsMobile.webp";
+
+import samurai from "../assets/img/portfolio-pages/react-utils-hub/smaurai.webp";
 
 
 //=========
@@ -50,26 +53,25 @@ export const projectsData: ProjectType[] = [
         link: 'https://obigreen.github.io/practiceJs/'
     },
     {
-        previewImg: empty,
-        desktopSrc: empty,
-        mobileSrc: empty,
-        technologies: 'CSS Express Node',
-        title: 'Kahoot Answers Viewer',
-        slideText: 'Kahoot quiz helper',
-        descText: 'Инструмент для получения ответов на Kahoot-викторины. Позволяет мгновенно извлекать правильные ответы с использованием Express.js и Node.js.',
+        previewImg: samurai,
+        desktopSrc: samurai,
+        mobileSrc: samurai,
+        technologies: 'React JS TS Router Styled-components',
+        title: 'React utils hub',
+        slideText: 'Interactive Practice Platform for Utils [ONLY DESKTOP VERSION]',
+        descText: 'Это React-приложение, представляющее собой dashboard, в котором собрано множество решений для практики написания кода. В отличие от другого моего проекта, посвященного мини-играм, этот проект ориентирован на различные интерактивные виджеты и утилиты. Здесь можно найти и протестировать разные реализации полезных компонентов, доступных через удобную навигацию.',
         buttonText: 'Open <~>',
-        link: ''
+        link: 'https://obigreen.github.io/react-utils-hub/'
     },
-
 
     {
         previewImg: empty,
         desktopSrc: empty,
         mobileSrc: empty,
-        technologies: 'CSS Express Node.js',
-        title: 'Kahoot Answers Viewer',
-        slideText: 'Kahoot quiz helper',
-        descText: 'Инструмент для получения ответов на Kahoot-викторины. Позволяет мгновенно извлекать правильные ответы с использованием Express.js и Node.js.',
+        technologies: 'TEST TEST TEST',
+        title: 'Test',
+        slideText: 'Test',
+        descText: 'Этот проект.....',
         buttonText: 'Open <~>',
         link: ''
     },

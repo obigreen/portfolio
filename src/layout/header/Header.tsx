@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {DesctopMenu} from "./headerMenu/desctopMenu/DesctopMenu";
 import {Logo} from "../../components/logo/Logo";
 import {Container} from "../../styles/Container";
