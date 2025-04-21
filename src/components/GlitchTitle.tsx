@@ -108,7 +108,6 @@ export const GlitchTitle: React.FC<GlitchInlineProps> = ({ children }) => {
             }
         }, 100));
 
-        // 2) Редкое «скачкообразное» смещение по Y
         intervals.push(window.setInterval(() => {
             if (Math.random() > 0.97) {
                 el.style.transform = `translateY(${Math.random() * 10 - 5}px)`;
@@ -116,9 +115,6 @@ export const GlitchTitle: React.FC<GlitchInlineProps> = ({ children }) => {
             }
         }, 1000));
 
-        // 3) RGB‑сдвиг через псевдо‑элементы (CSS-анимации выше)
-
-        // 4) Тяжёлые искажения: blur + hue-rotate + рандомный поворот
         intervals.push(window.setInterval(() => {
             if (Math.random() > 0.992) {
                 const blur = Math.random() * 3;
@@ -133,7 +129,6 @@ export const GlitchTitle: React.FC<GlitchInlineProps> = ({ children }) => {
             }
         }, 200));
 
-        // 5) Блоковые артефакты (clip-path)
         intervals.push(window.setInterval(() => {
             if (Math.random() > 0.98) {
                 const size = Math.floor(Math.random() * 20) + 5;
@@ -144,7 +139,6 @@ export const GlitchTitle: React.FC<GlitchInlineProps> = ({ children }) => {
             }
         }, 150));
 
-        // 6) Пропадание текста (frame drop)
         intervals.push(window.setInterval(() => {
             if (Math.random() > 0.97) {
                 el.style.opacity = '0';
