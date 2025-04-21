@@ -95,7 +95,6 @@ export const GlitchTitle: React.FC<GlitchInlineProps> = ({ children }) => {
         const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()';
         const intervals: number[] = [];
 
-        // 1) Шум текста
         intervals.push(window.setInterval(() => {
             if (Math.random() > 0.95) {
                 let t = '';
