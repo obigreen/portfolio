@@ -5,12 +5,14 @@ import {S} from "./AboutMe_Styles"
 import {SectionTitle} from "../../../components/SectionTitle";
 import {SectionText} from "../../../components/SectionText";
 import {FlexWrapper} from "../../../components/FlexWrapper";
+import {GlitchTitle} from "../../../components/GlitchTitle";
 
 export const AboutMe = () => {
     return (
         <S.AboutMe id={'about-me'}>
             <Container>
-                <SectionTitle>About Me</SectionTitle>
+                <GlitchTitle>About Me</GlitchTitle>
+                {/*<SectionTitle>About Me</SectionTitle>*/}
                 <S.AboutMePage>
                     <S.AboutMePageHeader>
                         <FlexWrapper gap={'5px'}>

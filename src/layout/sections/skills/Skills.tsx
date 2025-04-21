@@ -8,13 +8,16 @@ import { Icon } from "../../../components/icon/Icon";
 import { Assistant } from "./assistant/Assistant";
 import {SectionTitle} from "../../../components/SectionTitle";
 import {skillsData} from "../../../data/skillsData";
+import {GlitchTitle} from "../../../components/GlitchTitle";
+
 
 export const Skills = () => {
 
     return (
         <S.Skill id={'skills'}>
             <Container>
-                <SectionTitle>Skills</SectionTitle>
+                {/*<SectionTitle>Skills</SectionTitle>*/}
+                <GlitchTitle>Skills</GlitchTitle>
                 <FlexWrapper justify={'space-between'} align={'center'}>
                     <S.WrappWrapp>
                         {[skillsData.technologies, skillsData.tools, skillsData.socials].map((items, index) => (

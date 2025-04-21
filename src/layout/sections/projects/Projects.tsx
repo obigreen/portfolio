@@ -13,6 +13,7 @@ import { useModal } from "../../../hooks/useModal";
 import { Modal } from "./modal/Modal";
 import {Autoplay, Mousewheel} from "swiper/modules";
 import type { Swiper as SwiperCore } from "swiper";
+import {GlitchTitle} from "../../../components/GlitchTitle";
 
 export const Projects = () => {
     const { isModalOpen, modalContent, open, close, images } = useModal();
@@ -39,7 +40,8 @@ export const Projects = () => {
     return (
         <S.Projects id="works">
             <Container>
-                <SectionTitle>Projects</SectionTitle>
+                <GlitchTitle>Projects</GlitchTitle>
+                {/*<SectionTitle>Projects</SectionTitle>*/}
                 <S.SliderWrapper>
                     <Swiper
                         modules={[Autoplay, Mousewheel]}
