@@ -30,10 +30,14 @@ const Projects = styled.section`
         //z-index: 0;
     }
 
+    @media ${theme.media.mobile} {
+        padding-bottom: 30px;
+    }
+
     ${Container} {
-        
+
         max-width: 1056px;
-        
+
         .swiper-slide {
             width: 328px;
             display: flex;
@@ -47,7 +51,7 @@ const Projects = styled.section`
         }
 
 
-     }
+    }
 
     ${Container} > ${FlexWrapper}:last-child {
         @media ${theme.media.desctop} {

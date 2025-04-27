@@ -68,6 +68,7 @@ const GlitchText = styled.h3`
     text-transform: uppercase;
     letter-spacing: 5px;
     animation: ${textShadowAnim} 1.6s infinite;
+    margin-bottom: 20px;
 
     &::before, &::after {
         content: attr(data-text);
