@@ -6,6 +6,10 @@ import practiceJsPrew from "../assets/img/portfolio-pages/practiceJs/practiceJsP
 import practiceJsDesktop from "../assets/img/portfolio-pages/practiceJs/practiceJsDesktop.webp";
 import practiceJsMobile from "../assets/img/portfolio-pages/practiceJs/practiceJsMobile.webp";
 
+import promoQuizPrev from "../assets/img/portfolio-pages/promo-quiz/promo-quiz-prew.webp";
+import promoQuizDesktop from "../assets/img/portfolio-pages/promo-quiz/promo-quiz-desktop.webp";
+import promoQuizMobile from "../assets/img/portfolio-pages/promo-quiz/promo-quiz-mobile.webp";
+
 import samurai from "../assets/img/portfolio-pages/react-utils-hub/smaurai.webp";
 
 
@@ -65,15 +69,15 @@ export const projectsData: ProjectType[] = [
     },
 
     {
-        previewImg: empty,
-        desktopSrc: empty,
-        mobileSrc: empty,
-        technologies: 'TEST TEST TEST',
-        title: 'Test',
-        slideText: 'Test',
-        descText: 'Этот проект.....',
+        previewImg: promoQuizPrev,
+        desktopSrc: promoQuizDesktop,
+        mobileSrc: promoQuizMobile,
+        technologies: 'В процессе написания',
+        title: 'В процессе написания',
+        slideText: 'В процессе написания',
+        descText: 'В процессе написания',
         buttonText: 'Open <~>',
-        link: ''
+        link: 'https://obigreen.github.io/promo-quiz-converter/'
     },
 
 
