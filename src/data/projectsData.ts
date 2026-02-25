@@ -10,6 +10,12 @@ import promoQuizPrev from "../assets/img/portfolio-pages/promo-quiz/promo-quiz-p
 import promoQuizDesktop from "../assets/img/portfolio-pages/promo-quiz/promo-quiz-desktop.webp";
 import promoQuizMobile from "../assets/img/portfolio-pages/promo-quiz/promo-quiz-mobile.webp";
 
+import miniJsHubPrev from "../assets/img/portfolio-pages/mini-js-hub/mini-js-hub-prev.webp";
+import miniJsHubDesktop from "../assets/img/portfolio-pages/mini-js-hub/mini-js-hub-desktop.webp";
+import miniJsHubMobile from "../assets/img/portfolio-pages/mini-js-hub/mini-js-hub-mobile.webp";
+
+
+
 import samurai from "../assets/img/portfolio-pages/react-utils-hub/smaurai.webp";
 
 
@@ -79,6 +85,20 @@ export const projectsData: ProjectType[] = [
         buttonText: 'Open <~>',
         link: 'https://obigreen.github.io/promo-quiz-converter/'
     },
+
+    {
+        previewImg: miniJsHubPrev,
+        desktopSrc: miniJsHubDesktop,
+        mobileSrc: miniJsHubMobile,
+        technologies: "HTML5 CSS3 JS",
+        title: "Mini JavaScript Hub",
+        slideText: "A set of mini-practices and utilities in JavaScript",
+        descText: "Mini JavaScript Hub — это хаб с мини-приложениями и практиками на чистом JavaScript. Проект построен на модульной структуре: есть главная страница с карточками инструментов и отдельные компоненты, каждый со своими HTML/CSS/JS файлами и общей дизайн-системой через common.css. Реализованы интерактивные проверки в реальном времени, адаптивная сетка, переиспользуемые UI-блоки и аккуратная организация для дальнейшего масштабирования новыми мини-инструментами. [pet]",
+        buttonText: "Open <~>",
+        link: "https://obigreen.github.io/mini-js-hub/"
+    },
+
+
 
 
 ];
