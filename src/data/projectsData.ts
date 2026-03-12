@@ -29,6 +29,7 @@ export type ProjectType = {
     desktopSrc: string;
     mobileSrc: string;
     previewImg: string
+    previewType?: "image" | "live";
     src?: string;
     technologies: string;
     title: string;
@@ -42,6 +43,7 @@ export type ProjectType = {
 export const projectsData: ProjectType[] = [
     {
         previewImg: bomBurgerPrev,
+        previewType: "live",
         desktopSrc: boomBurgerDesktop,
         mobileSrc: boomBurgerMobile,
         technologies: 'HTML5 SCSS JS Gulp jQuery Slick WOW Inputmask',
@@ -53,6 +55,7 @@ export const projectsData: ProjectType[] = [
     },
     {
         previewImg: practiceJsPrew,
+        previewType: "live",
         desktopSrc: practiceJsDesktop,
         mobileSrc: practiceJsMobile,
         technologies: 'HTML5 CSS3 JS jQuery Swiper Canvas',
@@ -64,6 +67,7 @@ export const projectsData: ProjectType[] = [
     },
     {
         previewImg: samurai,
+        previewType: "live",
         desktopSrc: samurai,
         mobileSrc: samurai,
         technologies: 'React JS TS Router Styled-components',
@@ -76,6 +80,7 @@ export const projectsData: ProjectType[] = [
 
     {
         previewImg: promoQuizPrev,
+        previewType: "live",
         desktopSrc: promoQuizDesktop,
         mobileSrc: promoQuizMobile,
         technologies: 'В процессе написания',
@@ -88,6 +93,7 @@ export const projectsData: ProjectType[] = [
 
     {
         previewImg: miniJsHubPrev,
+        previewType: "live",
         desktopSrc: miniJsHubDesktop,
         mobileSrc: miniJsHubMobile,
         technologies: "HTML5 CSS3 JS",

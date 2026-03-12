@@ -29,6 +29,6 @@ export const FlexWrapper = styled.div<FlexWrapperPropsType>`
     background-color: ${props => props.background || 'transparent'};
     height:${props => props.height};
     border-radius: ${props => props.border};
-    overflow-y: ${props => props.overflow};
+    overflow: ${props => props.overflow};
     max-width: ${props => props.maxWidth || `100%`};
 `

@@ -78,6 +78,7 @@ export const Projects = () => {
                             <SwiperSlide key={index}>
                                 <Project
                                     src={project.previewImg}
+                                    previewType={project.previewType}
                                     technologies={project.technologies}
                                     title={project.title}
                                     text={project.slideText}
@@ -99,8 +100,4 @@ export const Projects = () => {
         </S.Projects>
     );
 };
-
-
-
-
 

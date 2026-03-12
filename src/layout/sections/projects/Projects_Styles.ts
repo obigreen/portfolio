@@ -4,6 +4,8 @@ import {Container} from "../../../styles/Container";
 import {theme} from "../../../styles/Theme";
 import bgImage2 from '../../../assets/img/background/bg2.webp'
 
+const PREVIEW_SCALE = 0.24;
+
 // Projects
 const Projects = styled.section`
     padding-bottom: 106px;
@@ -39,14 +41,13 @@ const Projects = styled.section`
         max-width: 1056px;
 
         .swiper-slide {
-            width: 328px;
             display: flex;
             justify-content: center;
             align-items: center;
             //padding: 10px; /* Отступы вокруг слайда */
 
             //margin: 0px -10px;
-            padding: 30px 1px 10px 1px;
+            padding: 30px 0 10px 0;
             //padding-bottom: 10px;
         }
 
@@ -66,17 +67,46 @@ const SliderWrapper = styled.div`
 `;
 
 const Work = styled.div`
-    width: 328px;
+    width: 100%;
+    max-width: 328px;
     margin: 0 auto;
-    
-    outline: 1px solid ${theme.color.main};
+
+    border: 1px solid ${theme.color.main};
     background-color: ${theme.color.backround};
+    overflow: hidden;
 
     ${FlexWrapper} > img {
         width: 100%;
         height: auto;
         object-fit: cover;
     }
+`;
+
+const PreviewViewport = styled.div`
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    position: relative;
+    contain: paint;
+    isolation: isolate;
+    clip-path: inset(0 1px 0 0);
+    background-color: ${theme.color.backround};
+`;
+
+const PreviewFrame = styled.iframe`
+    width: calc(100% / ${PREVIEW_SCALE});
+    height: calc(100% / ${PREVIEW_SCALE});
+    border: none;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateZ(0) scale(${PREVIEW_SCALE});
+    transform-origin: top left;
+    backface-visibility: hidden;
+    pointer-events: none;
 `;
 
 const InfoProjectWrapper = styled.div`
@@ -102,5 +132,5 @@ export const TechnologiesMenu = styled.h2`
 
 export const S = {
   Projects, SliderWrapper,
-  Work, InfoProjectWrapper
+  Work, PreviewViewport, PreviewFrame, InfoProjectWrapper
 }
