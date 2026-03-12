@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/portfolio/static/css/main.717f300e.css",
-    "main.js": "/portfolio/static/js/main.f9291529.js",
+    "main.js": "/portfolio/static/js/main.f72fc20f.js",
     "static/js/787.6658d8b7.chunk.js": "/portfolio/static/js/787.6658d8b7.chunk.js",
     "static/media/promo-quiz-desktop.webp": "/portfolio/static/media/promo-quiz-desktop.ffa209fbe4a299ee7968.webp",
     "static/media/bomBurger-desktop.webp": "/portfolio/static/media/bomBurger-desktop.80a7017fdab37c0d3d37.webp",
@@ -25,11 +25,11 @@
     "static/media/webstorm.svg": "/portfolio/static/media/webstorm.d99f10f526cc08a892f4d245ec29d292.svg",
     "index.html": "/portfolio/index.html",
     "main.717f300e.css.map": "/portfolio/static/css/main.717f300e.css.map",
-    "main.f9291529.js.map": "/portfolio/static/js/main.f9291529.js.map",
+    "main.f72fc20f.js.map": "/portfolio/static/js/main.f72fc20f.js.map",
     "787.6658d8b7.chunk.js.map": "/portfolio/static/js/787.6658d8b7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.717f300e.css",
-    "static/js/main.f9291529.js"
+    "static/js/main.f72fc20f.js"
   ]
 }
