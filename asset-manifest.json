@@ -1,13 +1,16 @@
 {
   "files": {
     "main.css": "/portfolio/static/css/main.717f300e.css",
-    "main.js": "/portfolio/static/js/main.f72fc20f.js",
+    "main.js": "/portfolio/static/js/main.afa8ae2e.js",
     "static/js/787.6658d8b7.chunk.js": "/portfolio/static/js/787.6658d8b7.chunk.js",
+    "static/media/vitaCall-desktop.webp": "/portfolio/static/media/vitaCall-desktop.760a8a45525fcd35e81d.webp",
     "static/media/promo-quiz-desktop.webp": "/portfolio/static/media/promo-quiz-desktop.ffa209fbe4a299ee7968.webp",
     "static/media/bomBurger-desktop.webp": "/portfolio/static/media/bomBurger-desktop.80a7017fdab37c0d3d37.webp",
+    "static/media/vitaCall-mobile.webp": "/portfolio/static/media/vitaCall-mobile.7a98aafd6fb6283b84d0.webp",
     "static/media/bomBurger-mobile.webp": "/portfolio/static/media/bomBurger-mobile.2bfeece055d92e503961.webp",
     "static/media/promo-quiz-mobile.webp": "/portfolio/static/media/promo-quiz-mobile.1759c79a4d90627a610e.webp",
     "static/media/my-photo.webp": "/portfolio/static/media/my-photo.fa97f385f4743177893c.webp",
+    "static/media/vitaCall-prew.webp": "/portfolio/static/media/vitaCall-prew.b5848034aada68a64de9.webp",
     "static/media/icons-sprite.svg": "/portfolio/static/media/icons-sprite.51ff840df5b7e872e6990cf7fce943e2.svg",
     "static/media/bg1.webp": "/portfolio/static/media/bg1.a69bbd4600b4df06df40.webp",
     "static/media/promo-quiz-prew.webp": "/portfolio/static/media/promo-quiz-prew.e51857f4e577584cc1b2.webp",
@@ -25,11 +28,11 @@
     "static/media/webstorm.svg": "/portfolio/static/media/webstorm.d99f10f526cc08a892f4d245ec29d292.svg",
     "index.html": "/portfolio/index.html",
     "main.717f300e.css.map": "/portfolio/static/css/main.717f300e.css.map",
-    "main.f72fc20f.js.map": "/portfolio/static/js/main.f72fc20f.js.map",
+    "main.afa8ae2e.js.map": "/portfolio/static/js/main.afa8ae2e.js.map",
     "787.6658d8b7.chunk.js.map": "/portfolio/static/js/787.6658d8b7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.717f300e.css",
-    "static/js/main.f72fc20f.js"
+    "static/js/main.afa8ae2e.js"
   ]
 }
