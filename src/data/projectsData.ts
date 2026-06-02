@@ -14,15 +14,13 @@ import miniJsHubPrev from "../assets/img/portfolio-pages/mini-js-hub/mini-js-hub
 import miniJsHubDesktop from "../assets/img/portfolio-pages/mini-js-hub/mini-js-hub-desktop.webp";
 import miniJsHubMobile from "../assets/img/portfolio-pages/mini-js-hub/mini-js-hub-mobile.webp";
 
+import vitaCallPrev from "../assets/img/portfolio-pages/vitaCall/vitaCall-prew.webp";
+import vitaCallDesktop from "../assets/img/portfolio-pages/vitaCall/vitaCall-desktop.webp";
+import vitaCallMobile from "../assets/img/portfolio-pages/vitaCall/vitaCall-mobile.webp";
+
 
 
 import samurai from "../assets/img/portfolio-pages/react-utils-hub/smaurai.webp";
-
-
-//=========
-import empty from "../assets/img/portfolio-pages/forEmptyCard.jpg";
-
-
 
 
 export type ProjectType = {
@@ -41,6 +39,17 @@ export type ProjectType = {
 
 
 export const projectsData: ProjectType[] = [
+    {
+        previewImg: vitaCallPrev,
+        desktopSrc: vitaCallDesktop,
+        mobileSrc: vitaCallMobile,
+        technologies: "HTML5 CSS3 JavaScript PHP Swiper Telegram Bot API",
+        title: "VitaCall",
+        slideText: "Adaptive recruiting landing page for a call-center team",
+        descText: "VitaCall — коммерческий адаптивный лендинг для набора операторов в международный call-центр. Я реализовал верстку, адаптив под desktop/mobile, sticky header с burger-menu, CTA pop-up, плавную навигацию по секциям, Swiper-слайдер отзывов, анимацию карьерного блока, многошаговую анкету с прогрессом, валидацией и сбором ответов, а также отправку заявок в Telegram-бот через PHP endpoint. На текущей рабочей версии сайта дополнительно присутствует переключение языка RU/UZ; эту языковую доработку реализовывал не я. [commercial]",
+        buttonText: "Open <~>",
+        link: "https://vitacall.ru/"
+    },
     {
         previewImg: bomBurgerPrev,
         previewType: "live",
