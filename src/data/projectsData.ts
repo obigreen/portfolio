@@ -41,12 +41,13 @@ export type ProjectType = {
 export const projectsData: ProjectType[] = [
     {
         previewImg: vitaCallPrev,
+        previewType: "live",
         desktopSrc: vitaCallDesktop,
         mobileSrc: vitaCallMobile,
         technologies: "HTML5 CSS3 JavaScript PHP Swiper Telegram Bot API",
         title: "VitaCall",
         slideText: "Adaptive recruiting landing page for a call-center team",
-        descText: "VitaCall — коммерческий адаптивный лендинг для набора операторов в международный call-центр. Я реализовал верстку, адаптив под desktop/mobile, sticky header с burger-menu, CTA pop-up, плавную навигацию по секциям, Swiper-слайдер отзывов, анимацию карьерного блока, многошаговую анкету с прогрессом, валидацией и сбором ответов, а также отправку заявок в Telegram-бот через PHP endpoint. На текущей рабочей версии сайта дополнительно присутствует переключение языка RU/UZ; эту языковую доработку реализовывал не я. [commercial]",
+        descText: "VitaCall — коммерческий адаптивный лендинг для набора операторов в международный call-центр. Проект создавался без готового макета и без референсов: на входе были только текстовые блоки и задача собрать рабочую структуру страницы. Я реализовал верстку, адаптив под desktop/mobile, sticky header с burger-menu, CTA pop-up, плавную навигацию по секциям, Swiper-слайдер отзывов, анимацию карьерного блока, многошаговую анкету с прогрессом, валидацией и сбором ответов, а также отправку заявок в Telegram-бот через PHP endpoint. На текущей рабочей версии сайта дополнительно присутствует переключение языка RU/UZ; эту языковую доработку реализовывал не я. Также на текущей версии сайта отсутствует favicon. [commercial]",
         buttonText: "Open <~>",
         link: "https://vitacall.ru/"
     },
