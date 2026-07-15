@@ -1,32 +1,35 @@
-import bomBurgerPrev from "../assets/img/portfolio-pages/boom-burger/boomBurgerPrev.webp";
-import boomBurgerDesktop from "../assets/img/portfolio-pages/boom-burger/bomBurger-desktop.webp";
-import boomBurgerMobile from "../assets/img/portfolio-pages/boom-burger/bomBurger-mobile.webp";
-
-import practiceJsPrew from "../assets/img/portfolio-pages/practiceJs/practiceJsPrew.webp";
-import practiceJsDesktop from "../assets/img/portfolio-pages/practiceJs/practiceJsDesktop.webp";
-import practiceJsMobile from "../assets/img/portfolio-pages/practiceJs/practiceJsMobile.webp";
-
-import promoQuizPrev from "../assets/img/portfolio-pages/promo-quiz/promo-quiz-prew.webp";
-import promoQuizDesktop from "../assets/img/portfolio-pages/promo-quiz/promo-quiz-desktop.webp";
-import promoQuizMobile from "../assets/img/portfolio-pages/promo-quiz/promo-quiz-mobile.webp";
-
-import miniJsHubPrev from "../assets/img/portfolio-pages/mini-js-hub/mini-js-hub-prev.webp";
-import miniJsHubDesktop from "../assets/img/portfolio-pages/mini-js-hub/mini-js-hub-desktop.webp";
-import miniJsHubMobile from "../assets/img/portfolio-pages/mini-js-hub/mini-js-hub-mobile.webp";
-
-import vitaCallPrev from "../assets/img/portfolio-pages/vitaCall/vitaCall-prew.webp";
-import vitaCallDesktop from "../assets/img/portfolio-pages/vitaCall/vitaCall-desktop.webp";
-import vitaCallMobile from "../assets/img/portfolio-pages/vitaCall/vitaCall-mobile.webp";
-
-
-
-import samurai from "../assets/img/portfolio-pages/react-utils-hub/smaurai.webp";
+// import bomBurgerPrev from "../assets/img/portfolio-pages/boom-burger/boomBurgerPrev.webp";
+// import boomBurgerDesktop from "../assets/img/portfolio-pages/boom-burger/bomBurger-desktop.webp";
+// import boomBurgerMobile from "../assets/img/portfolio-pages/boom-burger/bomBurger-mobile.webp";
+//
+// import practiceJsPrew from "../assets/img/portfolio-pages/practiceJs/practiceJsPrew.webp";
+// import practiceJsDesktop from "../assets/img/portfolio-pages/practiceJs/practiceJsDesktop.webp";
+// import practiceJsMobile from "../assets/img/portfolio-pages/practiceJs/practiceJsMobile.webp";
+//
+// import promoQuizPrev from "../assets/img/portfolio-pages/promo-quiz/promo-quiz-prew.webp";
+// import promoQuizDesktop from "../assets/img/portfolio-pages/promo-quiz/promo-quiz-desktop.webp";
+// import promoQuizMobile from "../assets/img/portfolio-pages/promo-quiz/promo-quiz-mobile.webp";
+//
+// import miniJsHubPrev from "../assets/img/portfolio-pages/mini-js-hub/mini-js-hub-prev.webp";
+// import miniJsHubDesktop from "../assets/img/portfolio-pages/mini-js-hub/mini-js-hub-desktop.webp";
+// import miniJsHubMobile from "../assets/img/portfolio-pages/mini-js-hub/mini-js-hub-mobile.webp";
+//
+// import vitaCallPrev from "../assets/img/portfolio-pages/vitaCall/vitaCall-prew.webp";
+// import vitaCallDesktop from "../assets/img/portfolio-pages/vitaCall/vitaCall-desktop.webp";
+// import vitaCallMobile from "../assets/img/portfolio-pages/vitaCall/vitaCall-mobile.webp";
 
 
-export type ProjectType = {
+// import samurai from "../assets/img/portfolio-pages/react-utils-hub/smaurai.webp";
+
+type ProjectImages = {
     desktopSrc: string;
     mobileSrc: string;
     previewImg: string
+}
+
+
+
+export type ProjectType = {
     previewType?: "image" | "live";
     src?: string;
     technologies: string;
@@ -35,15 +38,13 @@ export type ProjectType = {
     descText: string;
     buttonText: string;
     link?: string;
+    images?: ProjectImages;
 };
 
 
 export const projectsData: ProjectType[] = [
     {
-        previewImg: vitaCallPrev,
         previewType: "live",
-        desktopSrc: vitaCallDesktop,
-        mobileSrc: vitaCallMobile,
         technologies: "HTML5 CSS3 JavaScript PHP Swiper Telegram Bot API",
         title: "VitaCall",
         slideText: "Adaptive recruiting landing page for a call-center team",
@@ -52,10 +53,7 @@ export const projectsData: ProjectType[] = [
         link: "https://vitacall.ru/"
     },
     {
-        previewImg: bomBurgerPrev,
         previewType: "live",
-        desktopSrc: boomBurgerDesktop,
-        mobileSrc: boomBurgerMobile,
         technologies: 'HTML5 SCSS JS Gulp jQuery Slick WOW Inputmask',
         title: 'Boom Burger',
         slideText: 'Landing page',
@@ -64,10 +62,7 @@ export const projectsData: ProjectType[] = [
         link: 'https://obigreen.github.io/boom-burger/'
     },
     {
-        previewImg: practiceJsPrew,
         previewType: "live",
-        desktopSrc: practiceJsDesktop,
-        mobileSrc: practiceJsMobile,
         technologies: 'HTML5 CSS3 JS jQuery Swiper Canvas',
         title: 'Games Platform',
         slideText: 'Interactive Practice Platform for Games',
@@ -76,10 +71,7 @@ export const projectsData: ProjectType[] = [
         link: 'https://obigreen.github.io/practiceJs/'
     },
     {
-        previewImg: samurai,
         previewType: "live",
-        desktopSrc: samurai,
-        mobileSrc: samurai,
         technologies: 'React JS TS Router Styled-components',
         title: 'React utils hub',
         slideText: 'Interactive Practice Platform for Utils [ONLY DESKTOP VERSION]',
@@ -89,10 +81,7 @@ export const projectsData: ProjectType[] = [
     },
 
     {
-        previewImg: promoQuizPrev,
         previewType: "live",
-        desktopSrc: promoQuizDesktop,
-        mobileSrc: promoQuizMobile,
         technologies: 'В процессе написания',
         title: 'В процессе написания',
         slideText: 'В процессе написания',
@@ -102,16 +91,24 @@ export const projectsData: ProjectType[] = [
     },
 
     {
-        previewImg: miniJsHubPrev,
         previewType: "live",
-        desktopSrc: miniJsHubDesktop,
-        mobileSrc: miniJsHubMobile,
         technologies: "HTML5 CSS3 JS",
         title: "Mini JavaScript Hub",
         slideText: "A set of mini-practices and utilities in JavaScript",
         descText: "Mini JavaScript Hub — это хаб с мини-приложениями и практиками на чистом JavaScript. Проект построен на модульной структуре: есть главная страница с карточками инструментов и отдельные компоненты, каждый со своими HTML/CSS/JS файлами и общей дизайн-системой через common.css. Реализованы интерактивные проверки в реальном времени, адаптивная сетка, переиспользуемые UI-блоки и аккуратная организация для дальнейшего масштабирования новыми мини-инструментами. [pet]",
         buttonText: "Open <~>",
         link: "https://obigreen.github.io/mini-js-hub/"
+    },
+
+
+    {
+        previewType: "live",
+        technologies: "Photoshop HTML5 CSS3 JS Swiper WordPress PHP ACF REST API",
+        title: "Transmission Driving School",
+        slideText: "Full-cycle WordPress landing page for a driving school",
+        descText: "Transmission — учебный full-cycle проект сайта автошколы, реализованный от идеи и визуальной концепции до публикации на собственном сервере. Тематика, структура страницы и пользовательские сценарии были разработаны с нуля, дизайн подготовлен в Photoshop, после чего выполнена адаптивная верстка на HTML5, CSS3 и Vanilla JavaScript. В интерфейсе реализованы Swiper-слайдеры, интерактивный выбор категорий обучения, кастомная прокрутка этапов, анимированный блок преимуществ, модальное окно записи и клиентская валидация формы. Статический лендинг был преобразован в собственную WordPress-тему без Elementor и других конструкторов: настроены PHP-шаблоны, подключение ресурсов через WordPress API, навигационное меню, ACF-поля и динамическое управление инструкторами и отзывами через админку. Для обработки заявок разработан отдельный PHP-плагин Transmission Leads с собственным REST API endpoint, серверной валидацией и очисткой данных, honeypot-защитой, rate limiting и сохранением лидов как приватных записей WordPress с отдельным интерфейсом в админке. Локальная разработка выполнялась в LocalWP, а production-версия развернута на собственном VPS DigitalOcean под Ubuntu с использованием Nginx, PHP-FPM и MySQL. Выполнены перенос файлов и базы данных через rsync и WP-CLI, настройка прав доступа, HTTPS-сертификатов Let’s Encrypt и автоматического продления. Во время запуска была диагностирована выборочная деградация маршрутов российских провайдеров к зарубежной инфраструктуре, поэтому публичная демонстрация временно работает через поддомен DuckDNS, направленный на тот же VPS, но иногда открывается и через https://transmission-school.ru/. ‼Проект доступен для коммерческой адаптации под действующую автошколу: возможны ребрендинг, замена контента, настройка форм, подключение домена и развёртывание на инфраструктуре заказчика. Возможна передача готового решения с последующим техническим сопровождением.",
+        buttonText: "Open <~>",
+        link: "https://transmission-school.duckdns.org/",
     },
 
 

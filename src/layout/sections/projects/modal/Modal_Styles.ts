@@ -2,6 +2,15 @@ import {theme} from "../../../../styles/Theme";
 import styled from "styled-components";
 import {AccentAnimationText} from "../../../../styles/AccentAnimation";
 
+type PreviewContainerProps = {
+    $maxWidth: number;
+};
+
+type LivePreviewFrameProps = {
+    $height: number;
+};
+
+
 const Modal = styled.div`
     position: fixed;
     top: 0;
@@ -22,6 +31,32 @@ const ModalContent = styled.div`
     z-index: 999;
     height: auto; /* Позволяет контенту определять высоту */
 `;
+
+const PreviewContainer = styled.div<PreviewContainerProps>`
+    position: relative;
+    width: 100%;
+    max-width: ${({$maxWidth}) => `${$maxWidth}px`};
+`;
+
+const PreviewToggle = styled.div`
+    position: absolute;
+    z-index: 1;
+`;
+
+const LivePreviewFrame = styled.iframe<LivePreviewFrameProps>`
+    display: block;
+    width: 100%;
+    height: ${({$height}) => `${$height}px`};
+    border: none;
+`;
+
+const FallbackImage = styled.img`
+    width: 100%;
+    max-width: 100%;
+`;
+
+
+
 
 const CloseButton = styled.button`
     position: absolute;
@@ -47,7 +82,7 @@ const CloseButton = styled.button`
 
 
 const ProjectInfo = styled.div`
-    max-width: 600px;
+    max-width: 1200px;
     position: relative;
 `
 const ProjectLinkWrapp = styled.div`
@@ -60,5 +95,5 @@ const ProjectLink = styled.a`
 `
 
 export const S = {
-    Modal, ModalContent, CloseButton, ProjectInfo, ProjectLink, ProjectLinkWrapp
+    Modal, ModalContent, PreviewContainer, PreviewToggle, LivePreviewFrame, FallbackImage, CloseButton, ProjectInfo, ProjectLink, ProjectLinkWrapp
 }

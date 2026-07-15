@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface ModalContent {
-    desktopSrc: string;
-    mobileSrc: string;
-    src: string;
+    desktopSrc?: string;
+    mobileSrc?: string;
+    src?: string;
     technologies: string;
     title: string;
     text: string;

@@ -14,9 +14,9 @@ export const useModal = () => {
 
         if (detailedProject) {
             dispatch(openModal({
-                desktopSrc: project.desktopSrc,
-                mobileSrc: project.mobileSrc,
-                src: project.desktopSrc,
+                desktopSrc: project.images?.desktopSrc,
+                mobileSrc: project.images?.mobileSrc,
+                src: project.images?.desktopSrc,
                 technologies: project.technologies,
                 title: project.title,
                 text: project.descText,
@@ -34,7 +34,7 @@ export const useModal = () => {
     };
 
 
-    const images = modalContent
+    const images = modalContent?.desktopSrc && modalContent?.mobileSrc
         ? [
             {
                 src: modalContent.desktopSrc,

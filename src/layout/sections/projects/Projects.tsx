@@ -7,7 +7,6 @@ import "swiper/css/autoplay";
 import { Project } from "./project/Project";
 import { Container } from "../../../styles/Container";
 import { S } from "./Projects_Styles";
-import { SectionTitle } from "../../../components/SectionTitle";
 import { projectsData, ProjectType } from "../../../data/projectsData";
 import { useModal } from "../../../hooks/useModal";
 import { Modal } from "./modal/Modal";
@@ -77,7 +76,7 @@ export const Projects = () => {
                         {projectsData.map((project, index) => (
                             <SwiperSlide key={index}>
                                 <Project
-                                    src={project.previewImg}
+                                    src={project.images?.previewImg}
                                     previewType={project.previewType}
                                     technologies={project.technologies}
                                     title={project.title}
@@ -91,12 +90,13 @@ export const Projects = () => {
                     </Swiper>
                 </S.SliderWrapper>
             </Container>
-            <Modal
-                isModalOpen={isModalOpen}
-                handleCloseModal={handleCloseModal}
-                images={images}
-                modalContent={modalContent}
-            />
+            {isModalOpen && (
+                <Modal
+                    handleCloseModal={handleCloseModal}
+                    images={images}
+                    modalContent={modalContent}
+                />
+            )}
         </S.Projects>
     );
 };

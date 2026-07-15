@@ -5,9 +5,25 @@ import {ButtonWin98} from '../../../../components/ButtonWin98';
 import {S} from "./Modal_Styles";
 import {TechnologiesMenu, Title} from "../Projects_Styles";
 
+type ViewMode = "desktop" | "mobile";
+type PreviewViewport = {
+    width: number;
+    height: number;
+}
+
+const PREVIEW_VIEWPORTS: Record<ViewMode, PreviewViewport> = {
+    desktop: {
+        width: 1200,
+        height: 750,
+    },
+    mobile: {
+        width: 425,
+        height: 800,
+    }
+};
+
 
 type ModalOverlayProps = {
-    isModalOpen: boolean;
     handleCloseModal: () => void;
     images: { src: string; label: string }[];
     modalContent: {
@@ -20,41 +36,48 @@ type ModalOverlayProps = {
 
 export const Modal = (
     {
-        isModalOpen,
         handleCloseModal,
         images,
         modalContent,
     }: ModalOverlayProps) => {
 
 
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [viewMode, setViewMode] = useState<ViewMode>('desktop');
 
-    const mSlide = () => {
-        setCurrentIndex((prevIndex) =>
-            prevIndex === 0 ? images.length - 1 : prevIndex - 1
-        );
+    const toggleViewMode = () => {
+        setViewMode(viewMode === 'desktop' ? 'mobile' : 'desktop');
     };
+    const currentImageIndex = viewMode === 'desktop' ? 0 : 1;
+    const currentViewport = PREVIEW_VIEWPORTS[viewMode];
 
-    if (!isModalOpen || !modalContent) return null;
+    if (!modalContent) return null;
 
     return (
         <S.Modal onClick={handleCloseModal}>
             <S.ModalContent onClick={(e) => e.stopPropagation()}>
                 <FlexWrapper justify={'center'} direction={'column-reverse'} align={'center'} gap={'30px'}>
-                    <div style={{position: 'relative', maxWidth: '600px', width: '100%'}}>
-                        <div style={{position: 'absolute'}}>
-                            <ButtonWin98 onClick={mSlide}>
-                                {currentIndex === 0 ? 'Mobile' : 'Desktop'}
+                    <S.PreviewContainer $maxWidth={currentViewport.width}>
+                        <S.PreviewToggle>
+                            <ButtonWin98 onClick={toggleViewMode}>
+                                {viewMode === 'desktop' ? 'Mobile' : 'Desktop'}
                             </ButtonWin98>
-                        </div>
-                        {images.length > 0 && (
-                            <img
-                                src={images[currentIndex]?.src}
-                                alt={images[currentIndex]?.label}
-                                style={{width: '100%', maxWidth: '600px'}}
+                        </S.PreviewToggle>
+
+                        {modalContent.link ? (
+                            <S.LivePreviewFrame $height={currentViewport.height}
+                                src={modalContent.link}
+                                title={`${modalContent.title} ${viewMode} live preview`}
+
                             />
+                        ) : (
+                            images.length > 0 && (
+                                <S.FallbackImage
+                                    src={images[currentImageIndex]?.src}
+                                    alt={images[currentImageIndex]?.label}
+                                />
+                            )
                         )}
-                    </div>
+                    </S.PreviewContainer>
                     <S.ProjectInfo>
                         <Title>{modalContent.title}</Title>
                         <TechnologiesMenu style={{
@@ -64,7 +87,8 @@ export const Modal = (
                         }}>{modalContent.technologies}</TechnologiesMenu>
                         <SectionText>{modalContent.text}</SectionText>
                         <S.ProjectLinkWrapp>
-                            <S.ProjectLink href={modalContent.link || "#"} target={"_blank"}> {modalContent.link ? 'View Project' : 'No Link Available'}</S.ProjectLink>
+                            <S.ProjectLink href={modalContent.link || "#"}
+                                           target={"_blank"}> {modalContent.link ? 'View Project' : 'No Link Available'}</S.ProjectLink>
                         </S.ProjectLinkWrapp>
 
                         <S.CloseButton onClick={handleCloseModal}>X</S.CloseButton>
