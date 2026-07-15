@@ -1,25 +1,7 @@
 // import bomBurgerPrev from "../assets/img/portfolio-pages/boom-burger/boomBurgerPrev.webp";
 // import boomBurgerDesktop from "../assets/img/portfolio-pages/boom-burger/bomBurger-desktop.webp";
 // import boomBurgerMobile from "../assets/img/portfolio-pages/boom-burger/bomBurger-mobile.webp";
-//
-// import practiceJsPrew from "../assets/img/portfolio-pages/practiceJs/practiceJsPrew.webp";
-// import practiceJsDesktop from "../assets/img/portfolio-pages/practiceJs/practiceJsDesktop.webp";
-// import practiceJsMobile from "../assets/img/portfolio-pages/practiceJs/practiceJsMobile.webp";
-//
-// import promoQuizPrev from "../assets/img/portfolio-pages/promo-quiz/promo-quiz-prew.webp";
-// import promoQuizDesktop from "../assets/img/portfolio-pages/promo-quiz/promo-quiz-desktop.webp";
-// import promoQuizMobile from "../assets/img/portfolio-pages/promo-quiz/promo-quiz-mobile.webp";
-//
-// import miniJsHubPrev from "../assets/img/portfolio-pages/mini-js-hub/mini-js-hub-prev.webp";
-// import miniJsHubDesktop from "../assets/img/portfolio-pages/mini-js-hub/mini-js-hub-desktop.webp";
-// import miniJsHubMobile from "../assets/img/portfolio-pages/mini-js-hub/mini-js-hub-mobile.webp";
-//
-// import vitaCallPrev from "../assets/img/portfolio-pages/vitaCall/vitaCall-prew.webp";
-// import vitaCallDesktop from "../assets/img/portfolio-pages/vitaCall/vitaCall-desktop.webp";
-// import vitaCallMobile from "../assets/img/portfolio-pages/vitaCall/vitaCall-mobile.webp";
 
-
-// import samurai from "../assets/img/portfolio-pages/react-utils-hub/smaurai.webp";
 
 type ProjectImages = {
     desktopSrc: string;
