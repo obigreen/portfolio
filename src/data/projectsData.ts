@@ -52,15 +52,15 @@ export const projectsData: ProjectType[] = [
         buttonText: 'Open <~>',
         link: 'https://obigreen.github.io/practiceJs/'
     },
-    {
-        previewType: "live",
-        technologies: 'React JS TS Router Styled-components',
-        title: 'React utils hub',
-        slideText: 'Interactive Practice Platform for Utils [ONLY DESKTOP VERSION]',
-        descText: 'Это React-приложение, представляющее собой dashboard, в котором собрано множество решений для практики написания кода. В отличие от другого моего проекта, посвященного мини-играм, этот проект ориентирован на различные интерактивные виджеты и утилиты. Здесь можно найти и протестировать разные реализации полезных компонентов, доступных через удобную навигацию.',
-        buttonText: 'Open <~>',
-        link: 'https://obigreen.github.io/react-utils-hub/'
-    },
+    // {
+    //     previewType: "live",
+    //     technologies: 'React JS TS Router Styled-components',
+    //     title: 'React utils hub',
+    //     slideText: 'Interactive Practice Platform for Utils [ONLY DESKTOP VERSION]',
+    //     descText: 'Это React-приложение, представляющее собой dashboard, в котором собрано множество решений для практики написания кода. В отличие от другого моего проекта, посвященного мини-играм, этот проект ориентирован на различные интерактивные виджеты и утилиты. Здесь можно найти и протестировать разные реализации полезных компонентов, доступных через удобную навигацию.',
+    //     buttonText: 'Open <~>',
+    //     link: 'https://obigreen.github.io/react-utils-hub/'
+    // },
 
     {
         previewType: "live",
@@ -91,6 +91,16 @@ export const projectsData: ProjectType[] = [
         descText: "Transmission — учебный full-cycle проект сайта автошколы, реализованный от идеи и визуальной концепции до публикации на собственном сервере. Тематика, структура страницы и пользовательские сценарии были разработаны с нуля, дизайн подготовлен в Photoshop, после чего выполнена адаптивная верстка на HTML5, CSS3 и Vanilla JavaScript. В интерфейсе реализованы Swiper-слайдеры, интерактивный выбор категорий обучения, кастомная прокрутка этапов, анимированный блок преимуществ, модальное окно записи и клиентская валидация формы. Статический лендинг был преобразован в собственную WordPress-тему без Elementor и других конструкторов: настроены PHP-шаблоны, подключение ресурсов через WordPress API, навигационное меню, ACF-поля и динамическое управление инструкторами и отзывами через админку. Для обработки заявок разработан отдельный PHP-плагин Transmission Leads с собственным REST API endpoint, серверной валидацией и очисткой данных, honeypot-защитой, rate limiting и сохранением лидов как приватных записей WordPress с отдельным интерфейсом в админке. Локальная разработка выполнялась в LocalWP, а production-версия развернута на собственном VPS DigitalOcean под Ubuntu с использованием Nginx, PHP-FPM и MySQL. Выполнены перенос файлов и базы данных через rsync и WP-CLI, настройка прав доступа, HTTPS-сертификатов Let’s Encrypt и автоматического продления. Во время запуска была диагностирована выборочная деградация маршрутов российских провайдеров к зарубежной инфраструктуре, поэтому публичная демонстрация временно работает через поддомен DuckDNS [ https://transmission-school.duckdns.org/ ], направленный на тот же VPS, но иногда открывается и через [ https://transmission-school.ru/ ]. Сссылка на гит деплой для корректного отображению live превью. ‼Проект доступен для коммерческой адаптации под действующую автошколу: возможны ребрендинг, замена контента, настройка форм, подключение домена и развёртывание на инфраструктуре заказчика. Возможна передача готового решения с последующим техническим сопровождением.",
         buttonText: "Open <~>",
         link: "https://obigreen.github.io/portfolio-hub/projects/landings/carSchool/",
+    },
+
+    {
+        previewType: "live",
+        technologies: "HTML5 CSS3 JS Swiper WordPress PHP ACF Telegram-Bot-API",
+        title: "Shadient.co",
+        slideText: "working...",
+        descText: "Адаптивный figma lending, в процессе натяжки на wordpress",
+        buttonText: "Open <~>",
+        link: "https://obigreen.github.io/portfolio-hub/projects/multipage/shadient/",
     },
 
 

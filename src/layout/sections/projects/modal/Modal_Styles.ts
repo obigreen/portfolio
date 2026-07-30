@@ -83,6 +83,7 @@ const CloseButton = styled.button`
 
 const ProjectInfo = styled.div`
     max-width: 1200px;
+    width: 100%;
     position: relative;
 `
 const ProjectLinkWrapp = styled.div`

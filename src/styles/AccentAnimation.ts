@@ -1,5 +1,6 @@
 import { keyframes, css } from "styled-components";
 
+/*
 export const ColorAnimation = keyframes`
     0% {
         color: #07F2FF;
@@ -73,11 +74,84 @@ export const BorderAnimation = keyframes`
         border-color: #07F2FF;
     }
 `;
+*/
+
+export const ColorAnimation = keyframes`
+    0% {
+        color: #157940;
+    }
+    10% {
+        color: #0E5B35;
+    }
+    20% {
+        color: #083E24;
+    }
+    30% {
+        color: #105F3A;
+    }
+    40% {
+        color: #15794D;
+    }
+    50% {
+        color: #269460;
+    }
+    60% {
+        color: #3FB27B;
+    }
+    70% {
+        color: #62C99A;
+    }
+    80% {
+        color: #86DDB5;
+    }
+    90% {
+        color: #4EBE88;
+    }
+    100% {
+        color: #157940;
+    }
+`;
+
+export const BorderAnimation = keyframes`
+    0% {
+        border-color: #157940;
+    }
+    10% {
+        border-color: #0E5B35;
+    }
+    20% {
+        border-color: #083E24;
+    }
+    30% {
+        border-color: #105F3A;
+    }
+    40% {
+        border-color: #15794D;
+    }
+    50% {
+        border-color: #269460;
+    }
+    60% {
+        border-color: #3FB27B;
+    }
+    70% {
+        border-color: #62C99A;
+    }
+    80% {
+        border-color: #86DDB5;
+    }
+    90% {
+        border-color: #4EBE88;
+    }
+    100% {
+        border-color: #157940;
+    }
+`;
 
 export const AccentAnimationBr = css`
-    animation: ${BorderAnimation} 12s linear infinite alternate;
+    animation: ${BorderAnimation} 12s linear infinite;
 `;
 
 export const AccentAnimationText = css`
-    animation: ${ColorAnimation} 12s linear infinite alternate;
+    animation: ${ColorAnimation} 12s linear infinite;
 `;
