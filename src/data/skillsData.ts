@@ -13,6 +13,7 @@ export const skillsData = {
         {href: "https://www.typescriptlang.org/docs/", iconId: "ts"},
         {href: "https://api.jquery.com/", iconId: "jquery"},
         {href: "https://react.dev/", iconId: "react"},
+        {href: "https://nextjs.org/docs", iconId: "nextJs"},
         {href: "https://git-scm.com/doc", iconId: "git"},
         {href: "https://www.npmjs.com/package/documentation", iconId: "npm"},
         {href: "https://gulpjs.com/", iconId: "gulp"},
