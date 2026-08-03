@@ -9,6 +9,7 @@ export const skillsData = {
         {href: "https://developer.mozilla.org/en-US/docs/Web/HTML", iconId: "html"},
         {href: "https://developer.mozilla.org/en-US/docs/Web/CSS", iconId: "css"},
         {href: "https://sass-lang.com/install/", iconId: "sass"},
+        {href: "https://tailwindcss.com/", iconId: "tailwind"},
         {href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript", iconId: "js"},
         {href: "https://www.typescriptlang.org/docs/", iconId: "ts"},
         {href: "https://api.jquery.com/", iconId: "jquery"},
