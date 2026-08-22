@@ -6,7 +6,6 @@ import { ImageSlider } from "./slider/ImageSlider";
 import { Icon } from "../../../components/icon/Icon";
 
 import { Assistant } from "./assistant/Assistant";
-import {SectionTitle} from "../../../components/SectionTitle";
 import {skillsData} from "../../../data/skillsData";
 import {GlitchTitle} from "../../../components/GlitchTitle";
 
@@ -16,7 +15,6 @@ export const Skills = () => {
     return (
         <S.Skill id={'skills'}>
             <Container>
-                {/*<SectionTitle>Skills</SectionTitle>*/}
                 <GlitchTitle>Skills</GlitchTitle>
                 <FlexWrapper justify={'space-between'} align={'center'}>
                     <S.WrappWrapp>

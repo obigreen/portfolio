@@ -2,7 +2,6 @@ import React from 'react';
 import {Container} from "../../../styles/Container";
 
 import {S} from "./AboutMe_Styles"
-import {SectionTitle} from "../../../components/SectionTitle";
 import {SectionText} from "../../../components/SectionText";
 import {FlexWrapper} from "../../../components/FlexWrapper";
 import {GlitchTitle} from "../../../components/GlitchTitle";
@@ -12,7 +11,6 @@ export const AboutMe = () => {
         <S.AboutMe id={'about-me'}>
             <Container>
                 <GlitchTitle>About Me</GlitchTitle>
-                {/*<SectionTitle>About Me</SectionTitle>*/}
                 <S.AboutMePage>
                     <S.AboutMePageHeader>
                         <FlexWrapper gap={'5px'}>
@@ -31,38 +29,52 @@ export const AboutMe = () => {
                             </S.Ptitle>
 
                             <S.Ptext>
-                                <S.Tag>&lt;p <S.Class>class=<S.Green>"about-me"</S.Green></S.Class>&gt;</S.Tag>
+                                <S.Tag>&lt;p <S.Class>class=<S.Green>"intro"</S.Green></S.Class>&gt;</S.Tag>
                                 <SectionText>
-                                    Я junior frontend-разработчик с более чем трехлетним коммерческим опытом
-                                    в HTML-верстке. Моя сильная сторона — аккуратные адаптивные лендинги
-                                    и интерфейсы: работаю по готовым макетам и без них, поддерживаю
-                                    существующие проекты, добавляю интерактив на JavaScript и слежу
-                                    за корректным отображением на разных устройствах.
+                                    Более трёх лет я разрабатываю, дорабатываю и запускаю веб-проекты
+                                    в коммерческой среде. За это время работал как с созданием страниц
+                                    с нуля, так и с большим потоком существующих лендингов: разбирался
+                                    в чужом коде, восстанавливал нарушенную логику, адаптировал проекты
+                                    под разные устройства, языки и рынки, подключал формы, аналитику
+                                    и внешние сервисы.
                                 </SectionText>
                                 <S.Tag>&lt;/p&gt;</S.Tag>
                             </S.Ptext>
 
                             <S.Ptext>
-                                <S.Tag>&lt;p <S.Class>class=<S.Green>"experience"</S.Green></S.Class>&gt;</S.Tag>
+                                <S.Tag>&lt;p <S.Class>class=<S.Green>"expertise"</S.Green></S.Class>&gt;</S.Tag>
                                 <SectionText>
-                                    Постепенно расширяю задачи в сторону полноценной frontend-разработки:
-                                    работаю с React, Redux и TypeScript, создаю собственные приложения
-                                    и глубже разбираюсь в архитектуре компонентов. В проектах также
-                                    использую WordPress, PHP, REST API и внешние интеграции. Есть опыт
-                                    полного цикла создания сайта — от идеи, дизайна и верстки до
-                                    публикации и настройки на собственном сервере.
+                                    Сильная база в HTML, CSS и JavaScript позволяет мне не ограничиваться
+                                    переносом макета в браузер. Я реализую интерактивные сценарии,
+                                    квизы и многошаговые формы, обрабатываю данные, URL-параметры
+                                    и состояние интерфейса,
+                                    интегрирую API, поддерживаю legacy-код и довожу проект до рабочего
+                                    состояния в реальном окружении. При необходимости могу пройти весь
+                                    путь от исходной идеи и интерфейса до интеграции с WordPress,
+                                    настройки сервера и публикации на домене.
                                 </SectionText>
                                 <S.Tag>&lt;/p&gt;</S.Tag>
                             </S.Ptext>
 
                             <S.Ptext>
-                                <S.Tag>&lt;p <S.Class>class=<S.Green>"studies"</S.Green></S.Class>&gt;</S.Tag>
+                                <S.Tag>&lt;p <S.Class>class=<S.Green>"development"</S.Green></S.Class>&gt;</S.Tag>
                                 <SectionText>
-                                    Продолжаю обучение frontend-разработке и получаю высшее образование
-                                    по направлению прикладной информатики. AI-агентов использую как
-                                    рабочий инструмент: поручаю им рутинные задачи, исследование подходов,
-                                    поиск причин ошибок и подготовку документации. При этом итоговый код
-                                    всегда проверяю самостоятельно и адаптирую под конкретный проект.
+                                    Сейчас продолжаю развиваться во frontend-разработке:
+                                    углубляюсь в JavaScript и TypeScript, работаю с React и Redux,
+                                    проектирую компоненты и создаю собственные приложения. Меня привлекают
+                                    задачи, в которых важны не только внешний вид, но и архитектура,
+                                    состояние интерфейса, обработка данных и поведение системы.
+                                </SectionText>
+                                <S.Tag>&lt;/p&gt;</S.Tag>
+                            </S.Ptext>
+
+                            <S.Ptext>
+                                <S.Tag>&lt;p <S.Class>class=<S.Green>"approach"</S.Green></S.Class>&gt;</S.Tag>
+                                <SectionText>
+                                    Быстро погружаюсь в незнакомые проекты, умею находить причины ошибок
+                                    и самостоятельно доводить задачу до результата. Не привязываюсь
+                                    к одному набору технологий: выбираю и осваиваю инструменты,
+                                    которые действительно нужны проекту.
                                 </SectionText>
                                 <S.Tag>&lt;/p&gt;</S.Tag>
                             </S.Ptext>
@@ -75,8 +87,6 @@ export const AboutMe = () => {
         </S.AboutMe>
     );
 };
-
-
 
 
 
