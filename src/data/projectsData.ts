@@ -62,15 +62,15 @@ export const projectsData: ProjectType[] = [
     //     link: 'https://obigreen.github.io/react-utils-hub/'
     // },
 
-    {
-        previewType: "live",
-        technologies: 'В процессе написания',
-        title: 'В процессе написания',
-        slideText: 'В процессе написания',
-        descText: 'В процессе написания',
-        buttonText: 'Open <~>',
-        link: 'https://obigreen.github.io/promo-quiz-converter/'
-    },
+    // {
+    //     previewType: "live",
+    //     technologies: 'В процессе написания',
+    //     title: 'В процессе написания',
+    //     slideText: 'В процессе написания',
+    //     descText: 'В процессе написания',
+    //     buttonText: 'Open <~>',
+    //     link: 'https://obigreen.github.io/promo-quiz-converter/'
+    // },
 
     {
         previewType: "live",
