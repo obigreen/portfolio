@@ -1,7 +1,7 @@
-import nodeJs from "../assets/img/icons/nodeJs.svg";
 import webstorm from "../assets/img/icons/webstorm.svg";
 import stComm from "../assets/img/icons/styled-components.svg";
 
+export const SKILL_ICON_VIEW_BOX = "0 0 32 32";
 
 
 export const skillsData = {

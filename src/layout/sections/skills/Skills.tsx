@@ -6,7 +6,7 @@ import { ImageSlider } from "./slider/ImageSlider";
 import { Icon } from "../../../components/icon/Icon";
 
 import { Assistant } from "./assistant/Assistant";
-import {skillsData} from "../../../data/skillsData";
+import {SKILL_ICON_VIEW_BOX, skillsData} from "../../../data/skillsData";
 import {GlitchTitle} from "../../../components/GlitchTitle";
 
 
@@ -24,7 +24,7 @@ export const Skills = () => {
                                     {items.map((item, idx) => (
                                         <S.IconLink key={idx} href={item.href} target={'_blank'}>
                                             {item.iconId ? (
-                                                <Icon iconId={item.iconId} width={'60'} height={'60'} viewBox={'0 0 32 32'} />
+                                                <Icon iconId={item.iconId} width={'60'} height={'60'} viewBox={SKILL_ICON_VIEW_BOX} />
                                             ) : (
                                                 <S.Img src={item.imgSrc} alt="" />
                                             )}
@@ -40,7 +40,6 @@ export const Skills = () => {
         </S.Skill>
     );
 };
-
 
 
 
