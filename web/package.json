@@ -1,0 +1,46 @@
+{
+  "name": "@portfolio/web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "build:github": "tsc --noEmit && vite build --mode github",
+    "lint": "eslint . --max-warnings 0",
+    "preview": "vite preview",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.5.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-is": "18.3.1",
+    "react-redux": "^9.2.0",
+    "react-scroll": "^1.9.0",
+    "styled-components": "^5.3.11",
+    "swiper": "^11.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@testing-library/dom": "10.4.2",
+    "@testing-library/jest-dom": "7.0.1",
+    "@testing-library/react": "16.3.3",
+    "@types/node": "26.6.5",
+    "@types/react": "18.3.31",
+    "@types/react-dom": "18.3.7",
+    "@types/react-scroll": "^1.8.10",
+    "@types/styled-components": "5.1.36",
+    "@vitejs/plugin-react": "6.1.2",
+    "@eslint/js": "10.0.1",
+    "eslint": "10.13.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "eslint-plugin-react-refresh": "0.5.7",
+    "globals": "17.13.0",
+    "jsdom": "29.1.1",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.71.2",
+    "vite": "8.3.4",
+    "vitest": "5.0.5"
+  }
+}
