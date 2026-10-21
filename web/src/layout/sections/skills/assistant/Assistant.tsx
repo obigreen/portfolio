@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
 import {FlexWrapper} from "../../../../components/FlexWrapper";
 import {ButtonWin98} from "../../../../components/ButtonWin98";
 import {S} from "./Assistant_Styles"
+import {ChangeEvent, useState} from "react";
 // import Gear from "../../../../assets/img/icons/gear.svg"
 // import Enclosure from "../../../../assets/img/enclosure.png"
 
@@ -19,20 +19,47 @@ async function getGPTResponse(prompt: string) {
     });
 
     const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(data.error || 'Request failed');
+    }
     return data.message;
 }
 
 export const Assistant = () => {
     const [inputText, setInputText] = useState("");
     const [responseText, setResponseText] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleInputChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setInputText(event.target.value);
     };
 
     const handleSubmit = async () => {
-        const response = await getGPTResponse(inputText);
-        setResponseText(response);
+        const prompt = inputText.trim();
+        if (!prompt) {
+            setResponseText("Enter your question");
+            return;
+        }
+
+        // после проверки наличия запроса блокируем поле и кнопку
+        setIsLoading(true);
+
+        try {
+            const message = await getGPTResponse(prompt);
+            setResponseText(message);
+            setInputText("");
+        } catch (error) {
+            // error instanceof Error проверяет, является ли пойманное значение объектом класса Error
+            if (error instanceof Error) {
+                setResponseText(error.message);
+            } else {
+                setResponseText("Unknown error");
+            }
+        } finally {
+            setIsLoading(false);
+        }
+
     };
 
     return (
@@ -62,10 +89,11 @@ export const Assistant = () => {
                     value={inputText}
                     onChange={handleInputChange}
                     placeholder="Напишите вопрос..."
+                    disabled={isLoading}
                 />
                 <S.Aibutton>
-                    <ButtonWin98 onClick={handleSubmit}>
-                        Enter
+                    <ButtonWin98 onClick={handleSubmit} disabled={isLoading || inputText.trim() === ""}>
+                        {isLoading ? 'Loading...' : 'Enter'}
                     </ButtonWin98>
                 </S.Aibutton>
             </FlexWrapper>
