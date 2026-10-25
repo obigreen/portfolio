@@ -103,6 +103,15 @@ export const projectsData: ProjectType[] = [
         link: "https://obigreen.github.io/portfolio-hub/projects/multipage/shadient/",
     },
 
+    {
+        previewType: "live",
+        technologies: "HTML5 CSS3 SCSS JS Swiper Gulp SCSS JS Gulp jQuery WOW Animate",
+        title: "Slim Rush",
+        slideText: "Slim Rush - слайдер лендинг",
+        descText: "Адаптивный figma lending",
+        buttonText: "Open <~>",
+        link: "https://obigreen.github.io/portfolio-hub/projects/landings/slimRush/dist/",
+    },
 
 
 
