@@ -27,7 +27,7 @@ export type ProjectType = {
 export const projectsData: ProjectType[] = [
     {
         previewType: "live",
-        technologies: "HTML5 CSS3 JavaScript PHP Swiper Telegram Bot API",
+        technologies: "HTML5 CSS3 JS PHP Swiper TelegramBot API",
         title: "VitaCall",
         slideText: "Adaptive recruiting landing page for a call-center team",
         descText: "VitaCall — коммерческий адаптивный лендинг для набора операторов в международный call-центр. Проект создавался без готового макета и без референсов: на входе были только текстовые блоки и задача собрать рабочую структуру страницы. Я реализовал верстку, адаптив под desktop/mobile, sticky header с burger-menu, CTA pop-up, плавную навигацию по секциям, Swiper-слайдер отзывов, анимацию карьерного блока, многошаговую анкету с прогрессом, валидацией и сбором ответов, а также отправку заявок в Telegram-бот через PHP endpoint. На текущей рабочей версии сайта дополнительно присутствует переключение языка RU/UZ; эту языковую доработку реализовывал не я. Также на текущей версии сайта отсутствует favicon. [commercial], Сссылка на гит деплой для корректного отображению live превью. real link - [https://vitacall.ru/]",
@@ -36,12 +36,12 @@ export const projectsData: ProjectType[] = [
     },
     {
         previewType: "live",
-        technologies: 'HTML5 SCSS JS Gulp jQuery Slick WOW Inputmask',
+        technologies: 'HTML5 CSS3 SCSS JS Gulp jQuery Slick WOW Animate Inputmask',
         title: 'Boom Burger',
         slideText: 'Landing page',
         descText: 'Данный проект представляет собой одностраничное приложение (landing page) с адаптивной версткой и интерактивными элементами, созданное с использованием современных веб-технологий для оптимизации разработки и улучшения пользовательского опыта. В проекте используется HTML для структуры страницы, SCSS для оформления с применением переменных, вложенности и миксинов, а также JavaScript (Vanilla и jQuery) для реализации динамических элементов, таких как мобильное меню, таймеры, формы и плавный скролл. Сборка и оптимизация проекта выполнены с использованием Gulp, который позволяет компилировать SCSS в CSS, минифицировать и объединять файлы. Для реализации адаптивных слайдеров применена библиотека Slick, а WOW.js добавляет анимации при прокрутке страницы. Inputmask используется для форматирования ввода телефонного номера в форме заказа. Проект структурирован для удобной работы, а также обеспечивает поддержку анимации, интерактивных интерфейсов и адаптивности. [study-pet]',
         buttonText: 'Open <~>',
-        link: 'https://obigreen.github.io/boom-burger/'
+        link: 'https://obigreen.github.io/portfolio-hub/projects/landings/boom-burger/'
     },
     {
         previewType: "live",
@@ -52,15 +52,6 @@ export const projectsData: ProjectType[] = [
         buttonText: 'Open <~>',
         link: 'https://obigreen.github.io/practiceJs/'
     },
-    // {
-    //     previewType: "live",
-    //     technologies: 'React JS TS Router Styled-components',
-    //     title: 'React utils hub',
-    //     slideText: 'Interactive Practice Platform for Utils [ONLY DESKTOP VERSION]',
-    //     descText: 'Это React-приложение, представляющее собой dashboard, в котором собрано множество решений для практики написания кода. В отличие от другого моего проекта, посвященного мини-играм, этот проект ориентирован на различные интерактивные виджеты и утилиты. Здесь можно найти и протестировать разные реализации полезных компонентов, доступных через удобную навигацию.',
-    //     buttonText: 'Open <~>',
-    //     link: 'https://obigreen.github.io/react-utils-hub/'
-    // },
 
     // {
     //     previewType: "live",
@@ -82,7 +73,6 @@ export const projectsData: ProjectType[] = [
         link: "https://obigreen.github.io/mini-js-hub/"
     },
 
-
     {
         previewType: "live",
         technologies: "Photoshop HTML5 CSS3 JS Swiper WordPress PHP ACF REST API",
@@ -95,7 +85,7 @@ export const projectsData: ProjectType[] = [
 
     {
         previewType: "live",
-        technologies: "HTML5 CSS3 JS Swiper WordPress PHP ACF Telegram-Bot-API",
+        technologies: "HTML5 CSS3 JS Swiper WordPress PHP ACF TelegramBot API",
         title: "Shadient.co",
         slideText: "working...",
         descText: "Адаптивный figma lending, в процессе натяжки на wordpress",
@@ -105,7 +95,7 @@ export const projectsData: ProjectType[] = [
 
     {
         previewType: "live",
-        technologies: "HTML5 CSS3 SCSS JavaScript jQuery GSAP Swiper Gulp",
+        technologies: "HTML5 CSS3 SCSS JS jQuery GSAP Swiper Gulp",
         title: "Slim Rush",
         slideText: "Fullscreen slider landing page for a wellness product",
         descText: "Slim Rush - адаптивный промолендинг в формате полноэкранного слайдера. Переходы между экранами управляются прокруткой и свайпами, а контент, продукт и ингредиенты появляются через последовательные GSAP-анимации. Также реализованы мобильный Swiper-слайдер, отзывы с модальными окнами и форма заказа. Исходники организованы через SCSS и Gulp, готовая версия собирается в dist. [pet]",
