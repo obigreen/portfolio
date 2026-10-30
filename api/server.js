@@ -1,6 +1,7 @@
 const express = require('express');
 const OpenAI = require('openai');
 const cors = require('cors');
+const projectsData = require('../shared/projects.json');
 
 const app = express();
 const port = process.env.PORT || 5001;
@@ -10,13 +11,21 @@ const openai = new OpenAI({
     apiKey: apiKey
 });
 
+const projectsContext = projectsData.map((project) => {
+    return `Название: ${project.title}, Технологии: ${project.technologies}, Краткое описание: ${project.slideText}, Подробное описание: ${project.descText}, Ссылка: ${project.link}`;
+}).join('\n\n');
+
 
 app.use(cors());
 app.use(express.json());
 
 
 app.get('/api/health', (_request, response) => {
-    response.status(200).json({status: 'OK'});
+    response.status(200).json({
+        status: 'OK',
+        projectsLoaded: projectsData.length,
+        contextCharacters: projectsContext.length,
+    });
 });
 
 
@@ -35,6 +44,15 @@ app.post('/api/chat', async (request, response) => {
     try {
         const apiResponse = await openai.responses.create({
             model: 'gpt-6-luna',
+
+            instructions: `Ты ассистент портфолио Сергея.
+                Отвечай на вопросы о его проектах на русском языке.
+                Используй только предоставленные ниже данные.
+                Если в данных нет ответа, честно сообщи, что такой информации нет.
+                Не выдумывай проекты, технологии, ссылки или факты.
+
+                Проекты: ${projectsContext}`,
+
             input: message,
         });
 
