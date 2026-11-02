@@ -15,6 +15,8 @@
     "dev": "yarn workspace @portfolio/web dev",
     "dev:web": "yarn workspace @portfolio/web dev",
     "dev:api": "yarn workspace @portfolio/api dev",
+    "dev:api:limits": "yarn workspace @portfolio/api dev:limits",
+    "start:api": "yarn workspace @portfolio/api start",
     "build": "yarn workspace @portfolio/web build",
     "build:github": "yarn workspace @portfolio/web build:github",
     "lint": "yarn workspace @portfolio/web lint",
