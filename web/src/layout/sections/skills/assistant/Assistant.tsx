@@ -7,6 +7,7 @@ import {ChangeEvent, useState} from "react";
 
 
 const API_URL: string = import.meta.env.VITE_API_URL;
+const MAX_PROMPT_LENGTH = 500;
 
 // Функция для получения ответа от GPT
 async function getGPTResponse(prompt: string) {
@@ -88,9 +89,15 @@ export const Assistant = () => {
                 <S.TextareaInp
                     value={inputText}
                     onChange={handleInputChange}
+                    maxLength={MAX_PROMPT_LENGTH}
                     placeholder="Напишите вопрос..."
                     disabled={isLoading}
                 />
+
+                <S.CharacterCounter>
+                    {inputText.length} / {MAX_PROMPT_LENGTH}
+                </S.CharacterCounter>
+
                 <S.Aibutton>
                     <ButtonWin98 onClick={handleSubmit} disabled={isLoading || inputText.trim() === ""}>
                         {isLoading ? 'Loading...' : 'Enter'}

@@ -44,6 +44,17 @@ const Aibutton = styled.div`
     right: 5px;
 `
 
+const CharacterCounter = styled.span`
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    color: ${theme.color.mainFont};
+    font-size: 12px;
+    line-height: 1;
+    opacity: 0.65;
+    pointer-events: none;
+`;
+
 // Вращающиеся шестеренки
 // // Анимация вращения по часовой стрелке
 // const rotateClockwise = keyframes`
@@ -153,5 +164,5 @@ const Aibutton = styled.div`
 
 
 export const S = {
-    AssistantWrap, TextareaOutp, TextareaInp, Aibutton
+    AssistantWrap, TextareaOutp, TextareaInp, Aibutton, CharacterCounter
 }
