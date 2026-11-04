@@ -8,14 +8,15 @@
     "dev:limits": "NODE_ENV=development node --watch --env-file-if-exists=.env server.js",
     "start": "NODE_ENV=production node --env-file-if-exists=.env server.js"
   },
-
   "dependencies": {
+    "cookie-parser": "1.4.7",
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "express-rate-limit": "8.7.2",
     "openai": "^7.39.0"
   },
   "devDependencies": {
+    "@types/cookie-parser": "1.4.10",
     "@types/express": "4.17.25"
   }
 }
