@@ -3,15 +3,21 @@ const OpenAI = require('openai');
 const cors = require('cors');
 const projectsData = require('../shared/projects.json');
 const {rateLimit} = require('express-rate-limit');
+const cookieParser = require('cookie-parser');
+const {randomUUID} = require('node:crypto');
 
 const app = express();
 const port = process.env.PORT || 5001;
 const apiKey = process.env.OPENAI_API_KEY;
+const cookieSecret = process.env.COOKIE_SECRET;
+const webOrigin = process.env.WEB_ORIGIN;
 const MAX_PROMPT_LENGTH = 500;
 const MAX_OUTPUT_TOKENS = 500;
 const ONE_DAY_IN_MS = 24 * 60 * 60 * 1000;
-const MAX_REQUESTS_PER_DAY = 2;
+const MAX_IP_REQUESTS_PER_DAY = 2;
+const MAX_SESSION_REQUESTS_PER_DAY = 2;
 const MAX_GLOBAL_REQUESTS_PER_DAY = 10;
+const SESSION_COOKIE_NAME = 'portfolio_session';
 
 const shouldBypassRateLimits =
     process.env.NODE_ENV === 'development' &&
@@ -21,13 +27,25 @@ const openai = new OpenAI({
     apiKey: apiKey,
 });
 
+if (!cookieSecret || cookieSecret.length < 32) {
+    throw new Error('COOKIE_SECRET must contain at least 32 characters');
+}
+
+if (!webOrigin) {
+    throw new Error('WEB_ORIGIN is required');
+}
+
 const projectsContext = projectsData.map((project) => {
     return `Название: ${project.title}, Технологии: ${project.technologies}, Краткое описание: ${project.slideText}, Подробное описание: ${project.descText}, Ссылка: ${project.link}`;
 }).join('\n\n');
 
 
-app.use(cors());
+app.use(cors({
+    origin: webOrigin,
+    credentials: true
+}));
 app.use(express.json());
+app.use(cookieParser(cookieSecret));
 
 
 const validatePrompt = (request, response, next) => {
@@ -53,60 +71,34 @@ const validatePrompt = (request, response, next) => {
     return next();
 }
 
+const ensureAnonymousSession = (request, response, next) => {
+    const existingSessionId =
+        request.signedCookies[SESSION_COOKIE_NAME];
 
-// limiters =================================================================================
+    if (typeof existingSessionId === 'string') {
+        response.locals.sessionId = existingSessionId;
+        return next();
+    }
 
-/*
-Часто используемые настройки rateLimit({ ... }):
+    const sessionId = randomUUID();
 
-windowMs: number
-    Длительность окна в миллисекундах. По умолчанию 60 000 (1 минута).
-limit: number | function
-    Сколько запросов разрешено одному ключу за окно. По умолчанию 5.
-keyGenerator: function
-    Возвращает ключ клиента. По умолчанию используется IP.
-requestPropertyName: string
-    Имя поля в request с данными {limit, used, remaining, resetTime, key}.
+    response.cookie(SESSION_COOKIE_NAME, sessionId, {
+        signed: true,
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        maxAge: ONE_DAY_IN_MS,
+        path: '/',
+    });
 
-standardHeaders: false | 'draft-6' | 'draft-7' | 'draft-8'
-    Современные заголовки лимита. draft-8 формирует RateLimit и
-    RateLimit-Policy с лимитом, остатком и временем до сброса.
-legacyHeaders: boolean
-    Включает устаревшие заголовки X-RateLimit-*.
-identifier: string | function
-    Название политики в заголовках draft-8.
-retryAfter: number | function
-    Значение Retry-After в секундах; не изменяет реальное окно windowMs.
+    response.locals.sessionId = sessionId;
+    return next();
+};
 
-statusCode: number
-    HTTP-код при блокировке. По умолчанию 429.
-message: any | function
-    Стандартное тело ответа при блокировке.
-handler: function
-    Собственный обработчик блокировки; заменяет стандартные statusCode/message.
 
-skip: function
-    Возвращает true, если конкретный запрос не нужно учитывать.
-skipFailedRequests: boolean
-    Не учитывать ответы с ошибками 4xx/5xx.
-skipSuccessfulRequests: boolean
-    Не учитывать успешные ответы с кодом меньше 400.
-requestWasSuccessful: function
-    Собственное правило определения успешного запроса.
-
-store: Store
-    Хранилище счётчиков. По умолчанию MemoryStore; можно подключить Redis и др.
-passOnStoreError: boolean
-    Пропускать ли запрос, если внешнее хранилище недоступно.
-ipv6Subnet: number | false
-    Размер IPv6-подсети для объединения адресов. По умолчанию 56.
-validate: boolean | object
-    Включает или настраивает встроенные проверки конфигурации.
-*/
-
-const chatRateLimiter = rateLimit({
+const ipChatRateLimiter = rateLimit({
     windowMs: ONE_DAY_IN_MS,
-    limit: MAX_REQUESTS_PER_DAY,
+    limit: MAX_IP_REQUESTS_PER_DAY,
     // Формат draft-8 добавляет современные RateLimit и RateLimit-Policy.
     standardHeaders: "draft-8",
     legacyHeaders: false,
@@ -118,6 +110,32 @@ const chatRateLimiter = rateLimit({
     // Не учитывать запросы при обычном локальном dev-запуске.
     skip: () => shouldBypassRateLimits,
 })
+
+const sessionChatRateLimiter = rateLimit({
+    windowMs: ONE_DAY_IN_MS,
+    limit: MAX_SESSION_REQUESTS_PER_DAY,
+
+    // Все запросы с одной cookie получают один ключ счётчика.
+    keyGenerator: (_request, response) => {
+        return response.locals.sessionId;
+    },
+
+    // Не перезаписываем данные IP-лимитера в request.rateLimit.
+    requestPropertyName: 'sessionRateLimit',
+
+    // Заголовки уже формирует IP-лимитер.
+    standardHeaders: false,
+    legacyHeaders: false,
+
+    handler: (_request, response) => {
+        return response.status(429).json({
+            error: 'Лимит запросов для этого браузера исчерпан. Попробуйте позже.',
+        });
+    },
+
+    // При обычной локальной разработке лимиты отключены.
+    skip: () => shouldBypassRateLimits,
+});
 
 const globalChatRateLimiter = rateLimit({
     windowMs: ONE_DAY_IN_MS,
@@ -138,7 +156,7 @@ const globalChatRateLimiter = rateLimit({
     // Не учитывать запросы при обычном локальном dev-запуске.
     skip: () => shouldBypassRateLimits,
 })
-// limiters =================================================================================
+
 
 app.get('/api/health', (_request, response) => {
     response.status(200).json({
@@ -149,7 +167,7 @@ app.get('/api/health', (_request, response) => {
 });
 
 
-app.post('/api/chat', validatePrompt, chatRateLimiter, globalChatRateLimiter, async (request, response) => {
+app.post('/api/chat', validatePrompt, ensureAnonymousSession, ipChatRateLimiter, sessionChatRateLimiter, globalChatRateLimiter, async (request, response) => {
     const message = response.locals.prompt;
 
     try {

@@ -13,6 +13,7 @@ const MAX_PROMPT_LENGTH = 500;
 async function getGPTResponse(prompt: string) {
     const response = await fetch(`${API_URL}/api/chat`, {
         method: 'POST',
+        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
         },
