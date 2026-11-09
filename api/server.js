@@ -7,13 +7,18 @@ const cookieParser = require('cookie-parser');
 const {randomUUID} = require('node:crypto');
 
 const app = express();
+app.disable('x-powered-by');
+
 const port = process.env.PORT || 5001;
 const apiKey = process.env.OPENAI_API_KEY;
 const cookieSecret = process.env.COOKIE_SECRET;
 const webOrigin = process.env.WEB_ORIGIN;
 const MAX_PROMPT_LENGTH = 500;
 const MAX_OUTPUT_TOKENS = 500;
+const MAX_JSON_BODY_SIZE = '4kb';
+const ONE_MINUTE_IN_MS = 60 * 1000;
 const ONE_DAY_IN_MS = 24 * 60 * 60 * 1000;
+const MAX_RAW_CHAT_REQUESTS_PER_MINUTE = 30;
 const MAX_IP_REQUESTS_PER_DAY = 2;
 const MAX_SESSION_REQUESTS_PER_DAY = 2;
 const MAX_GLOBAL_REQUESTS_PER_DAY = 10;
@@ -23,9 +28,9 @@ const shouldBypassRateLimits =
     process.env.NODE_ENV === 'development' &&
     process.env.BYPASS_RATE_LIMITS === 'true';
 
-const openai = new OpenAI({
-    apiKey: apiKey,
-});
+if (!apiKey) {
+    throw new Error('OPENAI_API_KEY is required');
+}
 
 if (!cookieSecret || cookieSecret.length < 32) {
     throw new Error('COOKIE_SECRET must contain at least 32 characters');
@@ -35,16 +40,42 @@ if (!webOrigin) {
     throw new Error('WEB_ORIGIN is required');
 }
 
+try {
+    new URL(webOrigin);
+} catch {
+    throw new Error('WEB_ORIGIN must be a valid URL');
+}
+
+const openai = new OpenAI({
+    apiKey,
+});
+
 const projectsContext = projectsData.map((project) => {
     return `Название: ${project.title}, Технологии: ${project.technologies}, Краткое описание: ${project.slideText}, Подробное описание: ${project.descText}, Ссылка: ${project.link}`;
 }).join('\n\n');
 
+const rawChatTrafficLimiter = rateLimit({
+    windowMs: ONE_MINUTE_IN_MS,
+    limit: MAX_RAW_CHAT_REQUESTS_PER_MINUTE,
+    standardHeaders: false,
+    legacyHeaders: false,
+    handler: (_request, response) => {
+        return response.status(429).json({
+            error: 'Слишком много запросов. Попробуйте позже.',
+        });
+    },
+    // Не мешаем обычной локальной разработке.
+    skip: () => shouldBypassRateLimits,
+});
+
 
 app.use(cors({
     origin: webOrigin,
-    credentials: true
+    credentials: true,
 }));
-app.use(express.json());
+// Технический лимит срабатывает до разбора JSON-тела.
+app.use('/api/chat', rawChatTrafficLimiter);
+app.use(express.json({limit: MAX_JSON_BODY_SIZE}));
 app.use(cookieParser(cookieSecret));
 
 
@@ -94,7 +125,6 @@ const ensureAnonymousSession = (request, response, next) => {
     response.locals.sessionId = sessionId;
     return next();
 };
-
 
 const ipChatRateLimiter = rateLimit({
     windowMs: ONE_DAY_IN_MS,
@@ -219,6 +249,35 @@ app.post('/api/chat', validatePrompt, ensureAnonymousSession, ipChatRateLimiter,
     }
 
 });
+
+const handleServerError = (error, _request, response, next) => {
+    if (response.headersSent) {
+        next(error);
+        return;
+    }
+
+    if (error?.type === 'entity.too.large') {
+        response.status(413).json({
+            error: 'Размер запроса превышает допустимый лимит.',
+        });
+        return;
+    }
+
+    if (error?.type === 'entity.parse.failed') {
+        response.status(400).json({
+            error: 'Некорректный JSON в теле запроса.',
+        });
+        return;
+    }
+
+    console.error('Unhandled server error:', error);
+
+    response.status(500).json({
+        error: 'Внутренняя ошибка сервера.',
+    });
+};
+
+app.use(handleServerError);
 
 
 app.listen(port, () => {

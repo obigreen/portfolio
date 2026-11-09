@@ -1,7 +1,7 @@
 import {FlexWrapper} from "../../../../components/FlexWrapper";
 import {ButtonWin98} from "../../../../components/ButtonWin98";
 import {S} from "./Assistant_Styles"
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, KeyboardEvent, useState} from "react";
 // import Gear from "../../../../assets/img/icons/gear.svg"
 // import Enclosure from "../../../../assets/img/enclosure.png"
 
@@ -50,7 +50,7 @@ export const Assistant = () => {
         try {
             const message = await getGPTResponse(prompt);
             setResponseText(message);
-            setInputText("");
+            setInputText('');
         } catch (error) {
             // error instanceof Error проверяет, является ли пойманное значение объектом класса Error
             if (error instanceof Error) {
@@ -62,6 +62,21 @@ export const Assistant = () => {
             setIsLoading(false);
         }
 
+    };
+
+    const handleInputKeyDown = (
+        event: KeyboardEvent<HTMLTextAreaElement>,
+    ) => {
+        // Enter отправляет сообщение, Shift + Enter переносит строку.
+        if (event.key !== 'Enter' || event.shiftKey) {
+            return;
+        }
+
+        event.preventDefault();
+
+        if (!isLoading && inputText.trim()) {
+            void handleSubmit();
+        }
     };
 
     return (
@@ -87,9 +102,11 @@ export const Assistant = () => {
                 {/*</S.MarqueeWrap>*/}
 
                 <S.TextareaOutp value={responseText} readOnly placeholder="Ответ..."/>
+
                 <S.TextareaInp
                     value={inputText}
                     onChange={handleInputChange}
+                    onKeyDown={handleInputKeyDown}
                     maxLength={MAX_PROMPT_LENGTH}
                     placeholder="Напишите вопрос..."
                     disabled={isLoading}
@@ -101,7 +118,18 @@ export const Assistant = () => {
 
                 <S.Aibutton>
                     <ButtonWin98 onClick={handleSubmit} disabled={isLoading || inputText.trim() === ""}>
-                        {isLoading ? 'Loading...' : 'Enter'}
+                        {isLoading ? (
+                            <span>
+                                Loading
+                                <S.LoadingDots aria-hidden="true">
+                                    <span>.</span>
+                                    <span>.</span>
+                                    <span>.</span>
+                                </S.LoadingDots>
+                            </span>
+                        ) : (
+                            'Enter'
+                        )}
                     </ButtonWin98>
                 </S.Aibutton>
             </FlexWrapper>

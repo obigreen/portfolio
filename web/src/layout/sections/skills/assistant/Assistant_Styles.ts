@@ -1,6 +1,36 @@
 import {theme} from "../../../../styles/Theme";
 import styled, {keyframes} from "styled-components";
 
+const showFirstLoadingDot = keyframes`
+    0%, 24% {
+        visibility: hidden;
+    }
+
+    25%, 100% {
+        visibility: visible;
+    }
+`;
+
+const showSecondLoadingDot = keyframes`
+    0%, 49% {
+        visibility: hidden;
+    }
+
+    50%, 100% {
+        visibility: visible;
+    }
+`;
+
+const showThirdLoadingDot = keyframes`
+    0%, 74% {
+        visibility: hidden;
+    }
+
+    75%, 100% {
+        visibility: visible;
+    }
+`;
+
 const AssistantWrap = styled.div`
     position: relative;
     max-width: 400px;
@@ -53,6 +83,31 @@ const CharacterCounter = styled.span`
     line-height: 1;
     opacity: 0.65;
     pointer-events: none;
+`;
+
+const LoadingDots = styled.span`
+    display: inline-flex;
+    width: 12px;
+    text-align: left;
+
+    span:nth-child(1) {
+        animation: ${showFirstLoadingDot} 1.2s step-end infinite;
+    }
+
+    span:nth-child(2) {
+        animation: ${showSecondLoadingDot} 1.2s step-end infinite;
+    }
+
+    span:nth-child(3) {
+        animation: ${showThirdLoadingDot} 1.2s step-end infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        span {
+            visibility: visible;
+            animation: none;
+        }
+    }
 `;
 
 // Вращающиеся шестеренки
@@ -164,5 +219,5 @@ const CharacterCounter = styled.span`
 
 
 export const S = {
-    AssistantWrap, TextareaOutp, TextareaInp, Aibutton, CharacterCounter
+    AssistantWrap, TextareaOutp, TextareaInp, Aibutton, CharacterCounter, LoadingDots
 }
