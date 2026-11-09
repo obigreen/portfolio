@@ -1,65 +1,82 @@
 import {FlexWrapper} from "../../../../components/FlexWrapper";
 import {ButtonWin98} from "../../../../components/ButtonWin98";
 import {S} from "./Assistant_Styles"
-import {ChangeEvent, KeyboardEvent, useState} from "react";
+import {useEffect, useRef, useState} from "react";
+import type {ChangeEvent, KeyboardEvent} from "react";
+import {isAbortError, streamAssistantResponse} from "./assistantStream";
 // import Gear from "../../../../assets/img/icons/gear.svg"
 // import Enclosure from "../../../../assets/img/enclosure.png"
 
 
-const API_URL: string = import.meta.env.VITE_API_URL;
 const MAX_PROMPT_LENGTH = 500;
-
-// Функция для получения ответа от GPT
-async function getGPTResponse(prompt: string) {
-    const response = await fetch(`${API_URL}/api/chat`, {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({prompt}),
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-        throw new Error(data.error || 'Request failed');
-    }
-    return data.message;
-}
 
 export const Assistant = () => {
     const [inputText, setInputText] = useState("");
     const [responseText, setResponseText] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const activeRequestController = useRef<AbortController | null>(null);
+    const outputTextarea = useRef<HTMLTextAreaElement | null>(null);
+
+    useEffect(() => {
+        return () => {
+            activeRequestController.current?.abort();
+        };
+    }, []);
+
+    useEffect(() => {
+        if (outputTextarea.current) {
+            outputTextarea.current.scrollTop = outputTextarea.current.scrollHeight;
+        }
+    }, [responseText]);
 
     const handleInputChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setInputText(event.target.value);
     };
 
     const handleSubmit = async () => {
+        if (activeRequestController.current) {
+            return;
+        }
+
         const prompt = inputText.trim();
         if (!prompt) {
             setResponseText("Enter your question");
             return;
         }
 
-        // после проверки наличия запроса блокируем поле и кнопку
+        const abortController = new AbortController();
+        activeRequestController.current = abortController;
+
+        setResponseText('');
         setIsLoading(true);
 
         try {
-            const message = await getGPTResponse(prompt);
-            setResponseText(message);
+            await streamAssistantResponse(
+                prompt,
+                abortController.signal,
+                (text) => {
+                    setResponseText((currentText) => currentText + text);
+                },
+            );
             setInputText('');
         } catch (error) {
-            // error instanceof Error проверяет, является ли пойманное значение объектом класса Error
+            if (isAbortError(error)) {
+                return;
+            }
+
             if (error instanceof Error) {
                 setResponseText(error.message);
             } else {
                 setResponseText("Unknown error");
             }
         } finally {
-            setIsLoading(false);
+            if (activeRequestController.current === abortController) {
+                activeRequestController.current = null;
+
+                if (!abortController.signal.aborted) {
+                    setIsLoading(false);
+                }
+            }
         }
 
     };
@@ -101,7 +118,12 @@ export const Assistant = () => {
                 {/*    </S.Marquee>*/}
                 {/*</S.MarqueeWrap>*/}
 
-                <S.TextareaOutp value={responseText} readOnly placeholder="Ответ..."/>
+                <S.TextareaOutp
+                    ref={outputTextarea}
+                    value={responseText}
+                    readOnly
+                    placeholder="Ответ..."
+                />
 
                 <S.TextareaInp
                     value={inputText}
