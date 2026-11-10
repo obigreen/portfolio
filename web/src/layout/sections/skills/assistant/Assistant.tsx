@@ -119,6 +119,10 @@ export const Assistant = () => {
                 {/*</S.MarqueeWrap>*/}
 
                 <S.TextareaOutp
+                    id="assistant-response"
+                    name="assistantResponse"
+                    aria-label="Ответ ассистента"
+                    autoComplete="off"
                     ref={outputTextarea}
                     value={responseText}
                     readOnly
@@ -126,6 +130,10 @@ export const Assistant = () => {
                 />
 
                 <S.TextareaInp
+                    id="assistant-prompt"
+                    name="assistantPrompt"
+                    aria-label="Вопрос ассистенту"
+                    autoComplete="off"
                     value={inputText}
                     onChange={handleInputChange}
                     onKeyDown={handleInputKeyDown}

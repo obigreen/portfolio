@@ -12,10 +12,21 @@ type StyledWorkPropsType = {
     technologies: string;
     buttonText: string;
     link?: string
+    shouldRenderPreview: boolean;
     onOpenModal: () => void;
 }
 
-export const Project = memo(({title, text, src, previewType = "image", link, technologies, buttonText, onOpenModal }: StyledWorkPropsType) => {
+export const Project = memo(({
+    title,
+    text,
+    src,
+    previewType = "image",
+    link,
+    technologies,
+    buttonText,
+    shouldRenderPreview,
+    onOpenModal,
+}: StyledWorkPropsType) => {
     const [hasLivePreviewError, setHasLivePreviewError] = useState(false);
 
     const handleButtonClick = () => {
@@ -29,13 +40,15 @@ export const Project = memo(({title, text, src, previewType = "image", link, tec
             <FlexWrapper height={'200px'} overflow={'hidden'} >
                 {showLivePreview ? (
                     <S.PreviewViewport>
-                        <S.PreviewFrame
-                            src={link}
-                            title={`${title} live preview`}
-                            loading="lazy"
-                            referrerPolicy="no-referrer"
-                            onError={() => setHasLivePreviewError(true)}
-                        />
+                        {shouldRenderPreview && (
+                            <S.PreviewFrame
+                                src={link}
+                                title={`${title} live preview`}
+                                loading="lazy"
+                                referrerPolicy="no-referrer"
+                                onError={() => setHasLivePreviewError(true)}
+                            />
+                        )}
                     </S.PreviewViewport>
                 ) : (
                     <img

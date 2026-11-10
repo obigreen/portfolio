@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -14,8 +14,100 @@ import {Autoplay, Mousewheel} from "swiper/modules";
 import type { Swiper as SwiperCore } from "swiper";
 import {GlitchTitle} from "../../../components/GlitchTitle";
 
+const PREVIEW_BUFFER = 1;
+const DEFAULT_VISIBLE_SLIDES = 3;
+const PROJECTS_PRELOAD_MARGIN = "400px 0px";
+
+const getPreviewIndexes = (activeIndex: number, visibleSlides: number) => {
+    const indexes = new Set<number>();
+    const projectsCount = projectsData.length;
+
+    if (projectsCount === 0) {
+        return indexes;
+    }
+
+    for (let offset = -PREVIEW_BUFFER; offset < visibleSlides + PREVIEW_BUFFER; offset += 1) {
+        indexes.add((activeIndex + offset + projectsCount) % projectsCount);
+    }
+
+    return indexes;
+};
+
+const getVisibleSlidesCount = (swiper: SwiperCore) => {
+    const {slidesPerView} = swiper.params;
+
+    if (typeof slidesPerView === "number") {
+        return Math.max(1, Math.ceil(slidesPerView));
+    }
+
+    return Math.max(1, Math.ceil(swiper.slidesPerViewDynamic()));
+};
+
+const areIndexSetsEqual = (first: Set<number>, second: Set<number>) => (
+    first.size === second.size && [...first].every((index) => second.has(index))
+);
+
 export const Projects = () => {
     const { isModalOpen, modalContent, open, close, images } = useModal();
+    const projectsSection = useRef<HTMLElement | null>(null);
+    const projectsSwiper = useRef<SwiperCore | null>(null);
+    const [isProjectsNearViewport, setIsProjectsNearViewport] = useState(false);
+    const [activePreviewIndexes, setActivePreviewIndexes] = useState(() => (
+        getPreviewIndexes(0, DEFAULT_VISIBLE_SLIDES)
+    ));
+
+    useEffect(() => {
+        const section = projectsSection.current;
+
+        if (!section || !("IntersectionObserver" in window)) {
+            setIsProjectsNearViewport(true);
+            return;
+        }
+
+        const observer = new IntersectionObserver(([entry]) => {
+            setIsProjectsNearViewport(entry.isIntersecting);
+        }, {
+            rootMargin: PROJECTS_PRELOAD_MARGIN,
+        });
+
+        observer.observe(section);
+
+        return () => observer.disconnect();
+    }, []);
+
+    const updatePreviewWindow = useCallback((swiper: SwiperCore) => {
+        const nextIndexes = getPreviewIndexes(
+            swiper.realIndex,
+            getVisibleSlidesCount(swiper),
+        );
+
+        setActivePreviewIndexes((currentIndexes) => (
+            areIndexSetsEqual(currentIndexes, nextIndexes) ? currentIndexes : nextIndexes
+        ));
+    }, []);
+
+    const handleSwiper = useCallback((swiper: SwiperCore) => {
+        projectsSwiper.current = swiper;
+        updatePreviewWindow(swiper);
+
+        if (!isProjectsNearViewport) {
+            swiper.autoplay.stop();
+        }
+    }, [isProjectsNearViewport, updatePreviewWindow]);
+
+    useEffect(() => {
+        const swiper = projectsSwiper.current;
+
+        if (!swiper || swiper.destroyed) {
+            return;
+        }
+
+        if (isProjectsNearViewport) {
+            swiper.autoplay.start();
+        } else {
+            swiper.autoplay.stop();
+        }
+    }, [isProjectsNearViewport]);
 
     const handleOpenModal = (project: ProjectType) => {
         open(project);
@@ -27,6 +119,11 @@ export const Projects = () => {
 
 
     const handleSlideChange = (swiper: SwiperCore) => {
+        if (!isProjectsNearViewport) {
+            swiper.autoplay.stop();
+            return;
+        }
+
         const userSwipedForward = swiper.activeIndex > swiper.previousIndex;
         const autoplayParams = swiper.params.autoplay;
 
@@ -42,7 +139,7 @@ export const Projects = () => {
 
 
     return (
-        <S.Projects id="works">
+        <S.Projects ref={projectsSection} id="works">
             <Container>
                 <GlitchTitle>Projects</GlitchTitle>
                 {/*<SectionTitle>Projects</SectionTitle>*/}
@@ -60,6 +157,9 @@ export const Projects = () => {
                         loop={true}
                         mousewheel={true}
                         speed={1000}
+                        onSwiper={handleSwiper}
+                        onBreakpoint={updatePreviewWindow}
+                        onResize={updatePreviewWindow}
                         breakpoints={{
                             1024: {
                                 slidesPerView: 3,
@@ -77,7 +177,8 @@ export const Projects = () => {
                                 spaceBetween: 10,
                             },
                         }}
-                        onSlideChangeTransitionStart={handleSlideChange}>
+                        onSlideChangeTransitionStart={handleSlideChange}
+                        onSlideChangeTransitionEnd={updatePreviewWindow}>
                         {projectsData.map((project, index) => (
                             <SwiperSlide key={index}>
                                 <Project
@@ -88,6 +189,9 @@ export const Projects = () => {
                                     text={project.slideText}
                                     buttonText={project.buttonText}
                                     link={project.link}
+                                    shouldRenderPreview={
+                                        isProjectsNearViewport && activePreviewIndexes.has(index)
+                                    }
                                     onOpenModal={() => handleOpenModal(project)}
                                 />
                             </SwiperSlide>
