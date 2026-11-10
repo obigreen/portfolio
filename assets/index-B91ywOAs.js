@@ -387,7 +387,7 @@ font-size: clamp(${i}px, calc( (100vw - 360px)/(1440 - 360) * (${a} - ${i}) + ${
     white-space: nowrap;
     color: ${V.color.mainFont};
     font-size: 18px;
-    animation: ${Ut} 40s linear infinite;
+    animation: ${Ut} 15s linear infinite;
     padding: 5px 0;
     min-width: 100%;
 
