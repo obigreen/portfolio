@@ -198,7 +198,7 @@ const Marquee = styled.div`
     white-space: nowrap;
     color: ${theme.color.mainFont};
     font-size: 18px;
-    animation: ${marqueeAnimation} 40s linear infinite;
+    animation: ${marqueeAnimation} 15s linear infinite;
     padding: 5px 0;
     min-width: 100%;
 
