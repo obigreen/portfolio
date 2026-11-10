@@ -110,98 +110,121 @@ const LoadingDots = styled.span`
     }
 `;
 
-// Вращающиеся шестеренки
-// // Анимация вращения по часовой стрелке
-// const rotateClockwise = keyframes`
-//     from {
-//         transform: rotate(0deg);
-//     }
-//     to {
-//         transform: rotate(360deg);
-//     }
-// `;
-//
-// // Анимация вращения против часовой стрелки
-// const rotateCounterClockwise = keyframes`
-//     from {
-//         transform: rotate(0deg);
-//     }
-//     to {
-//         transform: rotate(-360deg);
-//     }
-// `;
-//
-// const GearWrap = styled.div`
-//     position: absolute;
-//     top: 25px;
-//     right: 25px;
-//     width: 100px;
-//     height: 100px;
-// `;
-//
-// const GearWrap2 = styled.div`
-//     position: relative;
-//     width: 100%;
-//     height: 100%;
-// `;
-//
-// const Gear = styled.div`
-//     position: absolute;
-//     width: 56px;
-//     height: 56px;
-//     transform-origin: center;
-// `;
-//
-// const GearLeft = styled(Gear)`
-//     top: 0;
-//     left: 0;
-//     animation: ${rotateClockwise} 5s linear infinite;
-//     animation-delay: 0.30s;
-//
-// `;
-//
-// const GearRight = styled(Gear)`
-//   top: 0;
-//   right: 0;
-//   width: 51px;
-//   animation: ${rotateCounterClockwise} 5s linear infinite;
-// `;
-//
-// const GearImage = styled.img`
-//   width: 100%;
-//   height: 100%;
-//
-// `;
-// Вращающиеся шестеренки
+const rotateClockwise = keyframes`
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+`;
+
+const rotateCounterClockwise = keyframes`
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+`;
+
+const GearWrap = styled.div`
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 100px;
+    height: 100px;
+`;
+
+const GearWrap2 = styled.div`
+    position: relative;
+    width: 100%;
+    height: 100%;
+`;
+
+const Gear = styled.div`
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    transform-origin: center;
+`;
+
+const GearLeft = styled(Gear)`
+    top: 0;
+    left: 0;
+    animation: ${rotateClockwise} 5s linear infinite;
+    animation-delay: 0.30s;
+
+    @media (prefers-reduced-motion: reduce) {
+        animation: none;
+    }
+`;
+
+const GearRight = styled(Gear)`
+    top: 0;
+    right: 0;
+    width: 51px;
+    animation: ${rotateCounterClockwise} 5s linear infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+        animation: none;
+    }
+`;
+
+const GearImage = styled.img`
+    width: 100%;
+    height: 100%;
+`;
 
 
-// БЕГУЩАЯ СТРОКА С ПРЕДУПРЕЖДЕНИЕМ
-// const marqueeAnimation = keyframes`
-//     from {
-//         transform: translateX(20%); /* Текст начинается в видимой области */
-//     }
-//     to {
-//         transform: translateX(-100%); /* Текст уходит полностью за пределы */
-//     }
-// `;
+const marqueeAnimation = keyframes`
+    from {
+        transform: translateX(20%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+`;
 
-// const MarqueeWrap = styled.div`
-//     position: absolute;
-//     bottom: 170px;
-//     width: 100%;
-//     overflow: hidden;
-// `;
+const MarqueeWrap = styled.div`
+    position: absolute;
+    bottom: 170px;
+    width: 100%;
+    overflow: hidden;
+`;
 
-// const Marquee = styled.div`
-//     display: inline-block;
-//     white-space: nowrap;
-//     color: ${theme.color.mainFont};
-//     font-size: 18px;
-//     animation: ${marqueeAnimation} 40s linear infinite;
-//     padding: 5px 0;
-//     min-width: 100%;
-// `;
-// БЕГУЩАЯ СТРОКА С ПРЕДУПРЕЖДЕНИЕМ
+const Marquee = styled.div`
+    display: inline-block;
+    white-space: nowrap;
+    color: ${theme.color.mainFont};
+    font-size: 18px;
+    animation: ${marqueeAnimation} 40s linear infinite;
+    padding: 5px 0;
+    min-width: 100%;
+
+    &:hover,
+    &:focus-within {
+        animation-play-state: paused;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        display: block;
+        min-width: 0;
+        white-space: normal;
+        animation: none;
+    }
+`;
+
+const MarqueeLink = styled.a`
+    color: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+
+    &:focus-visible {
+        outline: 1px solid currentColor;
+        outline-offset: 2px;
+    }
+`;
 
 
 // Иконка ремонта
@@ -219,5 +242,6 @@ const LoadingDots = styled.span`
 
 
 export const S = {
-    AssistantWrap, TextareaOutp, TextareaInp, Aibutton, CharacterCounter, LoadingDots
+    AssistantWrap, TextareaOutp, TextareaInp, Aibutton, CharacterCounter, LoadingDots,
+    GearWrap, GearWrap2, GearLeft, GearRight, GearImage, MarqueeWrap, Marquee, MarqueeLink
 }

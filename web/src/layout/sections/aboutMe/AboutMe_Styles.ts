@@ -95,6 +95,30 @@ const Green = styled.span`
     color: ${theme.colorWebstorm.green};
 `
 
+const AppLink = styled.a`
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: ${theme.colorWebstorm.green};
+    text-decoration: none;
+    white-space: nowrap;
+
+    img {
+        width: 16px;
+        height: 16px;
+        object-fit: contain;
+    }
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &:focus-visible {
+        outline: 1px solid ${theme.colorWebstorm.green};
+        outline-offset: 2px;
+    }
+`
+
 export const S = {
-    AboutMe, AboutMePage, Article, AboutMePageHeader, Close, Tag, Ptitle, Ptext, Class, Green
+    AboutMe, AboutMePage, Article, AboutMePageHeader, Close, Tag, Ptitle, Ptext, Class, Green, AppLink
 }

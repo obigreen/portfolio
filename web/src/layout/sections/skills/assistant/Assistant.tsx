@@ -4,11 +4,12 @@ import {S} from "./Assistant_Styles"
 import {useEffect, useRef, useState} from "react";
 import type {ChangeEvent, KeyboardEvent} from "react";
 import {isAbortError, streamAssistantResponse} from "./assistantStream";
-// import Gear from "../../../../assets/img/icons/gear.svg"
+import Gear from "../../../../assets/img/icons/gear.svg";
 // import Enclosure from "../../../../assets/img/enclosure.png"
 
 
 const MAX_PROMPT_LENGTH = 500;
+const IS_GITHUB_PAGES_BUILD = import.meta.env.MODE === "github";
 
 export const Assistant = () => {
     const [inputText, setInputText] = useState("");
@@ -34,6 +35,11 @@ export const Assistant = () => {
     };
 
     const handleSubmit = async () => {
+        if (IS_GITHUB_PAGES_BUILD) {
+            setResponseText("Ассистент доступен только в основной версии портфолио: youpushka.com.");
+            return;
+        }
+
         if (activeRequestController.current) {
             return;
         }
@@ -98,25 +104,30 @@ export const Assistant = () => {
 
     return (
         <S.AssistantWrap>
-            {/*<S.GearWrap>*/}
-            {/*    <S.GearWrap2>*/}
-            {/*        <S.GearLeft>*/}
-            {/*            <S.GearImage src={Gear} alt="Gear Left"/>*/}
-            {/*        </S.GearLeft>*/}
-            {/*        <S.GearRight>*/}
-            {/*            <S.GearImage src={Gear} alt="Gear Right"/>*/}
-            {/*        </S.GearRight>*/}
-            {/*    </S.GearWrap2>*/}
-            {/*</S.GearWrap>*/}
+            {IS_GITHUB_PAGES_BUILD && (
+                <S.GearWrap aria-hidden="true">
+                    <S.GearWrap2>
+                        <S.GearLeft>
+                            <S.GearImage src={Gear} alt=""/>
+                        </S.GearLeft>
+                        <S.GearRight>
+                            <S.GearImage src={Gear} alt=""/>
+                        </S.GearRight>
+                    </S.GearWrap2>
+                </S.GearWrap>
+            )}
             <FlexWrapper direction={'column'} position={'relative'} justify={'space-between'} height={'100%'}>
 
-                {/*<S.MarqueeWrap>*/}
-                {/*    <S.Marquee>*/}
-                {/*        ⚠️ Компонент на стадии доработки. Это окно общения с ИИ, подключенным к*/}
-                {/*        OpenAI API. В процессе настройки лимиты, оплата и рефакторинг компонента/стилей. Бот сможет*/}
-                {/*        отвечать на вопросы о моих проектах в портфолио.*/}
-                {/*    </S.Marquee>*/}
-                {/*</S.MarqueeWrap>*/}
+                {IS_GITHUB_PAGES_BUILD && (
+                    <S.MarqueeWrap>
+                        <S.Marquee>
+                            ⚠️ Ассистент доступен только в основной версии портфолио:{" "}
+                            <S.MarqueeLink href="https://youpushka.com/" target="_blank" rel="noopener noreferrer">
+                                youpushka.com
+                            </S.MarqueeLink>
+                        </S.Marquee>
+                    </S.MarqueeWrap>
+                )}
 
                 <S.TextareaOutp
                     id="assistant-response"
@@ -147,7 +158,10 @@ export const Assistant = () => {
                 </S.CharacterCounter>
 
                 <S.Aibutton>
-                    <ButtonWin98 onClick={handleSubmit} disabled={isLoading || inputText.trim() === ""}>
+                    <ButtonWin98
+                        onClick={handleSubmit}
+                        disabled={IS_GITHUB_PAGES_BUILD || isLoading || inputText.trim() === ""}
+                    >
                         {isLoading ? (
                             <span>
                                 Loading

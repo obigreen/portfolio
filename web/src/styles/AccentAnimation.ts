@@ -148,6 +148,42 @@ export const BorderAnimation = keyframes`
     }
 `;
 
+export const BackgroundAnimation = keyframes`
+    0% {
+        background-color: #157940;
+    }
+    10% {
+        background-color: #0E5B35;
+    }
+    20% {
+        background-color: #083E24;
+    }
+    30% {
+        background-color: #105F3A;
+    }
+    40% {
+        background-color: #15794D;
+    }
+    50% {
+        background-color: #269460;
+    }
+    60% {
+        background-color: #3FB27B;
+    }
+    70% {
+        background-color: #62C99A;
+    }
+    80% {
+        background-color: #86DDB5;
+    }
+    90% {
+        background-color: #4EBE88;
+    }
+    100% {
+        background-color: #157940;
+    }
+`;
+
 export const AccentAnimationBr = css`
     animation: ${BorderAnimation} 12s linear infinite;
 `;

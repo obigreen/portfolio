@@ -5,6 +5,7 @@ import {S} from "./AboutMe_Styles"
 import {SectionText} from "../../../components/SectionText";
 import {FlexWrapper} from "../../../components/FlexWrapper";
 import {GlitchTitle} from "../../../components/GlitchTitle";
+import appLogo from "../../../assets/img/logo-for-my-app.svg";
 
 export const AboutMe = () => {
     return (
@@ -55,7 +56,13 @@ export const AboutMe = () => {
                             <S.Ptext>
                                 <S.Tag>&lt;p <S.Class>class=<S.Green>"development"</S.Green></S.Class>&gt;</S.Tag>
                                 <SectionText>
-                                    Развиваю собственное приложение для изучения слов как full-stack-проект:
+                                    Развиваю собственное веб-приложение{" "}
+                                    <S.AppLink href="https://tavelore.com/" target="_blank" rel="noopener noreferrer">
+                                        <img src={appLogo} alt=""/>Tavelore
+                                    </S.AppLink>{" "}
+                                    для изучения иностранных языков. В нём можно собирать наборы пар слов, фраз и
+                                    предложений; тот же формат подходит для терминов и других тем. Развиваю его как
+                                    full-stack-проект:
                                     клиентская часть на React и TypeScript, API на Node.js и Express, база данных
                                     MongoDB. В приложении реализованы регистрация и авторизация, профили пользователей,
                                     словари и категории, поиск, локализация и режимы обучения. Самостоятельно развернул
