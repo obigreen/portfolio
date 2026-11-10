@@ -8,7 +8,7 @@ export const theme = {
 
     colorWebstorm: {
         text: "#ABB2BF",
-        htmltag: "#D19A66",
+        htmltag: "#D8B66A",
         green: "#6aaa74",
     },
 

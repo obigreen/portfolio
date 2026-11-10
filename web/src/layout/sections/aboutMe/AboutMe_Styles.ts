@@ -73,20 +73,22 @@ const Ptitle = styled.div`
     }
 `
 const Ptext = styled.div`
-    margin-bottom: 20px;
+    margin-bottom: 26px;
     max-width: 800px;
+    line-height: 1.5;
     
     ${SectionText} {
-        padding-left: 35px;
+        padding-left: 50px;
 
 
         @media ${theme.media.tablet} {
-            padding-left: 20px;
+            padding-left: 28px;
             font-size: 14px;
         }
     }
 `;
 const Class = styled.span`
+    color: ${theme.colorWebstorm.text};
     letter-spacing: 0.5px;
 `
 const Green = styled.span`

@@ -1,10 +1,21 @@
 import webstorm from "../assets/img/icons/webstorm.svg";
 import stComm from "../assets/img/icons/styled-components.svg";
+import nodeJs from "../assets/img/icons/nodeJs.svg";
+
+type SkillItem =
+    | { href: string; iconId: string; imgSrc?: never }
+    | { href: string; imgSrc: string; iconId?: never };
+
+type SkillsData = {
+    technologies: SkillItem[];
+    tools: SkillItem[];
+    socials: SkillItem[];
+};
 
 export const SKILL_ICON_VIEW_BOX = "0 0 32 32";
 
 
-export const skillsData = {
+export const skillsData: SkillsData = {
     technologies: [
         {href: "https://developer.mozilla.org/en-US/docs/Web/HTML", iconId: "html"},
         {href: "https://developer.mozilla.org/en-US/docs/Web/CSS", iconId: "css"},
@@ -14,11 +25,12 @@ export const skillsData = {
         {href: "https://www.typescriptlang.org/docs/", iconId: "ts"},
         {href: "https://api.jquery.com/", iconId: "jquery"},
         {href: "https://react.dev/", iconId: "react"},
+        {href: "https://vuejs.org/guide/introduction.html", iconId: "vue"},
         {href: "https://nextjs.org/docs", iconId: "nextJs"},
         {href: "https://git-scm.com/doc", iconId: "git"},
         {href: "https://www.npmjs.com/package/documentation", iconId: "npm"},
         {href: "https://gulpjs.com/", iconId: "gulp"},
-        // {href: "https://nodejs.org/docs/latest/api/", imgSrc: nodeJs},
+        {href: "https://nodejs.org/docs/latest/api/", imgSrc: nodeJs},
         {href: "https://styled-components.com/", imgSrc: stComm}
     ],
 
@@ -28,13 +40,14 @@ export const skillsData = {
         {href: "https://www.figma.com/", iconId: "figma"},
         {href: "https://www.adobe.com/products/photoshop.html", iconId: "photoshop"},
         {href: "https://www.adobe.com/products/premiere.html", iconId: "premerePro"},
-        {href: "https://openai.com/", iconId: "gpt"}
+        // {href: "https://openai.com/", iconId: "gpt"},
+        {href: "", iconId: "ai"}
     ],
 
     socials: [
-        { href: "https://github.com/obigreen", iconId: "gitHub", imgSrc: undefined },
-        { href: "mailto:youshtuchka@gmail.com", iconId: "gmail", imgSrc: undefined },
-        { href: "https://t.me/Youpushka", iconId: "telegram", imgSrc: undefined },
-        { href: "https://wa.me/79060287084", iconId: "whatsapp", imgSrc: undefined },
+        { href: "https://github.com/obigreen", iconId: "gitHub" },
+        { href: "mailto:youshtuchka@gmail.com", iconId: "gmail" },
+        { href: "https://t.me/Youpushka", iconId: "telegram" },
+        { href: "https://wa.me/79060287084", iconId: "whatsapp" },
     ]
 }
