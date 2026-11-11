@@ -72,6 +72,12 @@ if (redisClient) {
     });
 }
 
+// Начинаем подключение до создания RedisStore: команды инициализации
+// лимитеров будут поставлены в очередь до готовности соединения.
+const redisConnectionPromise = redisClient
+    ? redisClient.connect()
+    : null;
+
 const createRateLimitStore = (prefix) => {
     if (!redisClient) {
         return {};
@@ -438,7 +444,7 @@ app.use(handleServerError);
 
 const startServer = async () => {
     if (redisClient) {
-        await redisClient.connect();
+        await redisConnectionPromise;
         await redisClient.ping();
     }
 
