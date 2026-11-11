@@ -8,8 +8,11 @@ const {randomUUID} = require('node:crypto');
 
 const app = express();
 app.disable('x-powered-by');
+app.set('trust proxy', 'loopback');
 
 const port = process.env.PORT || 5001;
+const apiHost = process.env.NODE_ENV === 'development' ? '0.0.0.0' : '127.0.0.1';
+const displayHost = apiHost === '0.0.0.0' ? 'localhost' : apiHost;
 const apiKey = process.env.OPENAI_API_KEY;
 const cookieSecret = process.env.COOKIE_SECRET;
 const webOrigin = process.env.WEB_ORIGIN;
@@ -398,8 +401,8 @@ const handleServerError = (error, _request, response, next) => {
 app.use(handleServerError);
 
 
-app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
+app.listen(port, apiHost, () => {
+    console.log(`Server running on http://${displayHost}:${port}`);
     console.log(
         `Rate limits: ${shouldBypassRateLimits ? 'disabled' : 'enabled'}`
     );
