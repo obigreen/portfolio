@@ -5,6 +5,8 @@ const projectsData = require('../shared/projects.json');
 const {rateLimit} = require('express-rate-limit');
 const cookieParser = require('cookie-parser');
 const {randomUUID} = require('node:crypto');
+const {createClient} = require('redis');
+const {RedisStore} = require('rate-limit-redis');
 
 const app = express();
 app.disable('x-powered-by');
@@ -16,6 +18,8 @@ const displayHost = apiHost === '0.0.0.0' ? 'localhost' : apiHost;
 const apiKey = process.env.OPENAI_API_KEY;
 const cookieSecret = process.env.COOKIE_SECRET;
 const webOrigin = process.env.WEB_ORIGIN;
+const redisUrl = process.env.REDIS_URL;
+const shouldUsePersistentRateLimitStore = process.env.NODE_ENV !== 'development';
 const MAX_PROMPT_LENGTH = 500;
 const MAX_OUTPUT_TOKENS = 500;
 const MAX_JSON_BODY_SIZE = '4kb';
@@ -44,6 +48,10 @@ if (!webOrigin) {
     throw new Error('WEB_ORIGIN is required');
 }
 
+if (shouldUsePersistentRateLimitStore && !redisUrl) {
+    throw new Error('REDIS_URL is required outside development');
+}
+
 try {
     new URL(webOrigin);
 } catch {
@@ -53,6 +61,29 @@ try {
 const openai = new OpenAI({
     apiKey,
 });
+
+const redisClient = shouldUsePersistentRateLimitStore
+    ? createClient({url: redisUrl})
+    : null;
+
+if (redisClient) {
+    redisClient.on('error', (error) => {
+        console.error('Redis client error:', error);
+    });
+}
+
+const createRateLimitStore = (prefix) => {
+    if (!redisClient) {
+        return {};
+    }
+
+    return {
+        store: new RedisStore({
+            sendCommand: (...args) => redisClient.sendCommand(args),
+            prefix: `portfolio:${prefix}:`,
+        }),
+    };
+};
 
 const projectsContext = projectsData.map((project) => {
     return `Название: ${project.title}, Технологии: ${project.technologies}, Краткое описание: ${project.slideText}, Подробное описание: ${project.descText}, Ссылка: ${project.link}`;
@@ -76,6 +107,7 @@ const assistantInstructions = `Ты ассистент портфолио.
 const rawChatTrafficLimiter = rateLimit({
     windowMs: ONE_MINUTE_IN_MS,
     limit: MAX_RAW_CHAT_REQUESTS_PER_MINUTE,
+    ...createRateLimitStore('raw-chat'),
     standardHeaders: false,
     legacyHeaders: false,
     handler: (_request, response) => {
@@ -148,6 +180,7 @@ const ensureAnonymousSession = (request, response, next) => {
 const ipChatRateLimiter = rateLimit({
     windowMs: ONE_DAY_IN_MS,
     limit: MAX_IP_REQUESTS_PER_DAY,
+    ...createRateLimitStore('chat-ip'),
     // Формат draft-8 добавляет современные RateLimit и RateLimit-Policy.
     standardHeaders: "draft-8",
     legacyHeaders: false,
@@ -163,6 +196,7 @@ const ipChatRateLimiter = rateLimit({
 const sessionChatRateLimiter = rateLimit({
     windowMs: ONE_DAY_IN_MS,
     limit: MAX_SESSION_REQUESTS_PER_DAY,
+    ...createRateLimitStore('chat-session'),
 
     // Все запросы с одной cookie получают один ключ счётчика.
     keyGenerator: (_request, response) => {
@@ -189,6 +223,7 @@ const sessionChatRateLimiter = rateLimit({
 const globalChatRateLimiter = rateLimit({
     windowMs: ONE_DAY_IN_MS,
     limit: MAX_GLOBAL_REQUESTS_PER_DAY,
+    ...createRateLimitStore('chat-global'),
     // Все посетители получают один общий ключ,
     keyGenerator: () => 'global-chat',
     // Не перезаписываем информацию IP-limiter в request.rateLimit.
@@ -401,9 +436,24 @@ const handleServerError = (error, _request, response, next) => {
 app.use(handleServerError);
 
 
-app.listen(port, apiHost, () => {
-    console.log(`Server running on http://${displayHost}:${port}`);
-    console.log(
-        `Rate limits: ${shouldBypassRateLimits ? 'disabled' : 'enabled'}`
-    );
+const startServer = async () => {
+    if (redisClient) {
+        await redisClient.connect();
+        await redisClient.ping();
+    }
+
+    app.listen(port, apiHost, () => {
+        console.log(`Server running on http://${displayHost}:${port}`);
+        console.log(
+            `Rate limits: ${shouldBypassRateLimits ? 'disabled' : 'enabled'}`
+        );
+        console.log(
+            `Rate-limit store: ${redisClient ? 'Redis' : 'memory (development)'}`
+        );
+    });
+};
+
+startServer().catch((error) => {
+    console.error('API startup failed:', error);
+    process.exit(1);
 });
