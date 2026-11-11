@@ -63,7 +63,11 @@ const openai = new OpenAI({
 });
 
 const redisClient = shouldUsePersistentRateLimitStore
-    ? createClient({url: redisUrl})
+    ? createClient({
+        url: redisUrl,
+        // Redis 6: сначала отдельный AUTH, затем остальные команды.
+        RESP: 2,
+    })
     : null;
 
 if (redisClient) {
@@ -72,8 +76,7 @@ if (redisClient) {
     });
 }
 
-// Начинаем подключение до создания RedisStore: команды инициализации
-// лимитеров будут поставлены в очередь до готовности соединения.
+// Начинаем подключение до создания RedisStore.
 const redisConnectionPromise = redisClient
     ? redisClient.connect()
     : null;
@@ -85,7 +88,11 @@ const createRateLimitStore = (prefix) => {
 
     return {
         store: new RedisStore({
-            sendCommand: (...args) => redisClient.sendCommand(args),
+            sendCommand: async (...args) => {
+                // Не отправляем SCRIPT LOAD/EVALSHA до завершения AUTH.
+                await redisConnectionPromise;
+                return redisClient.sendCommand(args);
+            },
             prefix: `portfolio:${prefix}:`,
         }),
     };
