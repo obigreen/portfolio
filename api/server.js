@@ -194,6 +194,9 @@ const ipChatRateLimiter = rateLimit({
     windowMs: ONE_DAY_IN_MS,
     limit: MAX_IP_REQUESTS_PER_DAY,
     ...createRateLimitStore('chat-ip'),
+    // Ошибки API (4xx/5xx) не должны расходовать дневную квоту посетителя.
+    // Счётчик резервируется на время запроса и откатывается после ошибки.
+    skipFailedRequests: true,
     // Формат draft-8 добавляет современные RateLimit и RateLimit-Policy.
     standardHeaders: "draft-8",
     legacyHeaders: false,
@@ -210,6 +213,8 @@ const sessionChatRateLimiter = rateLimit({
     windowMs: ONE_DAY_IN_MS,
     limit: MAX_SESSION_REQUESTS_PER_DAY,
     ...createRateLimitStore('chat-session'),
+    // Не списываем browser-квоту за ответ с ошибкой.
+    skipFailedRequests: true,
 
     // Все запросы с одной cookie получают один ключ счётчика.
     keyGenerator: (_request, response) => {
@@ -237,6 +242,8 @@ const globalChatRateLimiter = rateLimit({
     windowMs: ONE_DAY_IN_MS,
     limit: MAX_GLOBAL_REQUESTS_PER_DAY,
     ...createRateLimitStore('chat-global'),
+    // Глобальный бюджет учитывает только успешные ответы ассистента.
+    skipFailedRequests: true,
     // Все посетители получают один общий ключ,
     keyGenerator: () => 'global-chat',
     // Не перезаписываем информацию IP-limiter в request.rateLimit.
