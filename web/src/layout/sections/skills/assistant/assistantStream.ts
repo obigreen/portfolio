@@ -1,4 +1,9 @@
-const API_URL: string = import.meta.env.VITE_API_URL;
+// Production requests must stay on the public site origin so Nginx can proxy
+// `/api/*` to the private API listener. A local override is allowed only while
+// running Vite in development mode.
+const API_URL: string = import.meta.env.DEV
+    ? (import.meta.env.VITE_API_URL ?? 'http://127.0.0.1:5001')
+    : '';
 const CHARACTER_DELAY_MS = 12;
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
 const DEFAULT_REQUEST_ERROR = 'Не удалось получить ответ ассистента.';
