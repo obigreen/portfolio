@@ -67,7 +67,9 @@ export const Modal = (
                             <S.LivePreviewFrame $height={currentViewport.height}
                                 src={modalContent.link}
                                 title={`${modalContent.title} ${viewMode} live preview`}
-
+                                loading="lazy"
+                                referrerPolicy="no-referrer"
+                                sandbox="allow-scripts allow-same-origin"
                             />
                         ) : (
                             images.length > 0 && (

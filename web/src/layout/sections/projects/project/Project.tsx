@@ -46,6 +46,7 @@ export const Project = memo(({
                                 title={`${title} live preview`}
                                 loading="lazy"
                                 referrerPolicy="no-referrer"
+                                sandbox="allow-scripts allow-same-origin"
                                 onError={() => setHasLivePreviewError(true)}
                             />
                         )}
