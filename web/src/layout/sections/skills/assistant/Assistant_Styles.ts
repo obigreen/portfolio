@@ -74,6 +74,24 @@ const Aibutton = styled.div`
     right: 5px;
 `
 
+const TurnstileLayer = styled.div<{$visible: boolean}>`
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(30, 31, 35, 0.96);
+    visibility: ${({$visible}) => $visible ? 'visible' : 'hidden'};
+    pointer-events: ${({$visible}) => $visible ? 'auto' : 'none'};
+
+    > div {
+        width: 100%;
+        max-width: 300px;
+    }
+`;
+
 const CharacterCounter = styled.span`
     position: absolute;
     left: 10px;
@@ -243,5 +261,6 @@ const MarqueeLink = styled.a`
 
 export const S = {
     AssistantWrap, TextareaOutp, TextareaInp, Aibutton, CharacterCounter, LoadingDots,
-    GearWrap, GearWrap2, GearLeft, GearRight, GearImage, MarqueeWrap, Marquee, MarqueeLink
+    GearWrap, GearWrap2, GearLeft, GearRight, GearImage, MarqueeWrap, Marquee, MarqueeLink,
+    TurnstileLayer
 }

@@ -1,22 +1,53 @@
 import {FlexWrapper} from "../../../../components/FlexWrapper";
 import {ButtonWin98} from "../../../../components/ButtonWin98";
 import {S} from "./Assistant_Styles"
-import {useEffect, useRef, useState} from "react";
+import {useCallback, useEffect, useRef, useState} from "react";
 import type {ChangeEvent, KeyboardEvent} from "react";
 import {isAbortError, streamAssistantResponse} from "./assistantStream";
 import Gear from "../../../../assets/img/icons/gear.svg";
+import {
+    TurnstileWidget,
+    type TurnstileWidgetHandle,
+} from './TurnstileWidget';
 // import Enclosure from "../../../../assets/img/enclosure.png"
 
 
 const MAX_PROMPT_LENGTH = 500;
 const IS_GITHUB_PAGES_BUILD = import.meta.env.MODE === "github";
+const TURNSTILE_SITE_KEY = import.meta.env.DEV
+    ? '1x00000000000000000000AA'
+    : (import.meta.env.VITE_TURNSTILE_SITE_KEY ?? '');
 
 export const Assistant = () => {
     const [inputText, setInputText] = useState("");
     const [responseText, setResponseText] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+    const [turnstileStatus, setTurnstileStatus] = useState<
+        'checking' | 'ready' | 'error'
+    >('checking');
+    const [isTurnstileInteractive, setIsTurnstileInteractive] = useState(false);
     const activeRequestController = useRef<AbortController | null>(null);
     const outputTextarea = useRef<HTMLTextAreaElement | null>(null);
+    const turnstileWidget = useRef<TurnstileWidgetHandle | null>(null);
+
+    const handleTurnstileTokenChange = useCallback((token: string | null) => {
+        setTurnstileToken(token);
+    }, []);
+
+    const handleTurnstileStatusChange = useCallback((
+        status: 'checking' | 'ready' | 'error',
+    ) => {
+        setTurnstileStatus(status);
+
+        if (status === 'error') {
+            setResponseText('Не удалось выполнить проверку безопасности. Обновите страницу и попробуйте снова.');
+        }
+    }, []);
+
+    const handleTurnstileInteractionChange = useCallback((isInteractive: boolean) => {
+        setIsTurnstileInteractive(isInteractive);
+    }, []);
 
     useEffect(() => {
         return () => {
@@ -50,6 +81,11 @@ export const Assistant = () => {
             return;
         }
 
+        if (!turnstileToken) {
+            setResponseText('Проверка безопасности ещё не завершена. Подождите несколько секунд.');
+            return;
+        }
+
         const abortController = new AbortController();
         activeRequestController.current = abortController;
 
@@ -59,6 +95,7 @@ export const Assistant = () => {
         try {
             await streamAssistantResponse(
                 prompt,
+                turnstileToken,
                 abortController.signal,
                 (text) => {
                     setResponseText((currentText) => currentText + text);
@@ -83,6 +120,9 @@ export const Assistant = () => {
                     setIsLoading(false);
                 }
             }
+
+            setTurnstileToken(null);
+            turnstileWidget.current?.reset();
         }
 
     };
@@ -97,13 +137,24 @@ export const Assistant = () => {
 
         event.preventDefault();
 
-        if (!isLoading && inputText.trim()) {
+        if (!isLoading && turnstileToken && inputText.trim()) {
             void handleSubmit();
         }
     };
 
     return (
         <S.AssistantWrap>
+            {!IS_GITHUB_PAGES_BUILD && (
+                <S.TurnstileLayer $visible={isTurnstileInteractive}>
+                    <TurnstileWidget
+                        ref={turnstileWidget}
+                        siteKey={TURNSTILE_SITE_KEY}
+                        onTokenChange={handleTurnstileTokenChange}
+                        onStatusChange={handleTurnstileStatusChange}
+                        onInteractionChange={handleTurnstileInteractionChange}
+                    />
+                </S.TurnstileLayer>
+            )}
             {IS_GITHUB_PAGES_BUILD && (
                 <S.GearWrap aria-hidden="true">
                     <S.GearWrap2>
@@ -160,7 +211,13 @@ export const Assistant = () => {
                 <S.Aibutton>
                     <ButtonWin98
                         onClick={handleSubmit}
-                        disabled={IS_GITHUB_PAGES_BUILD || isLoading || inputText.trim() === ""}
+                        disabled={
+                            IS_GITHUB_PAGES_BUILD ||
+                            isLoading ||
+                            turnstileStatus !== 'ready' ||
+                            !turnstileToken ||
+                            inputText.trim() === ""
+                        }
                     >
                         {isLoading ? (
                             <span>
@@ -171,6 +228,10 @@ export const Assistant = () => {
                                     <span>.</span>
                                 </S.LoadingDots>
                             </span>
+                        ) : turnstileStatus === 'checking' ? (
+                            'Checking...'
+                        ) : turnstileStatus === 'error' ? (
+                            'Unavailable'
                         ) : (
                             'Enter'
                         )}

@@ -106,6 +106,7 @@ const renderTextDelta = async (
 
 export const streamAssistantResponse = async (
     prompt: string,
+    turnstileToken: string,
     signal: AbortSignal,
     appendText: (text: string) => void,
 ) => {
@@ -116,7 +117,7 @@ export const streamAssistantResponse = async (
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({prompt}),
+        body: JSON.stringify({prompt, turnstileToken}),
     });
 
     if (!response.ok) {

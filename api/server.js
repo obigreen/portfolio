@@ -19,7 +19,13 @@ const apiKey = process.env.OPENAI_API_KEY;
 const cookieSecret = process.env.COOKIE_SECRET;
 const webOrigin = process.env.WEB_ORIGIN;
 const redisUrl = process.env.REDIS_URL;
-const shouldUsePersistentRateLimitStore = process.env.NODE_ENV !== 'development';
+const isDevelopment = process.env.NODE_ENV === 'development';
+const turnstileSecretKey = process.env.TURNSTILE_SECRET_KEY ?? (
+    isDevelopment
+        ? '1x0000000000000000000000000000000AA'
+        : undefined
+);
+const shouldUsePersistentRateLimitStore = !isDevelopment;
 const MAX_PROMPT_LENGTH = 500;
 const MAX_OUTPUT_TOKENS = 500;
 const MAX_JSON_BODY_SIZE = '4kb';
@@ -31,6 +37,11 @@ const MAX_SESSION_REQUESTS_PER_DAY = 2;
 const MAX_GLOBAL_REQUESTS_PER_DAY = 10;
 const SESSION_COOKIE_NAME = 'portfolio_session';
 const ASSISTANT_MODEL = 'gpt-6-luna';
+const TURNSTILE_ACTION = 'portfolio_chat';
+const TURNSTILE_SITEVERIFY_URL =
+    'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+const TURNSTILE_TOKEN_MAX_LENGTH = 2048;
+const TURNSTILE_TIMEOUT_MS = 5000;
 
 const shouldBypassRateLimits =
     process.env.NODE_ENV === 'development' &&
@@ -48,6 +59,10 @@ if (!webOrigin) {
     throw new Error('WEB_ORIGIN is required');
 }
 
+if (!turnstileSecretKey) {
+    throw new Error('TURNSTILE_SECRET_KEY is required outside development');
+}
+
 if (shouldUsePersistentRateLimitStore && !redisUrl) {
     throw new Error('REDIS_URL is required outside development');
 }
@@ -57,6 +72,15 @@ try {
 } catch {
     throw new Error('WEB_ORIGIN must be a valid URL');
 }
+
+const canonicalTurnstileHostname = new URL(webOrigin).hostname.replace(
+    /^www\./,
+    '',
+);
+const expectedTurnstileHostnames = new Set([
+    canonicalTurnstileHostname,
+    `www.${canonicalTurnstileHostname}`,
+]);
 
 const openai = new OpenAI({
     apiKey,
@@ -165,6 +189,96 @@ const validatePrompt = (request, response, next) => {
     // Передаём управление следующему middleware.
     return next();
 }
+
+const validateTurnstile = async (request, response, next) => {
+    const token = request.body?.turnstileToken;
+
+    if (
+        typeof token !== 'string' ||
+        token.length === 0 ||
+        token.length > TURNSTILE_TOKEN_MAX_LENGTH
+    ) {
+        return response.status(403).json({
+            error: 'Проверка безопасности не пройдена. Обновите её и попробуйте снова.',
+        });
+    }
+
+    const verificationBody = new URLSearchParams({
+        secret: turnstileSecretKey,
+        response: token,
+    });
+
+    if (request.ip) {
+        verificationBody.set('remoteip', request.ip);
+    }
+
+    let verificationResponse;
+
+    try {
+        verificationResponse = await fetch(TURNSTILE_SITEVERIFY_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: verificationBody,
+            signal: AbortSignal.timeout(TURNSTILE_TIMEOUT_MS),
+        });
+    } catch (error) {
+        console.error('Turnstile Siteverify request failed:', error);
+        return response.status(503).json({
+            error: 'Проверка безопасности временно недоступна. Попробуйте позже.',
+        });
+    }
+
+    if (!verificationResponse.ok) {
+        console.error(
+            'Turnstile Siteverify returned HTTP status:',
+            verificationResponse.status,
+        );
+        return response.status(503).json({
+            error: 'Проверка безопасности временно недоступна. Попробуйте позже.',
+        });
+    }
+
+    let verification;
+
+    try {
+        verification = await verificationResponse.json();
+    } catch (error) {
+        console.error('Turnstile Siteverify returned invalid JSON:', error);
+        return response.status(503).json({
+            error: 'Проверка безопасности временно недоступна. Попробуйте позже.',
+        });
+    }
+
+    const isValid =
+        verification?.success === true &&
+        (
+            isDevelopment ||
+            (
+                expectedTurnstileHostnames.has(verification.hostname) &&
+                verification.action === TURNSTILE_ACTION
+            )
+        );
+
+    if (!isValid) {
+        const errorCodes = Array.isArray(verification?.['error-codes'])
+            ? verification['error-codes']
+            : [];
+
+        console.warn('Turnstile validation rejected:', {
+            errorCodes,
+            hostname: verification?.hostname ?? null,
+            action: verification?.action ?? null,
+        });
+
+        return response.status(403).json({
+            error: 'Проверка безопасности не пройдена. Обновите её и попробуйте снова.',
+        });
+    }
+
+    return next();
+};
 
 const ensureAnonymousSession = (request, response, next) => {
     const existingSessionId =
@@ -419,6 +533,7 @@ const handleChatRequest = async (_request, response) => {
 app.post(
     '/api/chat',
     validatePrompt,
+    validateTurnstile,
     ensureAnonymousSession,
     ipChatRateLimiter,
     sessionChatRateLimiter,
