@@ -9,7 +9,8 @@
   ],
   "resolutions": {
     "@types/react": "18.3.31",
-    "@types/react-dom": "18.3.7"
+    "@types/react-dom": "18.3.7",
+    "body-parser": "1.20.9"
   },
   "scripts": {
     "dev": "yarn workspace @portfolio/web dev",

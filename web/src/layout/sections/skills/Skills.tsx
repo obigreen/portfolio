@@ -22,7 +22,7 @@ export const Skills = () => {
                             <S.Wrap key={index}>
                                 <ImageSlider>
                                     {items.map((item, idx) => (
-                                        <S.IconLink key={idx} href={item.href} target={'_blank'}>
+                                        <S.IconLink key={idx} href={item.href} target={'_blank'} rel="noopener noreferrer">
                                             {item.iconId ? (
                                                 <Icon iconId={item.iconId} width={'60'} height={'60'} viewBox={SKILL_ICON_VIEW_BOX} />
                                             ) : (

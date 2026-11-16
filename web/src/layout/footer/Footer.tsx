@@ -10,7 +10,7 @@ export const Footer = () => {
             <Container>
                 <S.FooterSocials>
                     {skillsData.socials.map((item, index) => (
-                        <S.FooterSocialsLink key={index} href={item.href} target="_blank">
+                        <S.FooterSocialsLink key={index} href={item.href} target="_blank" rel="noopener noreferrer">
                             {item.iconId ? (
                                 <Icon iconId={item.iconId} width={'40'} height={'40'} viewBox={'0 0 32 32'} />
                             ) : (

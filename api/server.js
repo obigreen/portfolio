@@ -163,7 +163,13 @@ app.use(cors({
 }));
 // Технический лимит срабатывает до разбора JSON-тела.
 app.use('/api/chat', rawChatTrafficLimiter);
-app.use(express.json({limit: MAX_JSON_BODY_SIZE}));
+// Browser chat requests are small, plain JSON. Reject compressed bodies so the
+// public parser has no decompression attack surface and its size limit remains
+// straightforward to reason about.
+app.use(express.json({
+    limit: MAX_JSON_BODY_SIZE,
+    inflate: false,
+}));
 app.use(cookieParser(cookieSecret));
 
 

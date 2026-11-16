@@ -90,7 +90,8 @@ export const Modal = (
                         <SectionText>{modalContent.text}</SectionText>
                         <S.ProjectLinkWrapp>
                             <S.ProjectLink href={modalContent.link || "#"}
-                                           target={"_blank"}> {modalContent.link ? 'View Project' : 'No Link Available'}</S.ProjectLink>
+                                           target={"_blank"}
+                                           rel="noopener noreferrer"> {modalContent.link ? 'View Project' : 'No Link Available'}</S.ProjectLink>
                         </S.ProjectLinkWrapp>
 
                         <S.CloseButton onClick={handleCloseModal}>X</S.CloseButton>
