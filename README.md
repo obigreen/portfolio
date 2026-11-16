@@ -1,5 +1,5 @@
 # Portfolio
-https://youpushka.com/
+https://youpushka.com
 
 Monorepo for the portfolio website and its API.
 
