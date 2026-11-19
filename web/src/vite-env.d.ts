@@ -15,6 +15,7 @@ type TurnstileRenderOptions = {
     theme: 'auto' | 'light' | 'dark';
     size: 'normal' | 'compact' | 'flexible';
     appearance: 'always' | 'execute' | 'interaction-only';
+    execution: 'render' | 'execute';
     'response-field': boolean;
     callback: (token: string) => void;
     'error-callback': (errorCode: string) => boolean | void;
@@ -30,6 +31,7 @@ type TurnstileApi = {
         container: HTMLElement | string,
         options: TurnstileRenderOptions,
     ) => string;
+    execute: (widgetId?: string) => void;
     reset: (widgetId?: string) => void;
     remove: (widgetId: string) => void;
 };

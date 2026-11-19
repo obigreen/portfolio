@@ -5,10 +5,7 @@ import {useCallback, useEffect, useRef, useState} from "react";
 import type {ChangeEvent, KeyboardEvent} from "react";
 import {isAbortError, streamAssistantResponse} from "./assistantStream";
 import Gear from "../../../../assets/img/icons/gear.svg";
-import {
-    TurnstileWidget,
-    type TurnstileWidgetHandle,
-} from './TurnstileWidget';
+import {TurnstileWidget} from './TurnstileWidget';
 // import Enclosure from "../../../../assets/img/enclosure.png"
 
 
@@ -29,7 +26,6 @@ export const Assistant = () => {
     const [isTurnstileInteractive, setIsTurnstileInteractive] = useState(false);
     const activeRequestController = useRef<AbortController | null>(null);
     const outputTextarea = useRef<HTMLTextAreaElement | null>(null);
-    const turnstileWidget = useRef<TurnstileWidgetHandle | null>(null);
 
     const handleTurnstileTokenChange = useCallback((token: string | null) => {
         setTurnstileToken(token);
@@ -122,7 +118,6 @@ export const Assistant = () => {
             }
 
             setTurnstileToken(null);
-            turnstileWidget.current?.reset();
         }
 
     };
@@ -147,8 +142,8 @@ export const Assistant = () => {
             {!IS_GITHUB_PAGES_BUILD && (
                 <S.TurnstileLayer $visible={isTurnstileInteractive}>
                     <TurnstileWidget
-                        ref={turnstileWidget}
                         siteKey={TURNSTILE_SITE_KEY}
+                        active={!isLoading && inputText.trim().length > 0}
                         onTokenChange={handleTurnstileTokenChange}
                         onStatusChange={handleTurnstileStatusChange}
                         onInteractionChange={handleTurnstileInteractionChange}
