@@ -1,7 +1,10 @@
-import {act} from 'react';
+import {act, createRef} from 'react';
 import {cleanup, render, waitFor} from '@testing-library/react';
 import {afterEach, describe, expect, test, vi} from 'vitest';
-import {TurnstileWidget} from './TurnstileWidget';
+import {
+    TurnstileWidget,
+    type TurnstileWidgetHandle,
+} from './TurnstileWidget';
 
 describe('TurnstileWidget', () => {
     afterEach(() => {
@@ -10,7 +13,7 @@ describe('TurnstileWidget', () => {
         vi.restoreAllMocks();
     });
 
-    test('runs only while the form is active, refreshes expired tokens, and cleans up', async () => {
+    test('runs only when requested, returns one token, and resets to idle', async () => {
         let options: TurnstileRenderOptions | undefined;
         const turnstile: TurnstileApi = {
             render: vi.fn((_container, renderOptions) => {
@@ -23,14 +26,16 @@ describe('TurnstileWidget', () => {
         };
         window.turnstile = turnstile;
 
-        const onTokenChange = vi.fn();
+        const onVerified = vi.fn();
         const onStatusChange = vi.fn();
         const onInteractionChange = vi.fn();
+        const widgetRef = createRef<TurnstileWidgetHandle>();
+
         const view = render(
             <TurnstileWidget
+                ref={widgetRef}
                 siteKey="test-site-key"
-                active={false}
-                onTokenChange={onTokenChange}
+                onVerified={onVerified}
                 onStatusChange={onStatusChange}
                 onInteractionChange={onInteractionChange}
             />,
@@ -44,47 +49,49 @@ describe('TurnstileWidget', () => {
         expect(options?.appearance).toBe('interaction-only');
         expect(options?.execution).toBe('execute');
         expect(options?.['response-field']).toBe(false);
+        expect(onStatusChange).toHaveBeenLastCalledWith('idle');
         expect(turnstile.execute).not.toHaveBeenCalled();
 
-        view.rerender(
-            <TurnstileWidget
-                siteKey="test-site-key"
-                active
-                onTokenChange={onTokenChange}
-                onStatusChange={onStatusChange}
-                onInteractionChange={onInteractionChange}
-            />,
-        );
+        act(() => {
+            widgetRef.current?.requestToken();
+        });
 
+        expect(onStatusChange).toHaveBeenLastCalledWith('checking');
+        expect(turnstile.reset).toHaveBeenCalledWith('widget-1');
         expect(turnstile.execute).toHaveBeenCalledWith('widget-1');
+
+        act(() => {
+            options?.['before-interactive-callback']();
+        });
+        expect(onInteractionChange).toHaveBeenLastCalledWith(true);
+
+        act(() => {
+            options?.['after-interactive-callback']();
+        });
+        expect(onInteractionChange).toHaveBeenLastCalledWith(false);
 
         act(() => {
             options?.callback('verified-token');
         });
 
-        expect(onTokenChange).toHaveBeenLastCalledWith('verified-token');
+        expect(onVerified).toHaveBeenCalledTimes(1);
+        expect(onVerified).toHaveBeenCalledWith('verified-token');
         expect(onStatusChange).toHaveBeenLastCalledWith('ready');
+
+        act(() => {
+            widgetRef.current?.reset();
+        });
+
+        expect(turnstile.reset).toHaveBeenCalledTimes(2);
+        expect(onStatusChange).toHaveBeenLastCalledWith('idle');
 
         act(() => {
             options?.['expired-callback']();
         });
 
-        expect(onTokenChange).toHaveBeenLastCalledWith(null);
-        expect(onStatusChange).toHaveBeenLastCalledWith('checking');
-        expect(turnstile.reset).toHaveBeenCalledWith('widget-1');
-        expect(turnstile.execute).toHaveBeenCalledTimes(2);
-
-        view.rerender(
-            <TurnstileWidget
-                siteKey="test-site-key"
-                active={false}
-                onTokenChange={onTokenChange}
-                onStatusChange={onStatusChange}
-                onInteractionChange={onInteractionChange}
-            />,
-        );
-
-        expect(turnstile.reset).toHaveBeenCalledTimes(2);
+        expect(turnstile.reset).toHaveBeenCalledTimes(3);
+        expect(onStatusChange).toHaveBeenLastCalledWith('idle');
+        expect(turnstile.execute).toHaveBeenCalledTimes(1);
 
         view.unmount();
         expect(turnstile.remove).toHaveBeenCalledWith('widget-1');
@@ -93,11 +100,10 @@ describe('TurnstileWidget', () => {
     test('fails closed when the site key is missing', async () => {
         const onStatusChange = vi.fn();
 
-        const view = render(
+        render(
             <TurnstileWidget
                 siteKey=""
-                active={false}
-                onTokenChange={vi.fn()}
+                onVerified={vi.fn()}
                 onStatusChange={onStatusChange}
                 onInteractionChange={vi.fn()}
             />,
@@ -106,17 +112,5 @@ describe('TurnstileWidget', () => {
         await waitFor(() => {
             expect(onStatusChange).toHaveBeenLastCalledWith('error');
         });
-
-        view.rerender(
-            <TurnstileWidget
-                siteKey=""
-                active
-                onTokenChange={vi.fn()}
-                onStatusChange={onStatusChange}
-                onInteractionChange={vi.fn()}
-            />,
-        );
-
-        expect(onStatusChange).toHaveBeenLastCalledWith('error');
     });
 });

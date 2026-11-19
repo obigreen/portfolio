@@ -1,6 +1,8 @@
 import {
+    forwardRef,
     useCallback,
     useEffect,
+    useImperativeHandle,
     useRef,
 } from 'react';
 
@@ -88,30 +90,37 @@ const loadTurnstile = () => {
     return turnstileScriptPromise;
 };
 
+export type TurnstileStatus = 'idle' | 'checking' | 'ready' | 'error';
+
+export type TurnstileWidgetHandle = {
+    requestToken: () => void;
+    reset: () => void;
+};
+
 type TurnstileWidgetProps = {
     siteKey: string;
-    active: boolean;
-    onTokenChange: (token: string | null) => void;
-    onStatusChange: (status: 'checking' | 'ready' | 'error') => void;
+    onVerified: (token: string) => void;
+    onStatusChange: (status: TurnstileStatus) => void;
     onInteractionChange: (isInteractive: boolean) => void;
 };
 
-export const TurnstileWidget = ({
+export const TurnstileWidget = forwardRef<
+    TurnstileWidgetHandle,
+    TurnstileWidgetProps
+>(({
     siteKey,
-    active,
-    onTokenChange,
+    onVerified,
     onStatusChange,
     onInteractionChange,
-}: TurnstileWidgetProps) => {
+}, ref) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const widgetIdRef = useRef<string | null>(null);
-    const activeRef = useRef(active);
+    const pendingExecutionRef = useRef(false);
 
-    const markAsChecking = useCallback(() => {
-        onTokenChange(null);
-        onStatusChange('checking');
+    const markAsIdle = useCallback(() => {
+        onStatusChange('idle');
         onInteractionChange(false);
-    }, [onInteractionChange, onStatusChange, onTokenChange]);
+    }, [onInteractionChange, onStatusChange]);
 
     const resetRenderedWidget = useCallback(() => {
         const widgetId = widgetIdRef.current;
@@ -121,40 +130,34 @@ export const TurnstileWidget = ({
         }
     }, []);
 
-    const executeRenderedWidget = useCallback(() => {
+    const requestToken = useCallback(() => {
+        pendingExecutionRef.current = true;
+        onStatusChange('checking');
+        onInteractionChange(false);
+
         const widgetId = widgetIdRef.current;
 
         if (widgetId && window.turnstile) {
+            window.turnstile.reset(widgetId);
             window.turnstile.execute(widgetId);
         }
-    }, []);
+    }, [onInteractionChange, onStatusChange]);
 
-    const startChallenge = useCallback(() => {
-        markAsChecking();
-        executeRenderedWidget();
-    }, [executeRenderedWidget, markAsChecking]);
-
-    useEffect(() => {
-        activeRef.current = active;
-
-        if (!siteKey) {
-            return;
-        }
-
-        if (active) {
-            startChallenge();
-            return;
-        }
-
-        markAsChecking();
+    const reset = useCallback(() => {
+        pendingExecutionRef.current = false;
         resetRenderedWidget();
-    }, [active, markAsChecking, resetRenderedWidget, siteKey, startChallenge]);
+        markAsIdle();
+    }, [markAsIdle, resetRenderedWidget]);
+
+    useImperativeHandle(ref, () => ({
+        requestToken,
+        reset,
+    }), [requestToken, reset]);
 
     useEffect(() => {
         let disposed = false;
 
-        onTokenChange(null);
-        onStatusChange('checking');
+        markAsIdle();
 
         if (!siteKey) {
             onStatusChange('error');
@@ -167,7 +170,7 @@ export const TurnstileWidget = ({
                     return;
                 }
 
-                widgetIdRef.current = turnstile.render(containerRef.current, {
+                const widgetId = turnstile.render(containerRef.current, {
                     sitekey: siteKey,
                     action: TURNSTILE_ACTION,
                     theme: 'dark',
@@ -176,26 +179,26 @@ export const TurnstileWidget = ({
                     execution: 'execute',
                     'response-field': false,
                     callback: (token) => {
-                        onTokenChange(token);
+                        pendingExecutionRef.current = false;
                         onStatusChange('ready');
                         onInteractionChange(false);
+                        onVerified(token);
                     },
                     'error-callback': () => {
-                        onTokenChange(null);
+                        pendingExecutionRef.current = false;
                         onStatusChange('error');
                         onInteractionChange(false);
                         return true;
                     },
                     'expired-callback': () => {
-                        markAsChecking();
+                        pendingExecutionRef.current = false;
                         resetRenderedWidget();
-
-                        if (activeRef.current) {
-                            executeRenderedWidget();
-                        }
+                        markAsIdle();
                     },
                     'timeout-callback': () => {
-                        markAsChecking();
+                        pendingExecutionRef.current = false;
+                        resetRenderedWidget();
+                        markAsIdle();
                     },
                     'before-interactive-callback': () => {
                         onInteractionChange(true);
@@ -204,14 +207,15 @@ export const TurnstileWidget = ({
                         onInteractionChange(false);
                     },
                     'unsupported-callback': () => {
-                        onTokenChange(null);
+                        pendingExecutionRef.current = false;
                         onStatusChange('error');
                         onInteractionChange(false);
                     },
                 });
+                widgetIdRef.current = widgetId;
 
-                if (activeRef.current) {
-                    startChallenge();
+                if (pendingExecutionRef.current) {
+                    turnstile.execute(widgetId);
                 }
             })
             .catch(() => {
@@ -222,6 +226,7 @@ export const TurnstileWidget = ({
 
         return () => {
             disposed = true;
+            pendingExecutionRef.current = false;
 
             const widgetId = widgetIdRef.current;
             widgetIdRef.current = null;
@@ -231,15 +236,15 @@ export const TurnstileWidget = ({
             }
         };
     }, [
-        executeRenderedWidget,
-        markAsChecking,
+        markAsIdle,
         onInteractionChange,
         onStatusChange,
-        onTokenChange,
+        onVerified,
         resetRenderedWidget,
         siteKey,
-        startChallenge,
     ]);
 
     return <div ref={containerRef}/>;
-};
+});
+
+TurnstileWidget.displayName = 'TurnstileWidget';

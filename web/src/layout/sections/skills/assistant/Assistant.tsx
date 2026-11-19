@@ -5,7 +5,11 @@ import {useCallback, useEffect, useRef, useState} from "react";
 import type {ChangeEvent, KeyboardEvent} from "react";
 import {isAbortError, streamAssistantResponse} from "./assistantStream";
 import Gear from "../../../../assets/img/icons/gear.svg";
-import {TurnstileWidget} from './TurnstileWidget';
+import {
+    TurnstileWidget,
+    type TurnstileStatus,
+    type TurnstileWidgetHandle,
+} from './TurnstileWidget';
 // import Enclosure from "../../../../assets/img/enclosure.png"
 
 
@@ -19,25 +23,28 @@ export const Assistant = () => {
     const [inputText, setInputText] = useState("");
     const [responseText, setResponseText] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
-    const [turnstileStatus, setTurnstileStatus] = useState<
-        'checking' | 'ready' | 'error'
-    >('checking');
+    const [isVerifying, setIsVerifying] = useState(false);
+    const [turnstileStatus, setTurnstileStatus] = useState<TurnstileStatus>('idle');
     const [isTurnstileInteractive, setIsTurnstileInteractive] = useState(false);
     const activeRequestController = useRef<AbortController | null>(null);
     const outputTextarea = useRef<HTMLTextAreaElement | null>(null);
+    const pendingPrompt = useRef<string | null>(null);
+    const turnstileWidget = useRef<TurnstileWidgetHandle | null>(null);
 
-    const handleTurnstileTokenChange = useCallback((token: string | null) => {
-        setTurnstileToken(token);
-    }, []);
-
-    const handleTurnstileStatusChange = useCallback((
-        status: 'checking' | 'ready' | 'error',
-    ) => {
+    const handleTurnstileStatusChange = useCallback((status: TurnstileStatus) => {
         setTurnstileStatus(status);
 
         if (status === 'error') {
+            pendingPrompt.current = null;
+            setIsVerifying(false);
             setResponseText('Не удалось выполнить проверку безопасности. Обновите страницу и попробуйте снова.');
+            return;
+        }
+
+        if (status === 'idle' && pendingPrompt.current) {
+            pendingPrompt.current = null;
+            setIsVerifying(false);
+            setResponseText('Проверка безопасности не была завершена. Попробуйте отправить вопрос ещё раз.');
         }
     }, []);
 
@@ -47,6 +54,7 @@ export const Assistant = () => {
 
     useEffect(() => {
         return () => {
+            pendingPrompt.current = null;
             activeRequestController.current?.abort();
         };
     }, []);
@@ -61,27 +69,7 @@ export const Assistant = () => {
         setInputText(event.target.value);
     };
 
-    const handleSubmit = async () => {
-        if (IS_GITHUB_PAGES_BUILD) {
-            setResponseText("Ассистент доступен только в основной версии портфолио: youpushka.com.");
-            return;
-        }
-
-        if (activeRequestController.current) {
-            return;
-        }
-
-        const prompt = inputText.trim();
-        if (!prompt) {
-            setResponseText("Enter your question");
-            return;
-        }
-
-        if (!turnstileToken) {
-            setResponseText('Проверка безопасности ещё не завершена. Подождите несколько секунд.');
-            return;
-        }
-
+    const sendVerifiedPrompt = useCallback(async (prompt: string, token: string) => {
         const abortController = new AbortController();
         activeRequestController.current = abortController;
 
@@ -91,7 +79,7 @@ export const Assistant = () => {
         try {
             await streamAssistantResponse(
                 prompt,
-                turnstileToken,
+                token,
                 abortController.signal,
                 (text) => {
                     setResponseText((currentText) => currentText + text);
@@ -117,9 +105,51 @@ export const Assistant = () => {
                 }
             }
 
-            setTurnstileToken(null);
+            turnstileWidget.current?.reset();
+        }
+    }, []);
+
+    const handleTurnstileVerified = useCallback((token: string) => {
+        const prompt = pendingPrompt.current;
+        pendingPrompt.current = null;
+        setIsVerifying(false);
+
+        if (!prompt || activeRequestController.current) {
+            turnstileWidget.current?.reset();
+            return;
         }
 
+        void sendVerifiedPrompt(prompt, token);
+    }, [sendVerifiedPrompt]);
+
+    const handleSubmit = () => {
+        if (IS_GITHUB_PAGES_BUILD) {
+            setResponseText("Ассистент доступен только в основной версии портфолио: youpushka.com.");
+            return;
+        }
+
+        if (
+            activeRequestController.current ||
+            pendingPrompt.current ||
+            isVerifying
+        ) {
+            return;
+        }
+
+        const prompt = inputText.trim();
+        if (!prompt) {
+            setResponseText("Enter your question");
+            return;
+        }
+
+        if (turnstileStatus === 'error' || !turnstileWidget.current) {
+            setResponseText('Проверка безопасности недоступна. Обновите страницу и попробуйте снова.');
+            return;
+        }
+
+        pendingPrompt.current = prompt;
+        setIsVerifying(true);
+        turnstileWidget.current.requestToken();
     };
 
     const handleInputKeyDown = (
@@ -132,8 +162,8 @@ export const Assistant = () => {
 
         event.preventDefault();
 
-        if (!isLoading && turnstileToken && inputText.trim()) {
-            void handleSubmit();
+        if (!isLoading && !isVerifying && inputText.trim()) {
+            handleSubmit();
         }
     };
 
@@ -142,9 +172,9 @@ export const Assistant = () => {
             {!IS_GITHUB_PAGES_BUILD && (
                 <S.TurnstileLayer $visible={isTurnstileInteractive}>
                     <TurnstileWidget
+                        ref={turnstileWidget}
                         siteKey={TURNSTILE_SITE_KEY}
-                        active={!isLoading && inputText.trim().length > 0}
-                        onTokenChange={handleTurnstileTokenChange}
+                        onVerified={handleTurnstileVerified}
                         onStatusChange={handleTurnstileStatusChange}
                         onInteractionChange={handleTurnstileInteractionChange}
                     />
@@ -196,7 +226,7 @@ export const Assistant = () => {
                     onKeyDown={handleInputKeyDown}
                     maxLength={MAX_PROMPT_LENGTH}
                     placeholder="Напишите вопрос..."
-                    disabled={isLoading}
+                    disabled={isLoading || isVerifying}
                 />
 
                 <S.CharacterCounter>
@@ -209,8 +239,8 @@ export const Assistant = () => {
                         disabled={
                             IS_GITHUB_PAGES_BUILD ||
                             isLoading ||
-                            turnstileStatus !== 'ready' ||
-                            !turnstileToken ||
+                            isVerifying ||
+                            turnstileStatus === 'error' ||
                             inputText.trim() === ""
                         }
                     >
@@ -223,8 +253,6 @@ export const Assistant = () => {
                                     <span>.</span>
                                 </S.LoadingDots>
                             </span>
-                        ) : turnstileStatus === 'checking' ? (
-                            'Checking...'
                         ) : turnstileStatus === 'error' ? (
                             'Unavailable'
                         ) : (
